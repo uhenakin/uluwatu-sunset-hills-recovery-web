@@ -1,0 +1,352 @@
+/* =========================================
+   1. DESIGN SYSTEM & VARIABEL
+   ========================================= */
+:root {
+  --bg-ocean: #0A0F1E;      
+  --accent-sunset: #FF7300; 
+  --accent-gold: #E2B065;   
+  --text-light: #F8F9FA;    
+  --nav-bg: rgba(10, 15, 30, 0.95); 
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth; /* Tambahan biar scroll anchor mulus */
+}
+
+body {
+  font-family: var(--font-manrope), sans-serif;
+  background-color: var(--bg-ocean);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-luxury {
+  font-family: var(--font-cormorant), serif;
+}
+
+/* =========================================
+   2. HERO SECTION (Wajah Depan - Mobile First)
+   ========================================= */
+.hero-section {
+  height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 0 5%;
+  background-image: 
+    linear-gradient(to bottom, rgba(10, 15, 30, 0.3) 0%, rgba(10, 15, 30, 0.5) 60%, var(--bg-ocean) 100%), 
+    url('/images/bg/bg-hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-title {
+  font-size: 3rem;
+  color: var(--accent-gold); margin-bottom: 1rem; line-height: 1.1;
+}
+
+.hero-desc {
+  font-size: 0.95rem; max-width: 90%; line-height: 1.6;
+  color: var(--text-light); opacity: 0.9; margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex; flex-direction: column;
+  gap: 15px; width: 100%; max-width: 300px;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 15px 30px; text-decoration: none; letter-spacing: 1px;
+  text-transform: uppercase; font-size: 0.85rem; font-weight: 600;
+  transition: all 0.3s ease; text-align: center;
+}
+
+.btn-primary { background-color: var(--accent-gold); color: var(--bg-ocean); }
+.btn-primary:hover { background-color: #d19f54; }
+
+.btn-secondary { background-color: transparent; color: var(--text-light); border: 1px solid var(--text-light); }
+.btn-secondary:hover { background-color: var(--text-light); color: var(--bg-ocean); }
+
+/* =========================================
+   3. RESPONSIVE: TABLET (Mulai dari 768px)
+   ========================================= */
+@media (min-width: 768px) {
+  /* Hero Tablet */
+  .hero-title { font-size: 4.5rem; }
+  .hero-desc { font-size: 1.1rem; max-width: 600px; }
+  .hero-buttons {
+    flex-direction: row;
+    max-width: 100%; justify-content: center;
+  }
+}
+
+/* =========================================
+   4. RESPONSIVE: DESKTOP PC (Mulai dari 1024px)
+   ========================================= */
+@media (min-width: 1024px) {
+  /* Hero Desktop */
+  .hero-title { font-size: 5.5rem; }
+  .hero-desc { font-size: 1.2rem; max-width: 700px; }
+  .btn-primary, .btn-secondary { font-size: 0.9rem; padding: 16px 35px; }
+}
+
+/* =========================================
+   NAVBAR - Half Screen Menu
+   ========================================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(7, 10, 20, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(226, 176, 101, 0.12);
+  padding: 16px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  z-index: 1020;
+}
+
+.navbar-logo img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Desktop Menu */
+.nav-desktop-menu {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-desktop-menu a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 0.92rem;
+  letter-spacing: 1.2px;
+  transition: color 0.25s ease;
+  position: relative;
+}
+
+.nav-desktop-menu a:not(.btn-book)::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-desktop-menu a:not(.btn-book):hover {
+  color: var(--accent-gold);
+}
+
+.nav-desktop-menu a:not(.btn-book):hover::after {
+  width: 100%;
+}
+
+.nav-desktop-menu .btn-book {
+  border: 1px solid var(--accent-gold);
+  padding: 9px 22px;
+  color: var(--accent-gold);
+  font-weight: 500;
+  border-radius: 2px;
+  font-size: 0.88rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.nav-desktop-menu .btn-book:hover {
+  background: var(--accent-gold);
+  color: var(--bg-ocean);
+}
+
+/* ===== HAMBURGER ===== */
+.nav-hamburger-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1020;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.hamburger-line {
+  position: absolute;
+  left: 50%;
+  width: 22px;
+  height: 1.5px;
+  background-color: var(--accent-gold);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease;
+}
+
+.hamburger-line:nth-child(1) { top: 15px; }
+.hamburger-line:nth-child(2) { top: 21px; }
+.hamburger-line:nth-child(3) { top: 27px; }
+
+.nav-hamburger-btn.is-open .hamburger-line:nth-child(1) {
+  top: 21px;
+  transform: translateX(-50%) rotate(45deg);
+}
+.nav-hamburger-btn.is-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger-btn.is-open .hamburger-line:nth-child(3) {
+  top: 21px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* ===== OVERLAY GELAP ===== */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);   /* lebih transparan */
+  z-index: 1005;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.nav-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== MENU SETENGAH LAYAR (SLIDE DARI KANAN) ===== */
+.nav-mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 78%;
+  max-width: 340px;
+  height: 100%;
+  background: rgba(10, 15, 30, 0.82);  /* lebih transparan */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1010;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 30px 24px;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.35);
+  border-left: 1px solid rgba(226, 176, 101, 0.15);
+}
+
+.nav-mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* Tombol X yang keren */
+.nav-close-btn {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 42px;
+  height: 42px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.close-line {
+  position: absolute;
+  width: 22px;
+  height: 1.5px;
+  background: var(--accent-gold);
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.close-line:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.close-line:nth-child(2) {
+  transform: rotate(-45deg);
+}
+
+.nav-close-btn:hover .close-line {
+  background: #fff;
+}
+
+/* Isi menu */
+.nav-mobile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 70px;
+}
+
+.mobile-link {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 1.45rem;
+  font-family: var(--font-cormorant), serif;
+  letter-spacing: 1.5px;
+  padding: 13px 8px;
+  transition: color 0.25s ease, padding-left 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-link:active,
+.mobile-link:hover {
+  color: var(--accent-gold);
+  padding-left: 14px;
+}
+
+.btn-book-mobile {
+  margin-top: 36px;
+  background: var(--accent-gold);
+  color: var(--bg-ocean);
+  padding: 14px 28px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-book-mobile:active {
+  transform: scale(0.97);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav-desktop-menu {
+    display: none !important;
+  }
+  .nav-hamburger-btn {
+    display: block !important;
+  }
+}
