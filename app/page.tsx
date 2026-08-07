@@ -44,13 +44,15 @@ export default function Home() {
           Elevate your physical and mental wellbeing at Uluwatu's most exclusive recovery sanctuary. Ice baths, saunas, and holistic therapies await.
         </p>
         
-        {/* ✅ Tombol ada di sini */}
+        {/* ✅ TOMBOL DIPERBARUI: RECOVERY DAN PRICELIST */}
         <div className="hero-buttons">
-          <a href="#contact" className="btn-primary">
-            Book a Session
+          {/* Tombol pertama: Recovery, arahkan ke #recovery */}
+          <a href="#recovery" className="btn-primary">
+            Recovery
           </a>
-          <a href="#about" className="btn-secondary">
-            Discover More
+          {/* Tombol kedua: Pricelist, arahkan ke #pricelist */}
+          <a href="#pricelist" className="btn-secondary">
+            Pricelist
           </a>
         </div>
       </section>
