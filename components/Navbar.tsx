@@ -2,9 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation"; 
+import Image from "next/image"; 
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter(); 
+  const isHome = pathname === "/";
 
   useEffect(() => {
     if (isOpen) {
@@ -16,18 +21,56 @@ export default function Navbar() {
 
   const closeMenu = () => setIsOpen(false);
 
+  const handleNav = (sectionId: string) => {
+    closeMenu();
+    if (isHome) {
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/#${sectionId}`;
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault(); 
+    closeMenu();
+    router.push('/'); 
+    
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
   return (
     <>
       <nav className="navbar">
-        <Link href="/" onClick={closeMenu} className="navbar-logo">
-          <img src="/images/logo/logo-new.png" alt="Uluwatu Sunset Hills" />
+        <Link href="/" onClick={handleLogoClick} className="navbar-logo">
+          
+          {/* ✅ HANYA LOGO (TANPA LINGKARAN PUTIH/HITAM) */}
+          <div style={{ 
+            position: 'relative', 
+            height: '58px', 
+            width: 'auto', 
+            aspectRatio: '1 / 1',
+            cursor: 'pointer', 
+            pointerEvents: 'auto' 
+          }}>
+            <Image
+              src="/images/logo/logo-new.webp"
+              alt="Uluwatu Sunset Hills"
+              fill={true}          // Mengisi penuh div
+              priority={true}      // Menghilangkan warning LCP
+              sizes="58px"         // Menghilangkan warning missing sizes
+              style={{ objectFit: 'contain' }}
+            />
+          </div>
         </Link>
 
         <div className="nav-desktop-menu">
-          <Link href="/#about">About</Link>
-          <Link href="/#recovery">Recovery</Link>
-          <Link href="/#pricelist">Pricelist</Link>
-          <Link href="/#restaurant">Restaurant</Link>
+          <button onClick={() => handleNav("about")} className="nav-link-btn">About</button>
+          <button onClick={() => handleNav("recovery")} className="nav-link-btn">Recovery</button>
+          <button onClick={() => handleNav("pricelist")} className="nav-link-btn">Pricelist</button>
+          <button onClick={() => handleNav("restaurant")} className="nav-link-btn">Restaurant</button>
           <Link href="/#contact" className="btn-book">Book Now</Link>
         </div>
 
@@ -43,29 +86,19 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Overlay gelap di belakang */}
-      <div 
-        className={`nav-overlay ${isOpen ? "open" : ""}`}
-        onClick={closeMenu}
-      />
+      <div className={`nav-overlay ${isOpen ? "open" : ""}`} onClick={closeMenu} />
 
-      {/* Menu setengah layar (slide dari kanan) */}
       <div className={`nav-mobile-menu ${isOpen ? "open" : ""}`}>
-        {/* Tombol X */}
         <button className="nav-close-btn" onClick={closeMenu} aria-label="Close menu">
-          <span className="close-line"></span>
-          <span className="close-line"></span>
+          <span className="close-line" />
+          <span className="close-line" />
         </button>
-
         <div className="nav-mobile-content">
-          <Link href="/#about" onClick={closeMenu} className="mobile-link">About</Link>
-          <Link href="/#recovery" onClick={closeMenu} className="mobile-link">Recovery</Link>
-          <Link href="/#pricelist" onClick={closeMenu} className="mobile-link">Pricelist</Link>
-          <Link href="/#restaurant" onClick={closeMenu} className="mobile-link">Restaurant</Link>
-
-          <Link href="/#contact" onClick={closeMenu} className="btn-book-mobile">
-            Book Your Visit
-          </Link>
+          <button onClick={() => handleNav("about")} className="mobile-link">About</button>
+          <button onClick={() => handleNav("recovery")} className="mobile-link">Recovery</button>
+          <button onClick={() => handleNav("pricelist")} className="mobile-link">Pricelist</button>
+          <button onClick={() => handleNav("restaurant")} className="mobile-link">Restaurant</button>
+          <Link href="/#contact" onClick={closeMenu} className="btn-book-mobile">Book Your Visit</Link>
         </div>
       </div>
     </>

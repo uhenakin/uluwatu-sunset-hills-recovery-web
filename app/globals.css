@@ -12,7 +12,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
-  scroll-behavior: smooth; /* Tambahan biar scroll anchor mulus */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   padding: 0 5%;
   background-image: 
     linear-gradient(to bottom, rgba(10, 15, 30, 0.3) 0%, rgba(10, 15, 30, 0.5) 60%, var(--bg-ocean) 100%), 
-    url('/images/bg/bg-hero.png');
+    url('/images/bg/bg-hero.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -72,7 +72,6 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
    3. RESPONSIVE: TABLET (Mulai dari 768px)
    ========================================= */
 @media (min-width: 768px) {
-  /* Hero Tablet */
   .hero-title { font-size: 4.5rem; }
   .hero-desc { font-size: 1.1rem; max-width: 600px; }
   .hero-buttons {
@@ -85,14 +84,13 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
    4. RESPONSIVE: DESKTOP PC (Mulai dari 1024px)
    ========================================= */
 @media (min-width: 1024px) {
-  /* Hero Desktop */
   .hero-title { font-size: 5.5rem; }
   .hero-desc { font-size: 1.2rem; max-width: 700px; }
   .btn-primary, .btn-secondary { font-size: 0.9rem; padding: 16px 35px; }
 }
 
 /* =========================================
-   NAVBAR - Half Screen Menu
+   5. NAVBAR - Half Screen Menu
    ========================================= */
 .navbar {
   position: fixed;
@@ -173,6 +171,40 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   color: var(--bg-ocean);
 }
 
+/* Nav Link Button (Desktop) */
+.nav-link-btn {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 0.92rem;
+  letter-spacing: 1.2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.25s ease;
+  position: relative;
+  padding: 0;
+}
+
+.nav-link-btn::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-link-btn:hover {
+  color: var(--accent-gold);
+}
+
+.nav-link-btn:hover::after {
+  width: 100%;
+}
+
 /* ===== HAMBURGER ===== */
 .nav-hamburger-btn {
   display: none;
@@ -220,7 +252,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
 .nav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);   /* lebih transparan */
+  background: rgba(0, 0, 0, 0.35);
   z-index: 1005;
   opacity: 0;
   visibility: hidden;
@@ -242,7 +274,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   width: 78%;
   max-width: 340px;
   height: 100%;
-  background: rgba(10, 15, 30, 0.82);  /* lebih transparan */
+  background: rgba(10, 15, 30, 0.82);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 1010;
@@ -259,7 +291,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   transform: translateX(0);
 }
 
-/* Tombol X yang keren */
+/* Tombol X */
 .nav-close-btn {
   position: absolute;
   top: 22px;
@@ -311,6 +343,10 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   font-family: var(--font-cormorant), serif;
   letter-spacing: 1.5px;
   padding: 13px 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
   transition: color 0.25s ease, padding-left 0.25s ease;
   -webkit-tap-highlight-color: transparent;
 }
@@ -341,7 +377,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   transform: scale(0.97);
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE NAVBAR ===== */
 @media (max-width: 768px) {
   .nav-desktop-menu {
     display: none !important;
@@ -349,4 +385,45 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   .nav-hamburger-btn {
     display: block !important;
   }
+}
+
+/* =========================================
+   6. SCROLL REVEAL
+   ========================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variasi (opsional) */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
 }

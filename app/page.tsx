@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect } from "react";
+import { usePageLoading } from "@/hooks/usePageLoading";
+import Loading from "@/components/Loading";
 import About from "../components/About";
 import Recovery from "../components/Recovery";
 import Pricelist from "../components/Pricelist";
@@ -5,17 +10,41 @@ import Restaurant from "../components/Restaurant";
 import Contact from "../components/Contact";
 
 export default function Home() {
+  const isLoading = usePageLoading();
+
+  // Hanya untuk memastikan hash tetap di-handle setelah loading
+  useEffect(() => {
+    if (!isLoading) {
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          // Gunakan scrollIntoView dengan behavior 'auto' (instan, tanpa animasi)
+          element.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      }
+    }
+  }, [isLoading]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <main>
-      {/* SECTION 1: HERO */}
       <section className="hero-section">
         <h1 className="hero-title font-luxury" style={{ color: '#ffffff' }}>
-          Uluwatu Sunset Hills <br />
+          <span style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>Uluwatu Sunset Hills</span>
+          <br />
           <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Recovery</span>
         </h1>
+        
         <p className="hero-desc">
           Elevate your physical and mental wellbeing at Uluwatu's most exclusive recovery sanctuary. Ice baths, saunas, and holistic therapies await.
         </p>
+        
+        {/* ✅ Tombol ada di sini */}
         <div className="hero-buttons">
           <a href="#contact" className="btn-primary">
             Book a Session
@@ -26,21 +55,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 2: ABOUT */}
       <About />
-
-      {/* SECTION 3: RECOVERY */}
       <Recovery />
-
-      {/* SECTION 4: PRICELIST */}
       <Pricelist />
-
-      {/* SECTION 5: RESTAURANT */}
       <Restaurant />
-
-      {/* SECTION 6: CONTACT */}
       <Contact />
-      
+
+      {/* ✅ CSS KHUSUS UNTUK HP (Mobile) */}
+      <style jsx>{`
+        @media (max-width: 767px) {
+          .hero-title {
+            /* Menyesuaikan ukuran font di HP agar muat satu baris tanpa terlalu kecil */
+            font-size: 2.5rem !important; 
+            line-height: 1.2;
+          }
+
+          /* ✅ Menurunkan posisi tombol */
+          .hero-buttons {
+            margin-top: 40px !important; /* Memberikan jarak 40px dari teks deskripsi */
+          }
+        }
+      `}</style>
     </main>
   );
 }

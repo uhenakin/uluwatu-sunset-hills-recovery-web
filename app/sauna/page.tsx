@@ -1,5 +1,10 @@
 import FacilityDetail from "@/components/FacilityDetail";
+import Reveal from "@/components/Reveal";
 
 export default function SaunaPage() {
-  return <FacilityDetail slug="sauna" />;
+  return (
+    <Reveal>
+      <FacilityDetail slug="sauna" />
+    </Reveal>
+  );
 }

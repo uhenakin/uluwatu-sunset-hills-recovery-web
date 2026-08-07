@@ -1,45 +1,60 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import Reveal from "./Reveal";
+import Loading from "./Loading";
 
 const facilities = [
   {
     slug: "sauna",
     title: "Traditional Sauna",
     desc: "Detoxify and unwind in our premium wood-fired saunas. Relieving tension and promoting cardiovascular health.",
-    cardImage: "/images/card/sauna.jpeg"
+    // ✅ DIUBAH KE WEBP
+    cardImage: "/images/card/sauna.webp"
   },
   {
     slug: "ice-bath",
     title: "Ice Bath",
     desc: "Accelerate healing with our cold plunges. Proven to reduce inflammation and minimize muscle soreness.",
-    cardImage: "/images/card/icebath.jpeg"
+    // ✅ DIUBAH KE WEBP
+    cardImage: "/images/card/icebath.webp"
   },
   {
     slug: "hot-pool",
     title: "Mineral Hot Pool",
     desc: "Melt away stress in our therapeutic hot pools. The soothing warmth relaxes joints for restorative sleep.",
-    cardImage: "/images/card/hotpool.jpeg"
+    // ✅ DIUBAH KE WEBP
+    cardImage: "/images/card/hotpool.webp"
   },
   {
     slug: "swimming-pool",
     title: "Swimming Pool",
     desc: "Enjoy a refreshing dip in our crystal-clear pool, perfectly positioned to capture the ocean breeze.",
-    cardImage: "/images/card/swimpool.jpeg"
+    // ✅ DIUBAH KE WEBP
+    cardImage: "/images/card/swimpool.webp"
   }
 ];
 
 const CARD_WIDTH = 280;
-const GAP_MOBILE = 16; 
-const GAP_DESKTOP = 30;
-const ITEM_WIDTH = CARD_WIDTH + GAP_MOBILE;
+const GAP = 20;
+const ITEM_WIDTH = CARD_WIDTH + GAP;
 
-// Komponen Kartu Satuan
-function RecoveryCard({ item }: { item: (typeof facilities)[number] }) {
+function RecoveryCard({
+  item,
+  onNavigate,
+}: {
+  item: (typeof facilities)[number];
+  onNavigate: (slug: string) => void;
+}) {
   return (
     <Link
       href={`/${item.slug}`}
+      onClick={(e) => {
+        e.preventDefault();
+        onNavigate(item.slug);
+      }}
       style={{
         textDecoration: "none",
         backgroundColor: "rgba(255, 255, 255, 0.03)",
@@ -50,7 +65,7 @@ function RecoveryCard({ item }: { item: (typeof facilities)[number] }) {
         display: "flex",
         flexDirection: "column",
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
-        scrollSnapAlign: "center", // PERBAIKAN UTAMA: Browser akan snap tepat di tengah layar
+        scrollSnapAlign: "center",
         flex: `0 0 ${CARD_WIDTH}px`,
         width: `${CARD_WIDTH}px`,
         minWidth: `${CARD_WIDTH}px`,
@@ -67,6 +82,7 @@ function RecoveryCard({ item }: { item: (typeof facilities)[number] }) {
       }}
     >
       <div style={{ width: "100%", height: "210px", position: "relative", flexShrink: 0 }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={item.cardImage}
           alt={item.title}
@@ -74,19 +90,19 @@ function RecoveryCard({ item }: { item: (typeof facilities)[number] }) {
         />
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px 22px 24px" }}>
-        <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "var(--accent-gold)", marginBottom: "10px" }}>
+      <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px" }}>
+        <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "var(--accent-gold)", marginBottom: "8px" }}>
           {item.title}
         </h3>
         <p style={{ color: "var(--text-light)", opacity: 0.85, lineHeight: 1.6, fontSize: "0.9rem", margin: 0 }}>
           {item.desc}
         </p>
-        
+
         <span
           style={{
             display: "inline-block",
             marginTop: "auto",
-            paddingTop: "16px",
+            paddingTop: "14px",
             fontSize: "0.75rem",
             letterSpacing: "1.5px",
             textTransform: "uppercase",
@@ -103,32 +119,33 @@ function RecoveryCard({ item }: { item: (typeof facilities)[number] }) {
 
 export default function Recovery() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const isAdjusting = useRef(false); 
+  const router = useRouter();
+  const [showLoading, setShowLoading] = useState(false);
 
-  // Mengatur posisi awal infinite scroll ke 'set kedua'
   useEffect(() => {
     if (trackRef.current) {
       trackRef.current.scrollLeft = facilities.length * ITEM_WIDTH;
     }
   }, []);
 
-  const handleScroll = useCallback(() => {
+  const handleScroll = () => {
     const el = trackRef.current;
-    if (!el || isAdjusting.current) return;
-
+    if (!el) return;
     const total = facilities.length * ITEM_WIDTH;
-    const current = el.scrollLeft;
-
-    if (current < total) {
-      isAdjusting.current = true;
+    if (el.scrollLeft < total * 0.5) {
       el.scrollLeft += total;
-      setTimeout(() => { isAdjusting.current = false; }, 250);
-    } else if (current >= total * 2) {
-      isAdjusting.current = true;
+    } else if (el.scrollLeft > total * 1.5) {
       el.scrollLeft -= total;
-      setTimeout(() => { isAdjusting.current = false; }, 250);
     }
-  }, []);
+  };
+
+  const handleNavigate = (slug: string) => {
+    setShowLoading(true);
+    // Biar loading sempat kelihatan sebentar sebelum pindah halaman
+    setTimeout(() => {
+      router.push(`/${slug}`);
+    }, 900);
+  };
 
   const mobileTrackItems = [...facilities, ...facilities, ...facilities];
 
@@ -137,14 +154,14 @@ export default function Recovery() {
       id="recovery"
       style={{
         position: "relative",
-        padding: "clamp(80px, 12vw, 140px) 5%",
-        scrollMarginTop: "100px",
+        padding: "140px 5%",
         backgroundImage: `
-          linear-gradient(to bottom, var(--bg-ocean) 0%, rgba(10, 15, 30, 0.70) 35%, rgba(10, 15, 30, 0.70) 65%, var(--bg-ocean) 100%),
-          url("/images/bg/bg-recovery.png")
+          linear-gradient(to bottom, var(--bg-ocean) 0%, rgba(10, 15, 30, 0.55) 35%, rgba(10, 15, 30, 0.55) 65%, var(--bg-ocean) 100%),
+          url("/images/bg/bg-recovery.webp")
         `,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        /* ✅ Diubah posisi agar bergeser ke kanan (65% dari kiri) */
+        backgroundPosition: "65% center", 
         backgroundRepeat: "no-repeat",
         display: "flex",
         flexDirection: "column",
@@ -153,76 +170,76 @@ export default function Recovery() {
         overflow: "hidden",
       }}
     >
-      <div style={{ textAlign: "center", width: "100%", maxWidth: "1200px", zIndex: 2 }}>
-        <h2
-          className="font-luxury"
-          style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", color: "var(--text-light)", marginBottom: "20px" }}
-        >
-          The <span style={{ color: "var(--accent-sunset)", fontStyle: "italic" }}>Recovery</span>
-        </h2>
+      {showLoading && <Loading />}
 
-        <p
+      <Reveal style={{ width: "100%", maxWidth: "1200px" }}>
+        <div style={{ textAlign: "center", width: "100%", zIndex: 2 }}>
+          <h2
+            className="font-luxury"
+            style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", color: "var(--text-light)", marginBottom: "20px" }}
+          >
+            The <span style={{ color: "var(--accent-sunset)", fontStyle: "italic" }}>Recovery</span>
+          </h2>
+
+          <p
+            style={{
+              fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
+              lineHeight: 1.8,
+              color: "var(--text-light)",
+              maxWidth: "800px",
+              opacity: 0.9,
+              fontWeight: 300,
+              margin: "0 auto 60px auto",
+            }}
+          >
+            Our contrast therapies provide a profound restorative journey. Aiming to accelerate
+            physical healing, soothe the mind, and elevate your overall well-being.
+          </p>
+        </div>
+      </Reveal>
+
+      <Reveal delay={150} style={{ width: "100%", maxWidth: "1200px" }}>
+        <div
+          className="recovery-desktop-grid"
           style={{
-            fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
-            lineHeight: 1.8,
-            color: "var(--text-light)",
-            maxWidth: "800px",
-            opacity: 0.9,
-            fontWeight: 300,
-            margin: "0 auto 60px auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "30px",
+            width: "100%",
+            zIndex: 2,
+            alignItems: "stretch",
           }}
         >
-          Our contrast therapies provide a profound restorative journey. Aiming to accelerate
-          physical healing, soothe the mind, and elevate your overall well-being.
-        </p>
-      </div>
+          {facilities.map((item) => (
+            <RecoveryCard key={item.slug} item={item} onNavigate={handleNavigate} />
+          ))}
+        </div>
+      </Reveal>
 
-      {/* 1. TAMPILAN DESKTOP & TABLET (GRID) */}
-      <div
-        className="recovery-desktop-grid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
-          gap: `${GAP_DESKTOP}px`,
-          width: "100%",
-          maxWidth: "1200px",
-          zIndex: 2,
-          alignItems: "stretch",
-        }}
-      >
-        {facilities.map((item) => (
-          <RecoveryCard key={item.slug} item={item} />
-        ))}
-      </div>
-
-      {/* 2. TAMPILAN MOBILE (HORIZONTAL INFINITE SCROLL DENGAN CENTER SNAP) */}
       <div
         ref={trackRef}
         onScroll={handleScroll}
         className="recovery-mobile-scroll"
         style={{
-          display: "none", 
+          display: "none",
           flexDirection: "row",
           flexWrap: "nowrap",
-          gap: `${GAP_MOBILE}px`,
-          width: "100%", // Menggunakan 100% agar pas dengan induk
-          // PERBAIKAN PROPORSIONAL:
-          // Rumus ini membuat posisi kartu pertama tepat di tengah layar.
-          // `140px` adalah setengah dari lebar kartu (CARD_WIDTH / 2).
-          paddingLeft: "calc(50% - 140px)",
+          gap: `${GAP}px`,
+          width: "100%",
+          overflowX: "auto",
+          // Biar card aktif selalu di tengah
+          paddingLeft: "calc(50% - 140px)", // 140 = CARD_WIDTH / 2
           paddingRight: "calc(50% - 140px)",
           scrollPaddingLeft: "calc(50% - 140px)",
           scrollPaddingRight: "calc(50% - 140px)",
-          overflowX: "auto",
-          scrollSnapType: "x mandatory", // Menggunakan mandatory agar snap presisi di tengah
+          scrollSnapType: "x mandatory",
           WebkitOverflowScrolling: "touch",
-          zIndex: 2,
           touchAction: "pan-x",
-          willChange: "transform",
+          zIndex: 2,
         }}
       >
         {mobileTrackItems.map((item, i) => (
-          <RecoveryCard key={`${item.slug}-${i}`} item={item} />
+          <RecoveryCard key={`${item.slug}-${i}`} item={item} onNavigate={handleNavigate} />
         ))}
       </div>
 

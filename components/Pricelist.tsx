@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
+import Reveal from "./Reveal";
 
 export default function Pricelist() {
   const plans = [
@@ -54,13 +55,11 @@ export default function Pricelist() {
     }
   ];
 
-  // --- KONFIGURASI UKURAN (SAMA SEPERTI RECOVERY) ---
   const CARD_WIDTH = 280;
   const GAP_MOBILE = 16;
   const GAP_DESKTOP = 30;
   const ITEM_WIDTH = CARD_WIDTH + GAP_MOBILE;
 
-  // --- KOMPONEN KARTU ---
   const PriceCard = ({ item }: { item: typeof plans[0] }) => (
     <div style={{
       backgroundColor: 'rgba(255, 255, 255, 0.02)',
@@ -127,12 +126,10 @@ export default function Pricelist() {
     </div>
   );
 
-  // --- KOMPONEN SECTION DENGAN INFINITE SCROLL LOGIC ---
   const PriceSection = ({ title, items }: { title: string, items: typeof plans }) => {
     const trackRef = useRef<HTMLDivElement>(null);
     const isAdjusting = useRef(false);
 
-    // Atur posisi awal ke set kedua
     useEffect(() => {
       if (trackRef.current) {
         trackRef.current.scrollLeft = items.length * ITEM_WIDTH;
@@ -157,7 +154,6 @@ export default function Pricelist() {
       }
     }, [items.length]);
 
-    // Triplikasi data untuk infinite scroll
     const infiniteItems = [...items, ...items, ...items];
 
     return (
@@ -169,7 +165,6 @@ export default function Pricelist() {
           {title}
         </h3>
 
-        {/* 1. DESKTOP (GRID) */}
         <div className="pricelist-grid-desktop" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
@@ -181,7 +176,6 @@ export default function Pricelist() {
           ))}
         </div>
 
-        {/* 2. MOBILE (INFINITE SCROLL + CENTER PEEKING) */}
         <div
           ref={trackRef}
           onScroll={handleScroll}
@@ -219,43 +213,44 @@ export default function Pricelist() {
     );
   };
 
-  // --- FILTER DATA ---
   const sessions = plans.filter(p => p.category === "SESSION");
   const passes = plans.filter(p => p.category === "PASS");
   const memberships = plans.filter(p => p.category === "MEMBERSHIP");
 
   return (
-    <section id="pricelist" style={{ 
-      padding: '120px 5% 80px 5%', 
-      backgroundColor: 'var(--bg-ocean)', 
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      width: '100%',
-      scrollMarginTop: '100px'
-    }}>
-      
-      <div style={{ textAlign: 'center', width: '100%', maxWidth: '1200px' }}>
-        <h2 className="font-luxury" style={{ 
-          fontSize: 'clamp(3rem, 6vw, 4.5rem)', color: 'var(--text-light)', marginBottom: '20px'
-        }}>
-          Recovery <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Pricelist</span>
-        </h2>
-        <p style={{
-          fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', lineHeight: '1.8', 
-          color: 'var(--text-light)', maxWidth: '800px', opacity: '0.8',
-          fontWeight: '300', margin: '0 auto 60px auto'
-        }}>
-          Choose the ideal session, pass, or membership tailored to your recovery journey. Experience world-class contrast therapy at Uluwatu Sunset Hills.
-        </p>
-      </div>
+    <Reveal>
+      <section id="pricelist" style={{ 
+        padding: '120px 5% 80px 5%', 
+        backgroundColor: 'var(--bg-ocean)', 
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+        scrollMarginTop: '100px'
+      }}>
+        
+        <div style={{ textAlign: 'center', width: '100%', maxWidth: '1200px' }}>
+          <h2 className="font-luxury" style={{ 
+            fontSize: 'clamp(3rem, 6vw, 4.5rem)', color: 'var(--text-light)', marginBottom: '20px'
+          }}>
+            Recovery <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Pricelist</span>
+          </h2>
+          <p style={{
+            fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', lineHeight: '1.8', 
+            color: 'var(--text-light)', maxWidth: '800px', opacity: '0.8',
+            fontWeight: '300', margin: '0 auto 60px auto'
+          }}>
+            Choose the ideal session, pass, or membership tailored to your recovery journey. Experience world-class contrast therapy at Uluwatu Sunset Hills.
+          </p>
+        </div>
 
-      <div style={{ width: '100%', maxWidth: '1200px' }}>
-        <PriceSection title="Sessions" items={sessions} />
-        <PriceSection title="Passes" items={passes} />
-        <PriceSection title="Memberships" items={memberships} />
-      </div>
+        <div style={{ width: '100%', maxWidth: '1200px' }}>
+          <PriceSection title="Sessions" items={sessions} />
+          <PriceSection title="Passes" items={passes} />
+          <PriceSection title="Memberships" items={memberships} />
+        </div>
 
-    </section>
+      </section>
+    </Reveal>
   );
 }

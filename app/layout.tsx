@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import SmoothScrolling from "../components/SmoothScrolling";
 
-// Konfigurasi Font
 const cormorant = Cormorant_Garamond({ 
   subsets: ["latin"], 
   weight: ["300", "400", "500", "600", "700"],
@@ -29,16 +28,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${manrope.variable}`} data-scroll-behavior="smooth">
       <body suppressHydrationWarning>
-        
-        {/* Navbar di LUAR Lenis agar bisa diklik di HP */}
         <Navbar />
-
         <SmoothScrolling>
           {children}
         </SmoothScrolling>
-        
       </body>
     </html>
   );

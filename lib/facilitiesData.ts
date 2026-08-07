@@ -15,8 +15,8 @@ export const facilitiesData: Record<string, Facility> = {
     route: "/sauna",
     title: "Traditional Sauna",
     tagline: "Wood-fired heat, the old way — detoxify and unwind.",
-    cardImage: "/images/card/sauna.jpeg",
-    heroImage: "/images/sauna/bg-sauna.jpeg",
+    cardImage: "/images/card/sauna.webp", // ✅ DIUBAH KE WEBP
+    heroImage: "/images/sauna/bg-sauna.webp", // ✅ DIUBAH KE WEBP
     benefits: [
       { title: "Deep Detoxification", desc: "Dry heat opens pores and promotes sweating, helping flush toxins from the body." },
       { title: "Cardiovascular Boost", desc: "Regular sauna sessions raise heart rate similarly to light exercise, supporting circulation." },
@@ -24,10 +24,10 @@ export const facilitiesData: Record<string, Facility> = {
       { title: "Better Sleep", desc: "The post-sauna drop in body temperature signals the body to wind down, improving sleep quality." },
     ],
     gallery: [
-      "/images/sauna/sauna-1.jpeg",
-      "/images/sauna/sauna-2.jpeg",
-      "/images/sauna/sauna-3.jpeg",
-      "/images/sauna/sauna-4.jpeg",
+      "/images/sauna/sauna-1.webp", // ✅ DIUBAH KE WEBP
+      "/images/sauna/sauna-2.webp", // ✅ DIUBAH KE WEBP
+      "/images/sauna/sauna-3.webp", // ✅ DIUBAH KE WEBP
+      "/images/sauna/sauna-4.webp", // ✅ DIUBAH KE WEBP
     ],
   },
   "ice-bath": {
@@ -35,8 +35,8 @@ export const facilitiesData: Record<string, Facility> = {
     route: "/ice-bath",
     title: "Ice Bath",
     tagline: "Full-body cold immersion — reset the nervous system.",
-    cardImage: "/images/card/icebath.jpeg",
-    heroImage: "/images/icebath/bg-icebath.jpeg",
+    cardImage: "/images/card/icebath.webp", // ✅ DIUBAH KE WEBP
+    heroImage: "/images/icebath/bg-icebath.webp", // ✅ DIUBAH KE WEBP
     benefits: [
       { title: "Reduced Inflammation", desc: "Cold exposure constricts blood vessels, helping to reduce swelling and muscle soreness." },
       { title: "Faster Recovery", desc: "Athletes use cold immersion to speed up recovery time between training sessions." },
@@ -44,10 +44,10 @@ export const facilitiesData: Record<string, Facility> = {
       { title: "Improved Circulation", desc: "The shift between cold and warm afterwards drives blood flow throughout the body." },
     ],
     gallery: [
-      "/images/icebath/icebath-1.jpeg",
-      "/images/icebath/icebath-2.jpeg",
-      "/images/icebath/icebath-3.jpeg",
-      "/images/icebath/icebath-4.jpeg",
+      "/images/icebath/icebath-1.webp", // ✅ DIUBAH KE WEBP
+      "/images/icebath/icebath-2.webp", // ✅ DIUBAH KE WEBP
+      "/images/icebath/icebath-3.webp", // ✅ DIUBAH KE WEBP
+      "/images/icebath/icebath-4.webp", // ✅ DIUBAH KE WEBP
     ],
   },
   "hot-pool": {
@@ -55,8 +55,8 @@ export const facilitiesData: Record<string, Facility> = {
     route: "/hot-pool",
     title: "Mineral Hot Pool",
     tagline: "Therapeutic warmth for joints, muscles, and mind.",
-    cardImage: "/images/card/hotpool.jpeg",
-    heroImage: "/images/hotpool/bg-hotpool.jpeg",
+    cardImage: "/images/card/hotpool.webp", // ✅ DIUBAH KE WEBP
+    heroImage: "/images/hotpool/bg-hotpool.webp", // ✅ DIUBAH KE WEBP
     benefits: [
       { title: "Joint Relief", desc: "Warm mineral water eases stiffness and supports joint mobility." },
       { title: "Stress Reduction", desc: "The soothing heat lowers cortisol and encourages deep relaxation." },
@@ -64,10 +64,10 @@ export const facilitiesData: Record<string, Facility> = {
       { title: "Skin Nourishment", desc: "Mineral-rich water can help soften and nourish the skin with regular use." },
     ],
     gallery: [
-      "/images/hotpool/hotpool-1.jpeg",
-      "/images/hotpool/hotpool-2.jpeg",
-      "/images/hotpool/hotpool-3.jpeg",
-      "/images/hotpool/hotpool-4.jpeg",
+      "/images/hotpool/hotpool-1.webp", // ✅ DIUBAH KE WEBP
+      "/images/hotpool/hotpool-2.webp", // ✅ DIUBAH KE WEBP
+      "/images/hotpool/hotpool-3.webp", // ✅ DIUBAH KE WEBP
+      "/images/hotpool/hotpool-4.webp", // ✅ DIUBAH KE WEBP
     ],
   },
   "swimming-pool": {
@@ -75,8 +75,8 @@ export const facilitiesData: Record<string, Facility> = {
     route: "/swimming-pool",
     title: "Swimming Pool",
     tagline: "Crystal-clear water, framed by the ocean breeze.",
-    cardImage: "/images/card/swimpool.jpeg",
-    heroImage: "/images/swimmingpool/bg-swimpool.jpeg",
+    cardImage: "/images/card/swimpool.webp", // ✅ DIUBAH KE WEBP
+    heroImage: "/images/swimmingpool/bg-swimpool.webp", // ✅ DIUBAH KE WEBP
     benefits: [
       { title: "Low-Impact Movement", desc: "Swimming works the whole body while staying gentle on joints and tendons." },
       { title: "Active Recovery", desc: "A light swim keeps blood flowing without overloading tired muscles." },
@@ -84,10 +84,10 @@ export const facilitiesData: Record<string, Facility> = {
       { title: "Full-Body Conditioning", desc: "Regular laps build endurance and strength across the entire body." },
     ],
     gallery: [
-      "/images/swimmingpool/swimpool-1.jpeg",
-      "/images/swimmingpool/swimpool-2.jpeg",
-      "/images/swimmingpool/swimpool-3.jpeg",
-      "/images/swimmingpool/swimpool-4.jpeg",
+      "/images/swimmingpool/swimpool-1.webp", // ✅ DIUBAH KE WEBP
+      "/images/swimmingpool/swimpool-2.webp", // ✅ DIUBAH KE WEBP
+      "/images/swimmingpool/swimpool-3.webp", // ✅ DIUBAH KE WEBP
+      "/images/swimmingpool/swimpool-4.webp", // ✅ DIUBAH KE WEBP
     ],
   },
 };
