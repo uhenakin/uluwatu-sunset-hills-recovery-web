@@ -31,7 +31,6 @@ export default function Restaurant() {
 
           <div style={{ width: "100px", height: "3px", backgroundColor: "var(--accent-gold)", margin: "0 auto 25px auto" }} />
 
-          {/* ✅ Paragraf disesuaikan dengan About */}
           <p
             className="restaurant-desc"
             style={{
@@ -56,7 +55,7 @@ export default function Restaurant() {
             </div>
             
             <div className="schedule-item">
-              <h3 className="schedule-title font-luxury">LUNCH ~ DINNER ~ GRAZING PLATTERS</h3>
+              <h3 className="schedule-title font-luxury">LUNCH - DINNER - GRAZING PLATTERS</h3>
               <span className="schedule-time">12PM - 8PM</span>
             </div>
 
@@ -67,7 +66,7 @@ export default function Restaurant() {
               href="/restaurant"
               className="btn-menu-gold-box"
             >
-              Explore Complete Menu →
+              Explore Complete Menu
             </Link>
           </div>
 
@@ -121,37 +120,63 @@ export default function Restaurant() {
             opacity: 0.85;
           }
 
+          /* ✅ Tombol yang dibuat jauh lebih hidup dengan kilauan dan gradasi dinamis */
           :global(.btn-menu-gold-box),
           .btn-menu-gold-box {
+            position: relative !important;
+            overflow: hidden !important;
             display: inline-block !important;
             padding: 16px 45px !important;
-            background-color: #d5a15c !important;
+            background: linear-gradient(45deg, #c4904a, #d5a15c, #e8c38c, #d5a15c, #c4904a) !important;
+            background-size: 300% auto !important;
             color: #ffffff !important;
-            border: 1px solid #d5a15c !important;
-            font-weight: 600 !important;
+            border: none !important;
+            font-weight: 700 !important;
             text-decoration: none !important;
             letter-spacing: 1.5px !important;
             text-transform: uppercase !important;
             font-size: 0.9rem !important;
             border-radius: 6px !important;
-            box-shadow: 0 4px 20px rgba(213, 161, 92, 0.35) !important;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
-            animation: pulse-gold-menu 2s infinite;
+            box-shadow: 0 4px 20px rgba(213, 161, 92, 0.4) !important;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease !important;
+            animation: pulse-gold-menu 2.5s infinite, gradient-shift 4s ease infinite !important;
+          }
+
+          /* Efek kilauan cahaya (Shine) yang berjalan */
+          .btn-menu-gold-box::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine-menu 3s infinite;
           }
 
           .btn-menu-gold-box:hover {
-            transform: translateY(-6px) scale(1.06) !important;
+            transform: translateY(-6px) scale(1.05) !important;
             box-shadow: 0 15px 35px rgba(213, 161, 92, 0.6) !important;
-            background-color: #c4904a !important;
-            color: #ffffff !important;
-            border-color: #c4904a !important;
-            animation: none !important;
+            animation: gradient-shift 2s ease infinite !important; /* Animasi warna lebih cepat saat di-hover */
           }
 
           @keyframes pulse-gold-menu {
             0% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0.6); }
-            70% { box-shadow: 0 0 0 14px rgba(213, 161, 92, 0); }
+            70% { box-shadow: 0 0 0 15px rgba(213, 161, 92, 0); }
             100% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0); }
+          }
+
+          @keyframes shine-menu {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+          }
+
+          @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
           }
 
           @media (max-width: 767px) {
@@ -159,18 +184,17 @@ export default function Restaurant() {
               font-size: 2.1rem !important;
               margin-bottom: 20px !important;
             }
-            /* ✅ Style paragraf mobile disesuaikan dengan About */
             .restaurant-desc {
               font-size: 0.88rem !important;
               line-height: 1.6 !important;
               margin-bottom: 25px !important;
             }
             .btn-menu-gold-box {
-              padding: 14px 25px !important;
-              font-size: 0.8rem !important;
+              padding: 12px 22px !important;
+              font-size: 0.75rem !important;
             }
             .tax-notice {
-              font-size: 0.78rem !important;
+              font-size: 0.68rem !important;
             }
           }
 

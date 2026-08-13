@@ -40,9 +40,11 @@ export default function About() {
         }}>
 
           <p className="about-text">
-            Uluwatu Sunset Hills Recovery is a premium recovery and relaxation destination, perched atop the cliffs of Uluwatu, Bali, overlooking the Indian Ocean. Born from the need for a quality sanctuary amid modern lifestyle demands, we provide a holistic space to restore your body and mind — set apart from the noise below, where the ocean air and open sky become part of the recovery itself.
+            Uluwatu Sunset Hills Recovery is a premium recovery and relaxation destination, perched atop the cliffs of Uluwatu, Bali, overlooking the Indian Ocean. 
           </p>
-
+            <p className="about-text"> 
+            Born from the need for a quality sanctuary amid modern lifestyle demands, we provide a holistic space to restore your body and mind — set apart from the noise below, where the ocean air and open sky become part of the recovery itself.
+          </p>
           <p className="about-text">
             Our approach combines the benefits of warm water immersion, sauna therapy, and ice baths to support your recovery journey. Immerse yourself in our signature contrast therapy, unwind in our hotpool, and restore your inner balance with treatments tailored to you.
           </p>

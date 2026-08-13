@@ -54,7 +54,7 @@ export default function Home() {
         
         {/* ✅ Paragraf disesuaikan dengan style dari komponen About */}
         <p className="hero-desc">
-          Elevate your physical and mental wellbeing at Uluwatu's most exclusive recovery sanctuary. Ice baths, saunas, and holistic therapies await.
+          Elevate your well-being on the edge of the Uluwatu hills. Discover a hidden sanctuary where restorative therapies meet the endless horizon of the Indian Ocean and golden sunsets.
         </p>
         
         {/* Tombol Recovery (Latar Emas, Teks Putih) & Pricelist (Latar Putih, Teks Emas) */}

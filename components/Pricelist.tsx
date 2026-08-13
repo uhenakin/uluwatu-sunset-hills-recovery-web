@@ -112,7 +112,7 @@ export default function Pricelist() {
             color: '#2c2c2c', maxWidth: '800px', opacity: '0.9',
             fontWeight: '400', margin: '0 auto 60px auto'
           }}>
-            "Your recovery starts with the right choice. Find the session, pass or membership that fits your journey at Uluwatu Sunset Hills Recovery"
+            Choose the recovery plan that works best for you. From Day Pass to full memberships, every option is crafted to deliver a truly exceptional experience
           </p>
         </div>
 
