@@ -42,7 +42,8 @@ export default function Home() {
         className="hero-section" 
         style={{ 
           backgroundImage: 'none', 
-          backgroundColor: '#ffffff' 
+          backgroundColor: '#ffffff',
+          borderBottom: 'none'
         }}
       >
         <h1 className="hero-title font-luxury" style={{ textShadow: 'none' }}>
@@ -73,6 +74,11 @@ export default function Home() {
       <Contact />
 
       <style jsx>{`
+        :global(section) {
+          border-bottom: none !important;
+          border-top: none !important;
+        }
+
         /* --- TOMBOL RECOVERY (Latar Emas, Teks Putih) --- */
         .btn-recovery-hero {
           display: inline-block;
@@ -141,13 +147,24 @@ export default function Home() {
           100% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0); }
         }
 
+        /* --- RESPONSIVE MOBILE UNTUK JUDUL & DESKRIPSI --- */
         @media (max-width: 767px) {
           .hero-title {
-            font-size: 2.5rem !important; 
-            line-height: 1.2;
+            font-size: clamp(2.1rem, 7.5vw, 2.5rem) !important; 
+            line-height: 1.15;
+          }
+          .hero-desc {
+            font-size: clamp(0.88rem, 3.2vw, 0.95rem) !important;
+            padding: 0 15px;
           }
           .hero-buttons {
             margin-top: 20px !important; 
+            width: 85%;
+            max-width: 300px;
+          }
+          .btn-recovery-hero, .btn-pricelist-hero {
+            padding: 14px 20px;
+            font-size: 0.8rem;
           }
         }
       `}</style>

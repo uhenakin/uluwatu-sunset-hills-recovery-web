@@ -11,8 +11,8 @@ export default function Restaurant() {
         style={{
           position: "relative",
           padding: "140px 5%",
-          backgroundImage: "none", /* ✅ Gambar latar dihilangkan */
-          backgroundColor: "var(--bg-ocean)", /* ✅ Menggunakan warna solid */
+          backgroundImage: "none",
+          backgroundColor: "#ffffff",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -23,15 +23,16 @@ export default function Restaurant() {
         <div style={{ width: "100%", maxWidth: "900px", zIndex: 2 }}>
           
           <h2
-            className="font-luxury"
-            style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", color: "#2c2c2c", marginBottom: "30px" }}
+            className="font-luxury restaurant-title"
+            style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", color: "#d5a15c", marginBottom: "30px" }}
           >
-            Prana <span style={{ color: "var(--accent-sunset)", fontStyle: "italic" }}>Restaurant</span>
+            Prana <span style={{ color: "#d5a15c", fontStyle: "italic" }}>Restaurant</span>
           </h2>
 
           <div style={{ width: "100px", height: "3px", backgroundColor: "var(--accent-gold)", margin: "0 auto 25px auto" }} />
 
           <p
+            className="restaurant-desc"
             style={{
               fontSize: "clamp(0.95rem, 1.5vw, 1.15rem)",
               lineHeight: 1.8,
@@ -62,33 +63,13 @@ export default function Restaurant() {
           <div style={{ marginBottom: "20px" }}>
             <Link
               href="/restaurant"
-              style={{
-                display: "inline-block",
-                padding: "16px 45px",
-                backgroundColor: "var(--accent-gold)",
-                color: "#ffffff",
-                fontWeight: 600,
-                textDecoration: "none",
-                letterSpacing: "1.5px",
-                textTransform: "uppercase",
-                fontSize: "0.9rem",
-                borderRadius: "6px",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.boxShadow = "0 15px 30px rgba(0,0,0,0.15)";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
+              className="btn-menu-alive"
             >
               Explore Complete Menu →
             </Link>
           </div>
 
-          <p style={{ fontSize: "0.75rem", fontWeight: 500, fontStyle: "italic", marginTop: "20px", color: "#4a4a4a" }}>
+          <p style={{ fontSize: "0.75rem", fontWeight: 500, fontStyle: "italic", marginTop: "20px", color: "#2c2c2c" }}>
             Prices are subject to Government TAX 10% + 5% service charge.
           </p>
 
@@ -117,7 +98,7 @@ export default function Restaurant() {
 
           .schedule-title {
             font-size: 0.95rem;
-            color: #2c2c2c;
+            color: #d5a15c;
             font-weight: 700;
             letter-spacing: 1px;
             margin: 0;
@@ -125,8 +106,49 @@ export default function Restaurant() {
 
           .schedule-time {
             font-size: 0.85rem;
-            color: #4a4a4a;
+            color: #2c2c2c;
             font-weight: 600;
+          }
+
+          .btn-menu-alive {
+            display: inline-block;
+            padding: 16px 45px;
+            background-color: #d5a15c;
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(213, 161, 92, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: pulse-gold-menu 2s infinite;
+          }
+
+          .btn-menu-alive:hover {
+            transform: translateY(-5px) scale(1.04);
+            box-shadow: 0 12px 30px rgba(213, 161, 92, 0.55);
+            background-color: #c4904a;
+            animation: none;
+          }
+
+          @keyframes pulse-gold-menu {
+            0% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0.6); }
+            70% { box-shadow: 0 0 0 14px rgba(213, 161, 92, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0); }
+          }
+
+          @media (max-width: 767px) {
+            .restaurant-title {
+              font-size: 2.1rem !important;
+              margin-bottom: 20px !important;
+            }
+            .restaurant-desc {
+              font-size: 0.88rem !important;
+              line-height: 1.6 !important;
+              margin-bottom: 25px !important;
+            }
           }
 
           @media (min-width: 600px) {
@@ -147,7 +169,6 @@ export default function Restaurant() {
             }
           }
         `}</style>
-        
       </section>
     </Reveal>
   );

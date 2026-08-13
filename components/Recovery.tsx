@@ -78,7 +78,6 @@ function RecoveryCard({
       }}
     >
       <div style={{ width: "100%", height: "210px", position: "relative", flexShrink: 0 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={item.cardImage}
           alt={item.title}
@@ -87,7 +86,6 @@ function RecoveryCard({
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px" }}>
-        {/* ✅ Judul kartu diubah dari hitam (#2c2c2c) menjadi emas (#d5a15c) */}
         <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "#d5a15c", marginBottom: "8px" }}>
           {item.title}
         </h3>
@@ -165,7 +163,7 @@ export default function Recovery() {
       <Reveal style={{ width: "100%", maxWidth: "1200px" }}>
         <div style={{ textAlign: "center", width: "100%", zIndex: 2 }}>
           <h2
-            className="font-luxury"
+            className="font-luxury recovery-title"
             style={{ 
               fontSize: "clamp(3rem, 6vw, 4.5rem)", 
               color: "#d5a15c", 
@@ -176,6 +174,7 @@ export default function Recovery() {
           </h2>
 
           <p
+            className="recovery-desc"
             style={{
               fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
               lineHeight: 1.8,
@@ -245,6 +244,14 @@ export default function Recovery() {
           }
           .recovery-mobile-scroll::-webkit-scrollbar {
             display: none !important;
+          }
+          .recovery-title {
+            font-size: 2.1rem !important;
+          }
+          .recovery-desc {
+            font-size: 0.88rem !important;
+            line-height: 1.6 !important;
+            margin-bottom: 40px !important;
           }
         }
       `}</style>

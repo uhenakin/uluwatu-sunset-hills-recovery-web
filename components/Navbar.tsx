@@ -48,7 +48,7 @@ export default function Navbar() {
           
           <div className="logo-container" style={{ 
             position: 'relative', 
-            height: '86px', /* ✅ Logo desktop/tablet diperbesar menjadi 86px */
+            height: '86px', /* Logo desktop/tablet tetap megah */
             width: 'auto', 
             aspectRatio: '1 / 1',
             cursor: 'pointer', 
@@ -158,8 +158,8 @@ export default function Navbar() {
             padding: 14px 5% !important;
           }
           .logo-container {
-            height: 68px !important; /* ✅ Logo mobile diperbesar menjadi 68px */
-            width: 68px !important;
+            height: 48px !important; /* ✅ Logo mobile disesuaikan menjadi 48px agar tidak terlalu besar */
+            width: 48px !important;
           }
         }
       `}</style>

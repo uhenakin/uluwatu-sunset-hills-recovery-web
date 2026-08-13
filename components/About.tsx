@@ -15,7 +15,6 @@ export default function About() {
       <section id="about" style={{
         minHeight: '100vh',
         padding: '120px 5%',
-        /* ✅ Gradasi memudar: Putih (atas) -> Krem (tengah) -> Putih (bawah) */
         background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)',
         display: 'flex',
         flexDirection: 'column',
@@ -25,10 +24,9 @@ export default function About() {
         position: 'relative'
       }}>
 
-        <h2 className="font-luxury" style={{
-          fontSize: 'clamp(3rem, 6vw, 4.5rem)',
+        <h2 className="font-luxury about-title" style={{
           color: '#d5a15c', 
-          marginBottom: '40px',
+          marginBottom: '35px',
           textShadow: 'none'
         }}>
           The <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Sanctuary</span>
@@ -38,26 +36,14 @@ export default function About() {
           maxWidth: '900px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '25px'
+          gap: '20px'
         }}>
 
-          <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-            lineHeight: '2',
-            color: '#2c2c2c',
-            opacity: '0.9',
-            fontWeight: '400'
-          }}>
+          <p className="about-text">
             Uluwatu Sunset Hills Recovery is a premium recovery and relaxation destination, perched atop the cliffs of Uluwatu, Bali, overlooking the Indian Ocean. Born from the need for a quality sanctuary amid modern lifestyle demands, we provide a holistic space to restore your body and mind — set apart from the noise below, where the ocean air and open sky become part of the recovery itself.
           </p>
 
-          <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-            lineHeight: '2',
-            color: '#2c2c2c',
-            opacity: '0.9',
-            fontWeight: '400'
-          }}>
+          <p className="about-text">
             Our approach combines the benefits of warm water immersion, sauna therapy, and ice baths to support your recovery journey. Immerse yourself in our signature contrast therapy, unwind in our hotpool, and restore your inner balance with treatments tailored to you.
           </p>
 
@@ -72,7 +58,7 @@ export default function About() {
             alignItems: 'stretch',
             flexWrap: 'wrap',
             gap: '0',
-            marginTop: '70px',
+            marginTop: '60px',
             width: '100%',
             maxWidth: '860px',
           }}
@@ -93,15 +79,15 @@ export default function About() {
               }}
             >
               <span className="font-luxury" style={{
-                fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+                fontSize: 'clamp(1.8rem, 4vw, 2.75rem)',
                 color: '#d5a15c',
                 lineHeight: '1',
-                marginBottom: '10px',
+                marginBottom: '8px',
               }}>
                 {stat.value}
               </span>
               <span style={{
-                fontSize: '0.7rem',
+                fontSize: '0.65rem',
                 letterSpacing: '2px',
                 color: '#2c2c2c',
                 opacity: '0.8',
@@ -117,9 +103,29 @@ export default function About() {
       </section>
 
       <style jsx>{`
+        .about-title {
+          font-size: clamp(3rem, 6vw, 4.5rem);
+        }
+        .about-text {
+          font-size: clamp(1rem, 2vw, 1.25rem);
+          line-height: 2;
+          color: #2c2c2c;
+          opacity: 0.9;
+          font-weight: 400;
+        }
+
         @media (max-width: 640px) {
+          .about-title {
+            font-size: 2.1rem !important;
+            margin-bottom: 20px !important;
+          }
+          .about-text {
+            font-size: 0.88rem !important;
+            line-height: 1.6 !important;
+          }
           .about-stats {
             gap: 20px 0 !important;
+            margin-top: 40px !important;
           }
           .about-stat-item {
             flex: 1 1 40% !important;
@@ -132,7 +138,7 @@ export default function About() {
           }
           .about-stat-item:nth-child(n+3) {
             border-top: 1px solid rgba(213, 161, 92, 0.3);
-            padding-top: 20px !important;
+            padding-top: 15px !important;
           }
         }
       `}</style>

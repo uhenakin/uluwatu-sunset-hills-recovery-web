@@ -206,15 +206,14 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             alignItems: "center",
             textAlign: "center",
             padding: "120px 5% 40px 5%",
-            /* ✅ Background foto hero dihapus total */
             background: "none",
             backgroundColor: "#faf8ef",
           }}
         >
-          <h1 className="font-luxury" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#d5a15c", marginBottom: "1rem" }}>
+          <h1 className="font-luxury detail-hero-title" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#d5a15c", marginBottom: "1rem" }}>
             {data.title}
           </h1>
-          <p style={{ color: "#4a4a4a", opacity: 0.9, fontSize: "1.1rem", maxWidth: "600px" }}>
+          <p className="detail-hero-tagline" style={{ color: "#4a4a4a", opacity: 0.9, fontSize: "1.1rem", maxWidth: "600px" }}>
             {data.tagline}
           </p>
         </section>
@@ -222,7 +221,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         {/* BENEFITS */}
         <section style={{ backgroundColor: "#faf8ef", padding: "40px 5% 80px 5%", display: "flex", justifyContent: "center" }}>
           <div style={{ width: "100%", maxWidth: "1100px" }}>
-            <span className="font-luxury" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "2rem", fontWeight: 600 }}>
+            <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "2rem", fontWeight: 600 }}>
               Benefits
             </span>
             <div className="benefits-container">
@@ -247,10 +246,10 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           <div style={{ width: "100%", maxWidth: "1200px" }}>
 
             {/* GALLERY */}
-            <span className="font-luxury" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
+            <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Gallery
             </span>
-            <p style={{ color: "#4a4a4a", opacity: 0.8, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
+            <p className="detail-section-desc" style={{ color: "#4a4a4a", opacity: 0.8, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
               A glimpse into our luxurious spaces – every corner designed for your comfort and recovery.
             </p>
 
@@ -355,10 +354,10 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             </div>
 
             {/* OTHER FACILITIES */}
-            <span className="font-luxury" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
+            <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Other Facilities
             </span>
-            <p style={{ color: "#4a4a4a", opacity: 0.8, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
+            <p className="detail-section-desc" style={{ color: "#4a4a4a", opacity: 0.8, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
               Discover more of our premium amenities – each crafted to enhance your wellness journey.
             </p>
 
@@ -495,6 +494,23 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           .other-grid-desktop { display: none !important; }
           .other-track-mobile { display: flex !important; }
           .other-track-mobile::-webkit-scrollbar { display: none !important; }
+          
+          .detail-hero-title {
+            font-size: 2.1rem !important;
+            margin-bottom: 0.8rem !important;
+          }
+          .detail-hero-tagline {
+            font-size: 0.95rem !important;
+          }
+          .detail-section-title {
+            font-size: 1.8rem !important;
+            margin-bottom: 1.2rem !important;
+          }
+          .detail-section-desc {
+            font-size: 0.9rem !important;
+            line-height: 1.6 !important;
+            margin-bottom: 1.5rem !important;
+          }
           
           /* BENEFITS ZIG-ZAG EDITORIAL (MOBILE) */
           .benefits-container { display: flex; flex-direction: column; gap: 3rem; }

@@ -41,7 +41,6 @@ export default function Contact() {
       <section id="contact" style={{ 
         minHeight: '100vh', 
         padding: '160px 5% 100px 5%', 
-        /* ✅ Gradasi memudar: Putih (atas) -> Krem (tengah) -> Putih (bawah) */
         background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)', 
         display: 'flex',
         flexDirection: 'column',
@@ -51,7 +50,7 @@ export default function Contact() {
         position: 'relative'
       }}>
         
-        <h2 className="font-luxury" style={{ 
+        <h2 className="font-luxury contact-title" style={{ 
           fontSize: 'clamp(3rem, 6vw, 4.5rem)', 
           color: '#d5a15c', 
           marginBottom: '20px' 
@@ -59,7 +58,7 @@ export default function Contact() {
           Begin Your <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Journey</span>
         </h2>
 
-        <p style={{
+        <p className="contact-desc" style={{
           fontSize: 'clamp(1rem, 2vw, 1.2rem)', 
           lineHeight: '1.8', 
           color: '#4a4a4a', 
@@ -176,6 +175,17 @@ export default function Contact() {
             transform: translateY(-4px);
             background-color: rgba(213, 161, 92, 0.15);
             border-color: var(--accent-gold);
+          }
+
+          @media (max-width: 767px) {
+            .contact-title {
+              font-size: 2.1rem !important;
+            }
+            .contact-desc {
+              font-size: 0.88rem !important;
+              line-height: 1.6 !important;
+              margin-bottom: 35px !important;
+            }
           }
 
           @media (min-width: 768px) {
