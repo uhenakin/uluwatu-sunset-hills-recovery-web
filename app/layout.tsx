@@ -20,6 +20,10 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Uluwatu Sunset Hills | Premium Recovery",
   description: "Experience luxury holistic recovery in Uluwatu, Bali.",
+  icons: {
+    icon: "/images/logo/logo-new.webp",
+    apple: "/images/logo/logo-new.webp",
+  },
 };
 
 export default function RootLayout({

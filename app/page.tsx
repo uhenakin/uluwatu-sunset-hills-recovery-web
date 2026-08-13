@@ -8,9 +8,17 @@ import Recovery from "../components/Recovery";
 import Pricelist from "../components/Pricelist";
 import Restaurant from "../components/Restaurant";
 import Contact from "../components/Contact";
+import { track } from "@/lib/tracking";
 
 export default function Home() {
   const isLoading = usePageLoading();
+
+  // Catat page_view sekali setelah loading selesai (bukan pas masih di layar Loading)
+  useEffect(() => {
+    if (!isLoading) {
+      track("page_view");
+    }
+  }, [isLoading]);
 
   // Hanya untuk memastikan hash tetap di-handle setelah loading
   useEffect(() => {

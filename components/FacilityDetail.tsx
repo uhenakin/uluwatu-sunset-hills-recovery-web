@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { facilitiesData, allFacilities, type Facility } from "@/lib/facilitiesData";
 import Loading from "@/components/Loading";
 
@@ -11,17 +12,17 @@ const GAP_MOBILE = 16;
 const GAP_DESKTOP = 30;
 const ITEM_WIDTH = CARD_WIDTH + GAP_MOBILE;
 
-// Komponen Kartu Other Facilities
+// 🔥 Komponen Kartu Other Facilities (DIUBAH 100% SAMA DENGAN RECOVERY CARD)
 function OtherCard({ item }: { item: Facility }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleClick = () => {
-    console.log("Card diklik, menuju:", item.route);
+  const handleClick = (e?: React.MouseEvent | React.KeyboardEvent) => {
+    if (e) e.preventDefault();
     setIsLoading(true);
     setTimeout(() => {
       router.push(item.route);
-    }, 500);
+    }, 900); // Disamakan jeda animasinya dengan Recovery
   };
 
   return (
@@ -32,7 +33,7 @@ function OtherCard({ item }: { item: Facility }) {
         tabIndex={0}
         onClick={handleClick}
         onKeyDown={(e) => {
-          if (e.key === "Enter") handleClick();
+          if (e.key === "Enter") handleClick(e);
         }}
         style={{
           cursor: "pointer",
@@ -41,10 +42,9 @@ function OtherCard({ item }: { item: Facility }) {
           backdropFilter: "blur(10px)",
           border: "1px solid rgba(226, 176, 101, 0.15)",
           borderRadius: "20px",
-          padding: "18px",
+          overflow: "hidden", // 🔥 Supaya gambar edge-to-edge (penuh sampai pinggir atas)
           display: "flex",
           flexDirection: "column",
-          gap: "16px",
           transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
           scrollSnapAlign: "center",
           flex: `0 0 ${CARD_WIDTH}px`,
@@ -62,26 +62,43 @@ function OtherCard({ item }: { item: Facility }) {
           e.currentTarget.style.boxShadow = "none";
         }}
       >
-        <div
-          style={{
-            width: "100%",
-            aspectRatio: "1/1",
-            borderRadius: "14px",
-            overflow: "hidden",
-          }}
-        >
+        {/* Kontainer Gambar (Sama persis dengan RecoveryCard) */}
+        <div style={{ width: "100%", height: "210px", position: "relative", flexShrink: 0 }}>
           <img
             src={item.cardImage}
             alt={item.title}
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
         </div>
-        <h3 className="font-luxury" style={{ fontSize: "1.25rem", color: "var(--accent-gold)" }}>
-          {item.title}
-        </h3>
-        <span style={{ fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "var(--accent-sunset)", fontWeight: 600 }}>
-          View Details →
-        </span>
+
+        {/* Kontainer Teks (Sama persis dengan RecoveryCard) */}
+        <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px" }}>
+          <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "var(--accent-gold)", marginBottom: "8px" }}>
+            {item.title}
+          </h3>
+          
+          {/* 🔥 Ganti item.desc menjadi item.tagline 🔥 */}
+          {item.tagline && (
+            <p style={{ color: "var(--text-light)", opacity: 0.85, lineHeight: 1.6, fontSize: "0.9rem", margin: 0 }}>
+              {item.tagline}
+            </p>
+          )}
+
+          <span
+            style={{
+              display: "inline-block",
+              marginTop: "auto",
+              paddingTop: "14px",
+              fontSize: "0.75rem",
+              letterSpacing: "1.5px",
+              textTransform: "uppercase",
+              color: "var(--accent-sunset)",
+              fontWeight: 600,
+            }}
+          >
+            Learn More →
+          </span>
+        </div>
       </div>
     </>
   );
@@ -91,8 +108,10 @@ export default function FacilityDetail({ slug }: { slug: string }) {
   const data = facilitiesData[slug];
   const others = allFacilities.filter((f) => f.slug !== slug);
 
+  // State untuk Lightbox
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false); 
 
   // Ref untuk Other Facilities
   const trackOtherRef = useRef<HTMLDivElement>(null);
@@ -101,10 +120,11 @@ export default function FacilityDetail({ slug }: { slug: string }) {
   // Ref untuk Gallery
   const trackGalleryRef = useRef<HTMLDivElement>(null);
   const isAdjustingGallery = useRef(false);
-  const GALLERY_ITEM_WIDTH = 220 + 12; // width + gap
+  const GALLERY_ITEM_WIDTH = 220 + 12;
 
-  // Deteksi mobile
+  // Deteksi mobile & Mounted Component
   useEffect(() => {
+    setMounted(true);
     const mql = window.matchMedia("(max-width: 768px)");
     const update = () => setIsMobile(mql.matches);
     update();
@@ -183,6 +203,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
     <>
       {/* ================= HALAMAN 1: HERO + BENEFITS ================= */}
       <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        
         {/* HERO */}
         <section
           style={{
@@ -214,24 +235,16 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         {/* BENEFITS */}
         <section style={{ backgroundColor: "var(--bg-ocean)", padding: "40px 5% 80px 5%", display: "flex", justifyContent: "center" }}>
           <div style={{ width: "100%", maxWidth: "1100px" }}>
-            <span style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "2px", textTransform: "uppercase", fontSize: "0.8rem", marginBottom: "2rem" }}>
+            <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "2rem", fontWeight: 600 }}>
               Benefits
             </span>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.75rem" }}>
+            <div className="benefits-container">
               {data.benefits.map((b) => (
-                <div
-                  key={b.title}
-                  style={{
-                    backgroundColor: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(226, 176, 101, 0.15)",
-                    borderRadius: "16px",
-                    padding: "1.75rem",
-                  }}
-                >
-                  <h3 className="font-luxury" style={{ color: "var(--accent-gold)", fontSize: "1.2rem", marginBottom: "0.6rem" }}>
+                <div key={b.title} className="benefit-item">
+                  <h3 className="font-luxury benefit-title">
                     {b.title}
                   </h3>
-                  <p style={{ color: "var(--text-light)", opacity: 0.8, fontSize: "0.92rem", lineHeight: 1.6 }}>
+                  <p className="benefit-desc">
                     {b.desc}
                   </p>
                 </div>
@@ -243,17 +256,14 @@ export default function FacilityDetail({ slug }: { slug: string }) {
 
       {/* ================= HALAMAN 2: GALLERY + OTHER FACILITIES ================= */}
       <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-        {/* GALLERY + OTHER FACILITIES (SATU SECTION) */}
         <section style={{ backgroundColor: "var(--bg-ocean)", padding: "0 5% 120px 5%", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div style={{ width: "100%", maxWidth: "1200px" }}>
 
             {/* GALLERY */}
-            <span style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "2px", textTransform: "uppercase", fontSize: "0.8rem", marginBottom: "2rem" }}>
+            <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Gallery
             </span>
-
-            {/* ✅ Teks deskriptif untuk Gallery */}
-            <p style={{ color: "var(--text-light)", opacity: 0.7, maxWidth: "600px", marginBottom: "2rem", fontSize: "0.95rem", lineHeight: 1.6 }}>
+            <p style={{ color: "var(--text-light)", opacity: 0.7, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
               A glimpse into our luxurious spaces – every corner designed for your comfort and recovery.
             </p>
 
@@ -303,7 +313,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
               ))}
             </div>
 
-            {/* Gallery Scroll - Mobile (Center Peek + Infinite) */}
+            {/* Gallery Scroll - Mobile */}
             <div
               ref={trackGalleryRef}
               onScroll={handleScrollGallery}
@@ -358,23 +368,21 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             </div>
 
             {/* OTHER FACILITIES */}
-            <span style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "2px", textTransform: "uppercase", fontSize: "0.8rem", marginBottom: "2rem" }}>
+            <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Other Facilities
             </span>
-
-            {/* ✅ Teks deskriptif untuk Other Facilities */}
-            <p style={{ color: "var(--text-light)", opacity: 0.7, maxWidth: "600px", marginBottom: "2rem", fontSize: "0.95rem", lineHeight: 1.6 }}>
+            <p style={{ color: "var(--text-light)", opacity: 0.7, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
               Discover more of our premium amenities – each crafted to enhance your wellness journey.
             </p>
 
             {/* Other Desktop Grid */}
-            <div className="other-grid-desktop" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "30px" }}>
+            <div className="other-grid-desktop" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "30px", width: "100%" }}>
               {others.map((item) => (
                 <OtherCard key={item.slug} item={item} />
               ))}
             </div>
 
-            {/* Other Mobile Infinite Scroll (Center Peek) */}
+            {/* Other Mobile Scroll */}
             <div
               ref={trackOtherRef}
               onScroll={handleScrollOther}
@@ -405,8 +413,8 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         </section>
       </div>
 
-      {/* LIGHTBOX */}
-      {lightboxImg && (
+      {/* 🔥 LIGHTBOX */}
+      {mounted && lightboxImg && createPortal(
         <div
           onClick={() => setLightboxImg(null)}
           style={{
@@ -416,7 +424,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             width: "100vw",
             height: "100dvh",
             backgroundColor: "rgba(0,0,0,0.92)",
-            zIndex: 9999,
+            zIndex: 99999,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -425,7 +433,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         >
           <img
             src={lightboxImg}
-            alt={data.title}
+            alt="Gallery Fullscreen"
             style={{
               maxWidth: "94vw",
               maxHeight: "94dvh",
@@ -437,14 +445,8 @@ export default function FacilityDetail({ slug }: { slug: string }) {
               display: "block",
             }}
           />
-
-          {/* Tombol Close */}
           <button
             type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setLightboxImg(null);
-            }}
             style={{
               position: "absolute",
               top: "24px",
@@ -463,40 +465,55 @@ export default function FacilityDetail({ slug }: { slug: string }) {
               transition: "all 0.3s ease",
               backdropFilter: "blur(10px)",
             }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.2)";
-              e.currentTarget.style.transform = "scale(1.1)";
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.1)";
-              e.currentTarget.style.transform = "scale(1)";
-            }}
           >
             ✕
           </button>
-        </div>
+        </div>,
+        document.body
       )}
 
+      {/* GLOBAL STYLES (TERMASUK ZIG-ZAG MOBILE BENEFITS) */}
       <style jsx>{`
+        .benefits-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 1.75rem;
+        }
+        .benefit-item {
+          background-color: rgba(255,255,255,0.03);
+          border: 1px solid rgba(226, 176, 101, 0.15);
+          border-radius: 16px;
+          padding: 1.75rem;
+          transition: all 0.3s ease;
+        }
+        .benefit-title {
+          color: var(--accent-gold);
+          font-size: 1.2rem;
+          margin-bottom: 0.6rem;
+        }
+        .benefit-desc {
+          color: var(--text-light);
+          opacity: 0.8;
+          font-size: 0.92rem;
+          line-height: 1.6;
+        }
+
         @media (max-width: 768px) {
-          .gallery-grid-desktop {
-            display: none !important;
-          }
-          .gallery-track-mobile {
-            display: flex !important;
-          }
-          .gallery-track-mobile::-webkit-scrollbar {
-            display: none !important;
-          }
-          .other-grid-desktop {
-            display: none !important;
-          }
-          .other-track-mobile {
-            display: flex !important;
-          }
-          .other-track-mobile::-webkit-scrollbar {
-            display: none !important;
-          }
+          .gallery-grid-desktop { display: none !important; }
+          .gallery-track-mobile { display: flex !important; }
+          .gallery-track-mobile::-webkit-scrollbar { display: none !important; }
+          .other-grid-desktop { display: none !important; }
+          .other-track-mobile { display: flex !important; }
+          .other-track-mobile::-webkit-scrollbar { display: none !important; }
+          
+          /* BENEFITS ZIG-ZAG EDITORIAL (MOBILE ONLY) */
+          .benefits-container { display: flex; flex-direction: column; gap: 3rem; }
+          .benefit-item { background-color: transparent; border: none; padding: 0; border-radius: 0; position: relative; }
+          .benefit-item:nth-child(odd) { text-align: left; padding-right: 15%; }
+          .benefit-item:nth-child(even) { text-align: right; padding-left: 15%; }
+          .benefit-item::before { content: ""; position: absolute; top: -12px; width: 40px; height: 2px; background-color: var(--accent-gold); opacity: 0.6; }
+          .benefit-item:nth-child(odd)::before { left: 0; }
+          .benefit-item:nth-child(even)::before { right: 0; }
         }
       `}</style>
     </>

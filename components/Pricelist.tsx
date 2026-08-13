@@ -61,7 +61,7 @@ export default function Pricelist() {
   const ITEM_WIDTH = CARD_WIDTH + GAP_MOBILE;
 
   const PriceCard = ({ item }: { item: typeof plans[0] }) => (
-    <div style={{
+    <div className="price-card-wrapper" style={{
       backgroundColor: 'rgba(255, 255, 255, 0.02)',
       border: '1px solid rgba(226, 176, 101, 0.15)',
       borderRadius: '12px',
@@ -70,9 +70,6 @@ export default function Pricelist() {
       flexDirection: 'column',
       justifyContent: 'space-between',
       transition: 'transform 0.3s ease, border-color 0.3s ease',
-      flex: `0 0 ${CARD_WIDTH}px`,
-      minWidth: `${CARD_WIDTH}px`,
-      width: `${CARD_WIDTH}px`,
       scrollSnapAlign: 'center',
       position: 'relative',
       overflow: 'hidden'
@@ -167,7 +164,7 @@ export default function Pricelist() {
 
         <div className="pricelist-grid-desktop" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gridTemplateColumns: `repeat(auto-fit, minmax(280px, 1fr))`,
           gap: `${GAP_DESKTOP}px`,
           width: '100%',
         }}>
@@ -201,14 +198,6 @@ export default function Pricelist() {
             <PriceCard key={`${item.title}-${index}`} item={item} />
           ))}
         </div>
-
-        <style jsx>{`
-          @media (max-width: 768px) {
-            .pricelist-grid-desktop { display: none !important; }
-            .pricelist-track-mobile { display: flex !important; }
-            .pricelist-track-mobile::-webkit-scrollbar { display: none !important; }
-          }
-        `}</style>
       </div>
     );
   };
@@ -251,6 +240,33 @@ export default function Pricelist() {
         </div>
 
       </section>
+
+      {/* GLOBAL STYLES SCOPED UNTUK PRICELIST */}
+      <style jsx>{`
+        .price-card-wrapper {
+          width: 100%;
+          height: 100%;
+        }
+
+        @media (max-width: 768px) {
+          .pricelist-grid-desktop { 
+            display: none !important; 
+          }
+          .pricelist-track-mobile { 
+            display: flex !important; 
+          }
+          .pricelist-track-mobile::-webkit-scrollbar { 
+            display: none !important; 
+          }
+          
+          /* Kembalikan ukuran mati khusus untuk slider mobile */
+          .price-card-wrapper {
+            flex: 0 0 280px !important;
+            min-width: 280px !important;
+            width: 280px !important;
+          }
+        }
+      `}</style>
     </Reveal>
   );
 }
