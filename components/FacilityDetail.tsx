@@ -37,13 +37,14 @@ function OtherCard({ item }: { item: Facility }) {
         style={{
           cursor: "pointer",
           textDecoration: "none",
-          backgroundColor: "rgba(255, 255, 255, 0.7)",
-          backdropFilter: "blur(10px)",
+          backgroundColor: "transparent",
           border: "1px solid rgba(213, 161, 92, 0.25)",
           borderRadius: "20px",
           overflow: "hidden",
+          position: "relative",
           display: "flex",
           flexDirection: "column",
+          minHeight: "380px",
           transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
           scrollSnapAlign: "center",
           flex: `0 0 ${CARD_WIDTH}px`,
@@ -61,21 +62,34 @@ function OtherCard({ item }: { item: Facility }) {
           e.currentTarget.style.boxShadow = "none";
         }}
       >
-        <div style={{ width: "100%", height: "210px", position: "relative", flexShrink: 0 }}>
-          <img
-            src={item.cardImage}
-            alt={item.title}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-          />
-        </div>
+        <img
+          src={item.cardImage}
+          alt={item.title}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
 
-        <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px" }}>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0) 70%)",
+          }}
+        />
+
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", flex: 1, padding: "20px", justifyContent: "flex-end", zIndex: 1 }}>
           <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "#d5a15c", marginBottom: "8px" }}>
             {item.title}
           </h3>
-          
+
           {item.tagline && (
-            <p style={{ color: "#4a4a4a", opacity: 0.9, lineHeight: 1.6, fontSize: "0.9rem", margin: 0 }}>
+            <p style={{ backgroundColor: "transparent", color: "rgba(255, 255, 255, 0.9)", opacity: 0.95, lineHeight: 1.6, fontSize: "0.9rem", margin: 0 }}>
               {item.tagline}
             </p>
           )}
@@ -83,8 +97,7 @@ function OtherCard({ item }: { item: Facility }) {
           <span
             style={{
               display: "inline-block",
-              marginTop: "auto",
-              paddingTop: "14px",
+              marginTop: "14px",
               fontSize: "0.75rem",
               letterSpacing: "1.5px",
               textTransform: "uppercase",
