@@ -12,7 +12,6 @@ const GAP_MOBILE = 16;
 const GAP_DESKTOP = 30;
 const ITEM_WIDTH = CARD_WIDTH + GAP_MOBILE;
 
-// 🔥 Komponen Kartu Other Facilities (Disesuaikan tema krem & teks gelap)
 function OtherCard({ item }: { item: Facility }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -47,9 +46,7 @@ function OtherCard({ item }: { item: Facility }) {
           flexDirection: "column",
           transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
           scrollSnapAlign: "center",
-          flex: `0 0 ${CARD_WIDTH}px`,
-          width: `${CARD_WIDTH}px`,
-          minWidth: `${CARD_WIDTH}px`,
+          width: "100%",
         }}
         onMouseOver={(e) => {
           e.currentTarget.style.borderColor = "var(--accent-gold)";
@@ -180,10 +177,10 @@ export default function FacilityDetail({ slug }: { slug: string }) {
       <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#faf8ef" }}>
         <div style={{ textAlign: "center" }}>
           <h1 className="font-luxury" style={{ color: "#2c2c2c", marginBottom: "1rem" }}>
-            Facility not found
+            Facility not found[cite: 15]
           </h1>
           <Link href="/#recovery" style={{ color: "var(--accent-gold)" }}>
-            ← Back to Recovery
+            ← Back to Recovery[cite: 15]
           </Link>
         </div>
       </section>
@@ -215,17 +212,19 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <h1 className="font-luxury" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#2c2c2c", marginBottom: "1rem" }}>
-            {data.title}
-          </h1>
-          <p style={{ color: "#4a4a4a", opacity: 0.9, fontSize: "1.1rem", maxWidth: "600px" }}>
-            {data.tagline}
-          </p>
+          <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
+            <h1 className="font-luxury" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#2c2c2c", marginBottom: "1rem" }}>
+              {data.title}
+            </h1>
+            <p style={{ color: "#4a4a4a", opacity: 0.9, fontSize: "1.1rem", maxWidth: "600px", margin: "0 auto" }}>
+              {data.tagline}
+            </p>
+          </div>
         </section>
 
         {/* BENEFITS */}
         <section style={{ backgroundColor: "#faf8ef", padding: "40px 5% 80px 5%", display: "flex", justifyContent: "center" }}>
-          <div style={{ width: "100%", maxWidth: "1100px" }}>
+          <div style={{ width: "100%", maxWidth: "1200px" }}>
             <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "2rem", fontWeight: 600 }}>
               Benefits
             </span>
@@ -248,7 +247,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
       {/* ================= HALAMAN 2: GALLERY + OTHER FACILITIES ================= */}
       <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center", backgroundColor: "#faf8ef" }}>
         <section style={{ backgroundColor: "#faf8ef", padding: "0 5% 120px 5%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <div style={{ width: "100%", maxWidth: "1200px" }}>
+          <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
 
             {/* GALLERY */}
             <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
@@ -264,8 +263,9 @@ export default function FacilityDetail({ slug }: { slug: string }) {
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                gap: "1rem",
+                gap: "1.5rem",
                 marginBottom: "80px",
+                width: "100%",
               }}
             >
               {data.gallery.map((src) => (
@@ -282,6 +282,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
                     aspectRatio: "1/1",
                     background: "rgba(213, 161, 92, 0.1)",
                     transition: "transform 0.3s ease",
+                    width: "100%",
                   }}
                   onMouseOver={(e) => {
                     e.currentTarget.style.transform = "scale(1.03)";
@@ -367,7 +368,15 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             </p>
 
             {/* Other Desktop Grid */}
-            <div className="other-grid-desktop" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "30px", width: "100%" }}>
+            <div 
+              className="other-grid-desktop" 
+              style={{ 
+                display: "grid", 
+                gridTemplateColumns: "repeat(3, 1fr)", 
+                gap: "30px", 
+                width: "100%" 
+              }}
+            >
               {others.map((item) => (
                 <OtherCard key={item.slug} item={item} />
               ))}
