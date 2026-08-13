@@ -13,7 +13,7 @@ export const facilitiesData: Record<string, Facility> = {
   sauna: {
     slug: "sauna",
     route: "/sauna",
-    title: "Traditional Sauna",
+    title: "Sauna",
     tagline: "Wood-fired heat, the old way — detoxify and unwind.",
     cardImage: "/images/card/sauna.webp", // ✅ DIUBAH KE WEBP
     heroImage: "/images/sauna/bg-sauna.webp", // ✅ DIUBAH KE WEBP
@@ -53,7 +53,7 @@ export const facilitiesData: Record<string, Facility> = {
   "hot-pool": {
     slug: "hot-pool",
     route: "/hot-pool",
-    title: "Mineral Hot Pool",
+    title: "Hot Pool",
     tagline: "Therapeutic warmth for joints, muscles, and mind.",
     cardImage: "/images/card/hotpool.webp", // ✅ DIUBAH KE WEBP
     heroImage: "/images/hotpool/bg-hotpool.webp", // ✅ DIUBAH KE WEBP

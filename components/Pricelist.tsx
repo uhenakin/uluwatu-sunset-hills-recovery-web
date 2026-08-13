@@ -1,111 +1,98 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
 import Reveal from "./Reveal";
 
 export default function Pricelist() {
   const plans = [
     {
-      category: "SESSION",
-      title: "Single Ice & Heat Session",
-      price: "Rp 250.000",
-      desc: "Perfect for a quick reset. Full access to our signature ice baths and thermal recovery facilities for one session."
-    },
-    {
-      category: "SESSION",
-      title: "10-Session Recovery Bundle",
+      badge: "VALID 30 DAYS",
+      title: "10 Session Pass",
       price: "Rp 2.000.000",
-      desc: "Ideal for regular practitioners looking to commit to their physical recovery and wellness routine."
+      desc: "10 sessions valid for 30 days",
     },
     {
-      category: "PASS",
-      title: "Day Recovery Pass",
+      badge: "VALID 1 DAY",
+      title: "Day Pass",
       price: "Rp 350.000",
-      desc: "Enjoy full flexibility with unlimited access throughout the entire day."
+      desc: "Unlimited access for 1 day",
     },
     {
-      category: "PASS",
-      title: "Weekly Unlimited Pass",
+      badge: "VALID 7 DAYS",
+      title: "Weekly Pass",
       price: "Rp 1.200.000",
-      desc: "Immerse in a full week of consistent contrast therapy and holistic rejuvenation."
+      desc: "Unlimited access for 7 days",
     },
     {
-      category: "MEMBERSHIP",
-      title: "Monthly Wellness",
+      badge: "VALID 30 DAYS",
+      title: "Monthly Pass",
       price: "Rp 3.000.000",
-      desc: "Our most popular membership for sustained health, optimized recovery, and deep relaxation."
+      desc: "Unlimited access for 30 days",
     },
     {
-      category: "MEMBERSHIP",
-      title: "VIP 3 Months Pass",
+      badge: "VALID 90 DAYS",
+      title: "3 Months Pass",
       price: "Rp 8.000.000",
-      desc: "Extended access designed for dedicated athletes and wellness enthusiasts."
+      desc: "Unlimited access for 90 days",
     },
     {
-      category: "MEMBERSHIP",
-      title: "VIP 6 Months Pass",
+      badge: "VALID 180 DAYS",
+      title: "6 Months Pass",
       price: "Rp 14.000.000",
-      desc: "Long-term commitment to peak physical condition and holistic lifestyle integration."
+      desc: "Unlimited access for 180 days",
     },
     {
-      category: "MEMBERSHIP",
-      title: "VIP 1 Year Pass",
+      badge: "VALID 365 DAYS",
+      title: "1 Year Pass",
       price: "Rp 25.000.000",
-      desc: "The ultimate tier of exclusivity. 365 days of unlimited access to all sanctuary and recovery facilities."
+      desc: "Unlimited access for 365 days",
     }
   ];
 
-  const CARD_WIDTH = 280;
-  const GAP_MOBILE = 16;
-  const GAP_DESKTOP = 30;
-  const ITEM_WIDTH = CARD_WIDTH + GAP_MOBILE;
-
+  // ============ KOMPONEN CARD ============
   const PriceCard = ({ item }: { item: typeof plans[0] }) => (
-    <div className="price-card-wrapper" style={{
+    <div style={{
       backgroundColor: 'rgba(255, 255, 255, 0.02)',
       border: '1px solid rgba(226, 176, 101, 0.15)',
       borderRadius: '12px',
-      padding: '30px',
+      padding: '22px 16px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
       transition: 'transform 0.3s ease, border-color 0.3s ease',
-      scrollSnapAlign: 'center',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      height: '100%',
+      minHeight: '260px',
+      width: '100%',
     }}>
       <div>
         <span style={{
-          fontSize: '0.75rem', letterSpacing: '2px', color: 'var(--accent-sunset)',
-          fontWeight: '600', textTransform: 'uppercase', display: 'block', marginBottom: '10px'
+          fontSize: '0.7rem', letterSpacing: '2px', color: 'var(--accent-sunset)',
+          fontWeight: '600', textTransform: 'uppercase', display: 'block', marginBottom: '8px'
         }}>
-          {item.category}
+          {item.badge}
         </span>
-
-        <h3 className="font-luxury" style={{ 
-          fontSize: '1.5rem', color: 'var(--accent-gold)', marginBottom: '15px', lineHeight: '1.3'
+        <h3 className="font-luxury" style={{
+          fontSize: '1.2rem', color: 'var(--accent-gold)', marginBottom: '10px', lineHeight: '1.3'
         }}>
           {item.title}
         </h3>
-
-        <p style={{ 
-          color: 'var(--text-light)', opacity: '0.7', lineHeight: '1.6', fontSize: '0.9rem', marginBottom: '25px'
+        <p style={{
+          color: 'var(--text-light)', opacity: '0.7', lineHeight: '1.5', fontSize: '0.8rem', marginBottom: '16px'
         }}>
           {item.desc}
         </p>
       </div>
-
       <div>
-        <div style={{ 
-          fontSize: '1.4rem', fontWeight: '600', color: 'var(--text-light)', marginBottom: '20px', letterSpacing: '0.5px'
+        <div style={{
+          fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-light)', marginBottom: '14px', letterSpacing: '0.5px'
         }}>
           {item.price}
         </div>
-
         <a href="#contact" style={{
-          display: 'block', width: '100%', padding: '12px 0', textAlign: 'center',
+          display: 'block', width: '100%', padding: '10px 0', textAlign: 'center',
           backgroundColor: 'transparent', border: '1px solid var(--accent-gold)',
-          color: 'var(--accent-gold)', fontSize: '0.85rem', letterSpacing: '1px',
+          color: 'var(--accent-gold)', fontSize: '0.75rem', letterSpacing: '1px',
           textTransform: 'uppercase', textDecoration: 'none', fontWeight: '500',
           transition: 'all 0.3s ease'
         }}
@@ -123,147 +110,73 @@ export default function Pricelist() {
     </div>
   );
 
-  const PriceSection = ({ title, items }: { title: string, items: typeof plans }) => {
-    const trackRef = useRef<HTMLDivElement>(null);
-    const isAdjusting = useRef(false);
-
-    useEffect(() => {
-      if (trackRef.current) {
-        trackRef.current.scrollLeft = items.length * ITEM_WIDTH;
-      }
-    }, [items.length]);
-
-    const handleScroll = useCallback(() => {
-      const el = trackRef.current;
-      if (!el || isAdjusting.current) return;
-
-      const total = items.length * ITEM_WIDTH;
-      const current = el.scrollLeft;
-
-      if (current < total) {
-        isAdjusting.current = true;
-        el.scrollLeft += total;
-        setTimeout(() => { isAdjusting.current = false; }, 250);
-      } else if (current >= total * 2) {
-        isAdjusting.current = true;
-        el.scrollLeft -= total;
-        setTimeout(() => { isAdjusting.current = false; }, 250);
-      }
-    }, [items.length]);
-
-    const infiniteItems = [...items, ...items, ...items];
-
-    return (
-      <div style={{ width: '100%', marginBottom: '50px' }}>
-        <h3 className="font-luxury" style={{ 
-          fontSize: '2rem', color: 'var(--accent-gold)', marginBottom: '25px', 
-          borderBottom: '1px solid rgba(226, 176, 101, 0.2)', paddingBottom: '10px' 
-        }}>
-          {title}
-        </h3>
-
-        <div className="pricelist-grid-desktop" style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(auto-fit, minmax(280px, 1fr))`,
-          gap: `${GAP_DESKTOP}px`,
-          width: '100%',
-        }}>
-          {items.map((item, index) => (
-            <PriceCard key={index} item={item} />
-          ))}
-        </div>
-
-        <div
-          ref={trackRef}
-          onScroll={handleScroll}
-          className="pricelist-track-mobile"
-          style={{
-            display: 'none',
-            flexDirection: 'row',
-            flexWrap: 'nowrap',
-            gap: `${GAP_MOBILE}px`,
-            overflowX: 'auto',
-            paddingLeft: 'calc(50% - 140px)',
-            paddingRight: 'calc(50% - 140px)',
-            scrollPaddingLeft: 'calc(50% - 140px)',
-            scrollPaddingRight: 'calc(50% - 140px)',
-            scrollSnapType: 'x mandatory',
-            WebkitOverflowScrolling: 'touch',
-            touchAction: 'pan-x',
-            willChange: 'transform',
-            width: '100%',
-          }}
-        >
-          {infiniteItems.map((item, index) => (
-            <PriceCard key={`${item.title}-${index}`} item={item} />
-          ))}
-        </div>
-      </div>
-    );
-  };
-
-  const sessions = plans.filter(p => p.category === "SESSION");
-  const passes = plans.filter(p => p.category === "PASS");
-  const memberships = plans.filter(p => p.category === "MEMBERSHIP");
-
   return (
     <Reveal>
-      <section id="pricelist" style={{ 
-        padding: '120px 5% 80px 5%', 
-        backgroundColor: 'var(--bg-ocean)', 
+      <section id="pricelist" style={{
+        padding: '120px 5% 80px 5%',
+        backgroundColor: 'var(--bg-ocean)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
         scrollMarginTop: '100px'
       }}>
-        
         <div style={{ textAlign: 'center', width: '100%', maxWidth: '1200px' }}>
-          <h2 className="font-luxury" style={{ 
+          <h2 className="font-luxury" style={{
             fontSize: 'clamp(3rem, 6vw, 4.5rem)', color: 'var(--text-light)', marginBottom: '20px'
           }}>
             Recovery <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Pricelist</span>
           </h2>
           <p style={{
-            fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', lineHeight: '1.8', 
+            fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', lineHeight: '1.8',
             color: 'var(--text-light)', maxWidth: '800px', opacity: '0.8',
             fontWeight: '300', margin: '0 auto 60px auto'
           }}>
-            Choose the ideal session, pass, or membership tailored to your recovery journey. Experience world-class contrast therapy at Uluwatu Sunset Hills.
+            "Your recovery starts with the right choice. Find the session, pass or membership that fits your journey at Uluwatu Sunset Hills Recovery"
           </p>
         </div>
 
-        <div style={{ width: '100%', maxWidth: '1200px' }}>
-          <PriceSection title="Sessions" items={sessions} />
-          <PriceSection title="Passes" items={passes} />
-          <PriceSection title="Memberships" items={memberships} />
+        {/* Grid 12-kolom: baris 4 item (span 3) & baris 3 item (span 4) selalu full-width & sejajar */}
+        <div
+          className="pricelist-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(12, 1fr)',
+            gap: '30px',
+            width: '100%',
+            maxWidth: '1200px',
+          }}
+        >
+          {plans.map((item, index) => (
+            <div
+              key={index}
+              className="pricelist-card-wrap"
+              style={{
+                gridColumn: index < 4 ? 'span 3' : 'span 4',
+              }}
+            >
+              <PriceCard item={item} />
+            </div>
+          ))}
         </div>
-
       </section>
 
-      {/* GLOBAL STYLES SCOPED UNTUK PRICELIST */}
       <style jsx>{`
-        .price-card-wrapper {
-          width: 100%;
-          height: 100%;
+        @media (max-width: 640px) {
+          .pricelist-grid {
+            gap: 16px !important;
+            grid-template-columns: 1fr !important;
+          }
+          .pricelist-card-wrap {
+            grid-column: span 1 !important;
+          }
         }
-
-        @media (max-width: 768px) {
-          .pricelist-grid-desktop { 
-            display: none !important; 
+        @media (min-width: 641px) and (max-width: 900px) {
+          .pricelist-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
           }
-          .pricelist-track-mobile { 
-            display: flex !important; 
-          }
-          .pricelist-track-mobile::-webkit-scrollbar { 
-            display: none !important; 
-          }
-          
-          /* Kembalikan ukuran mati khusus untuk slider mobile */
-          .price-card-wrapper {
-            flex: 0 0 280px !important;
-            min-width: 280px !important;
-            width: 280px !important;
+          .pricelist-card-wrap {
+            grid-column: span 1 !important;
           }
         }
       `}</style>

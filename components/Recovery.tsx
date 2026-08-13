@@ -9,7 +9,7 @@ import Loading from "./Loading";
 const facilities = [
   {
     slug: "sauna",
-    title: "Traditional Sauna",
+    title: "Sauna",
     desc: "Detoxify and unwind in our premium wood-fired saunas. Relieving tension and promoting cardiovascular health.",
     // ✅ DIUBAH KE WEBP
     cardImage: "/images/card/sauna.webp"
@@ -23,7 +23,7 @@ const facilities = [
   },
   {
     slug: "hot-pool",
-    title: "Mineral Hot Pool",
+    title: "Hot Pool",
     desc: "Melt away stress in our therapeutic hot pools. The soothing warmth relaxes joints for restorative sleep.",
     // ✅ DIUBAH KE WEBP
     cardImage: "/images/card/hotpool.webp"
@@ -192,8 +192,7 @@ export default function Recovery() {
               margin: "0 auto 60px auto",
             }}
           >
-            Our contrast therapies provide a profound restorative journey. Aiming to accelerate
-            physical healing, soothe the mind, and elevate your overall well-being.
+            "Our contrast therapies offer a profound restorative journey, designed to accelerate physical healing, soothe the mind, and elevate your overall well-being. Here, amid the cliffs and ocean air of Uluwatu, the ritual of ice and heat becomes more than recovery — it becomes a moment of stillness, strength, and renewal"
           </p>
         </div>
       </Reveal>

@@ -3,13 +3,28 @@
 import { useEffect } from "react";
 import Reveal from "./Reveal";
 
-// URL backend tracking, diambil dari env. Set NEXT_PUBLIC_API_URL di .env.local
-// contoh: NEXT_PUBLIC_API_URL=https://api.uluwatusunsethills.com
-const TRACK_URL = `${process.env.NEXT_PUBLIC_API_URL}/track`;
+// Port backend tracking. Isi NEXT_PUBLIC_API_PORT di .env.local kalau backend jalan di port lain (default 8000).
+const API_PORT = process.env.NEXT_PUBLIC_API_PORT || "8000";
+
+// Kalau NEXT_PUBLIC_API_URL diisi (misal domain production https://api.xxx.com), itu yang dipakai.
+// Kalau kosong, otomatis pakai hostname yang lagi diakses browser + API_PORT.
+// Jadi pas testing ganti-ganti wifi/IP, nggak perlu edit .env sama sekali —
+// selama backend jalan di device yang sama dengan frontend, port tetap sama.
+function getTrackUrl(): string {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return `${process.env.NEXT_PUBLIC_API_URL}/track`;
+  }
+  if (typeof window !== "undefined") {
+    return `http://${window.location.hostname}:${API_PORT}/track`;
+  }
+  return "";
+}
 
 function track(eventType: string) {
   try {
-    fetch(TRACK_URL, {
+    const trackUrl = getTrackUrl();
+    if (!trackUrl) return;
+    fetch(trackUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include", // wajib, biar cookie session "vid" ikut kekirim & diset
