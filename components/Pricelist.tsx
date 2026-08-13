@@ -106,10 +106,11 @@ export default function Pricelist() {
           }}>
             Recovery <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Pricelist</span>
           </h2>
+          {/* ✅ Paragraf disesuaikan dengan About */}
           <p className="pricelist-desc" style={{
-            fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', lineHeight: '1.8',
-            color: '#2c2c2c', maxWidth: '800px', opacity: '0.8',
-            fontWeight: '300', margin: '0 auto 60px auto'
+            fontSize: 'clamp(1rem, 2vw, 1.25rem)', lineHeight: '2',
+            color: '#2c2c2c', maxWidth: '800px', opacity: '0.9',
+            fontWeight: '400', margin: '0 auto 60px auto'
           }}>
             "Your recovery starts with the right choice. Find the session, pass or membership that fits your journey at Uluwatu Sunset Hills Recovery"
           </p>
@@ -146,6 +147,7 @@ export default function Pricelist() {
           .pricelist-title {
             font-size: 2.1rem !important;
           }
+          /* ✅ Style paragraf mobile disesuaikan dengan About */
           .pricelist-desc {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;

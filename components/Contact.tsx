@@ -58,13 +58,14 @@ export default function Contact() {
           Begin Your <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Journey</span>
         </h2>
 
+        {/* ✅ Paragraf disesuaikan dengan About */}
         <p className="contact-desc" style={{
-          fontSize: 'clamp(1rem, 2vw, 1.2rem)', 
-          lineHeight: '1.8', 
-          color: '#4a4a4a', 
+          fontSize: 'clamp(1rem, 2vw, 1.25rem)', 
+          lineHeight: '2', 
+          color: '#2c2c2c', 
           maxWidth: '800px',
           opacity: '0.9',
-          fontWeight: '300',
+          fontWeight: '400',
           marginBottom: '50px'
         }}>
           Ready to elevate your well-being? Whether you are looking to recover after an intense surf session, rejuvenate in our thermal sanctuary, or dine on exquisite plant-based cuisine overlooking the Indian Ocean—your paradise awaits. Secure your experience with us today.

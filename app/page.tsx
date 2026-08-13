@@ -52,7 +52,8 @@ export default function Home() {
           <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Recovery</span>
         </h1>
         
-        <p className="hero-desc" style={{ color: '#2c2c2c', fontWeight: 500, textShadow: 'none' }}>
+        {/* ✅ Paragraf disesuaikan dengan style dari komponen About */}
+        <p className="hero-desc">
           Elevate your physical and mental wellbeing at Uluwatu's most exclusive recovery sanctuary. Ice baths, saunas, and holistic therapies await.
         </p>
         
@@ -77,6 +78,16 @@ export default function Home() {
         :global(section) {
           border-bottom: none !important;
           border-top: none !important;
+        }
+
+        /* ✅ Style default/desktop paragraf disamakan dengan About */
+        .hero-desc {
+          font-size: clamp(1rem, 2vw, 1.25rem);
+          line-height: 2;
+          color: #2c2c2c;
+          opacity: 0.9;
+          font-weight: 400;
+          text-shadow: none;
         }
 
         /* --- TOMBOL RECOVERY (Latar Emas, Teks Putih) --- */
@@ -153,8 +164,10 @@ export default function Home() {
             font-size: clamp(2.1rem, 7.5vw, 2.5rem) !important; 
             line-height: 1.15;
           }
+          /* ✅ Style mobile paragraf disamakan dengan About */
           .hero-desc {
-            font-size: clamp(0.88rem, 3.2vw, 0.95rem) !important;
+            font-size: 0.88rem !important;
+            line-height: 1.6 !important;
             padding: 0 15px;
           }
           .hero-buttons {

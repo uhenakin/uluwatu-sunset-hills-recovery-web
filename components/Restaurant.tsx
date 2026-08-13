@@ -31,12 +31,14 @@ export default function Restaurant() {
 
           <div style={{ width: "100px", height: "3px", backgroundColor: "var(--accent-gold)", margin: "0 auto 25px auto" }} />
 
+          {/* ✅ Paragraf disesuaikan dengan About */}
           <p
             className="restaurant-desc"
             style={{
-              fontSize: "clamp(0.95rem, 1.5vw, 1.15rem)",
-              lineHeight: 1.8,
+              fontSize: "clamp(1rem, 2vw, 1.25rem)",
+              lineHeight: 2,
               color: "#2c2c2c",
+              opacity: 0.9,
               fontWeight: 400,
               marginBottom: "30px",
             }}
@@ -110,7 +112,6 @@ export default function Restaurant() {
             font-weight: 600;
           }
 
-          /* ✅ Ukuran teks pajak default (Desktop & Tablet: lebih besar / jelas) */
           .tax-notice {
             font-size: 0.95rem;
             font-weight: 500;
@@ -158,6 +159,7 @@ export default function Restaurant() {
               font-size: 2.1rem !important;
               margin-bottom: 20px !important;
             }
+            /* ✅ Style paragraf mobile disesuaikan dengan About */
             .restaurant-desc {
               font-size: 0.88rem !important;
               line-height: 1.6 !important;
@@ -167,7 +169,6 @@ export default function Restaurant() {
               padding: 14px 25px !important;
               font-size: 0.8rem !important;
             }
-            /* ✅ Dikecilkan sedikit pada layar mobile agar tetap rapi */
             .tax-notice {
               font-size: 0.78rem !important;
             }

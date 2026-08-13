@@ -173,15 +173,16 @@ export default function Recovery() {
             The <span style={{ color: "#d5a15c", fontStyle: "italic" }}>Recovery</span>
           </h2>
 
+          {/* ✅ Paragraf disesuaikan dengan About */}
           <p
             className="recovery-desc"
             style={{
-              fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
-              lineHeight: 1.8,
-              color: "#4a4a4a",
+              fontSize: "clamp(1rem, 2vw, 1.25rem)",
+              lineHeight: 2,
+              color: "#2c2c2c",
               maxWidth: "800px",
               opacity: 0.9,
-              fontWeight: 300,
+              fontWeight: 400,
               margin: "0 auto 60px auto",
             }}
           >
@@ -248,6 +249,7 @@ export default function Recovery() {
           .recovery-title {
             font-size: 2.1rem !important;
           }
+          /* ✅ Style paragraf mobile disesuaikan dengan About */
           .recovery-desc {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;

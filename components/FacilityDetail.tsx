@@ -12,7 +12,6 @@ const GAP_MOBILE = 16;
 const GAP_DESKTOP = 30;
 const ITEM_WIDTH = CARD_WIDTH + GAP_MOBILE;
 
-// 🔥 Komponen Kartu Other Facilities (Disesuaikan tema krem & teks gelap)
 function OtherCard({ item }: { item: Facility }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -192,10 +191,8 @@ export default function FacilityDetail({ slug }: { slug: string }) {
 
   return (
     <>
-      {/* ================= HALAMAN 1: HERO + BENEFITS ================= */}
       <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center", backgroundColor: "#faf8ef" }}>
         
-        {/* HERO */}
         <section
           style={{
             position: "relative",
@@ -213,12 +210,11 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           <h1 className="font-luxury detail-hero-title" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#d5a15c", marginBottom: "1rem" }}>
             {data.title}
           </h1>
-          <p className="detail-hero-tagline" style={{ color: "#4a4a4a", opacity: 0.9, fontSize: "1.1rem", maxWidth: "600px" }}>
+          <p className="detail-hero-tagline" style={{ color: "#2c2c2c", opacity: 0.9, fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 2, fontWeight: 400, maxWidth: "600px" }}>
             {data.tagline}
           </p>
         </section>
 
-        {/* BENEFITS */}
         <section style={{ backgroundColor: "#faf8ef", padding: "40px 5% 80px 5%", display: "flex", justifyContent: "center" }}>
           <div style={{ width: "100%", maxWidth: "1100px" }}>
             <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "2rem", fontWeight: 600 }}>
@@ -240,20 +236,17 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         </section>
       </div>
 
-      {/* ================= HALAMAN 2: GALLERY + OTHER FACILITIES ================= */}
       <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center", backgroundColor: "#faf8ef" }}>
         <section style={{ backgroundColor: "#faf8ef", padding: "0 5% 120px 5%", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div style={{ width: "100%", maxWidth: "1200px" }}>
 
-            {/* GALLERY */}
             <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Gallery
             </span>
-            <p className="detail-section-desc" style={{ color: "#4a4a4a", opacity: 0.8, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
+            <p className="detail-section-desc" style={{ color: "#2c2c2c", opacity: 0.9, fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 2, fontWeight: 400, maxWidth: "600px", marginBottom: "2rem" }}>
               A glimpse into our luxurious spaces – every corner designed for your comfort and recovery.
             </p>
 
-            {/* Gallery Grid - Desktop */}
             <div
               className="gallery-grid-desktop"
               style={{
@@ -299,7 +292,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
               ))}
             </div>
 
-            {/* Gallery Scroll - Mobile */}
             <div
               ref={trackGalleryRef}
               onScroll={handleScrollGallery}
@@ -353,22 +345,19 @@ export default function FacilityDetail({ slug }: { slug: string }) {
               ))}
             </div>
 
-            {/* OTHER FACILITIES */}
             <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Other Facilities
             </span>
-            <p className="detail-section-desc" style={{ color: "#4a4a4a", opacity: 0.8, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
+            <p className="detail-section-desc" style={{ color: "#2c2c2c", opacity: 0.9, fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 2, fontWeight: 400, maxWidth: "600px", marginBottom: "2rem" }}>
               Discover more of our premium amenities – each crafted to enhance your wellness journey.
             </p>
 
-            {/* Other Desktop Grid */}
             <div className="other-grid-desktop" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "30px", width: "100%" }}>
               {others.map((item) => (
                 <OtherCard key={item.slug} item={item} />
               ))}
             </div>
 
-            {/* Other Mobile Scroll */}
             <div
               ref={trackOtherRef}
               onScroll={handleScrollOther}
@@ -399,7 +388,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         </section>
       </div>
 
-      {/* 🔥 LIGHTBOX */}
       {mounted && lightboxImg && createPortal(
         <div
           onClick={() => setLightboxImg(null)}
@@ -458,7 +446,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         document.body
       )}
 
-      {/* GLOBAL STYLES */}
       <style jsx>{`
         .benefits-container {
           display: grid;
@@ -480,11 +467,12 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           margin-bottom: 0.6rem;
         }
         
+        /* ✅ Paragraf benefit dibesarkan sedikit */
         .benefit-desc {
           color: #4a4a4a;
           opacity: 0.9;
-          font-size: 0.92rem;
-          line-height: 1.6;
+          font-size: 1rem; /* Naik sedikit dari 0.92rem */
+          line-height: 1.65;
         }
 
         @media (max-width: 768px) {
@@ -499,20 +487,20 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             font-size: 2.1rem !important;
             margin-bottom: 0.8rem !important;
           }
-          .detail-hero-tagline {
-            font-size: 0.95rem !important;
-          }
           .detail-section-title {
             font-size: 1.8rem !important;
             margin-bottom: 1.2rem !important;
           }
-          .detail-section-desc {
-            font-size: 0.9rem !important;
+          .detail-hero-tagline, .detail-section-desc {
+            font-size: 0.88rem !important;
             line-height: 1.6 !important;
-            margin-bottom: 1.5rem !important;
+          }
+
+          /* ✅ Penyesuaian agar di layar mobile juga sedikit lebih nyaman dibaca */
+          .benefit-desc {
+            font-size: 0.95rem !important; 
           }
           
-          /* BENEFITS ZIG-ZAG EDITORIAL (MOBILE) */
           .benefits-container { display: flex; flex-direction: column; gap: 3rem; }
           .benefit-item:nth-child(odd) { text-align: left; padding-right: 15%; }
           .benefit-item:nth-child(even) { text-align: right; padding-left: 15%; }
