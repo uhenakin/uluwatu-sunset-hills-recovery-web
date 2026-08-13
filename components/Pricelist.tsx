@@ -5,12 +5,6 @@ import Reveal from "./Reveal";
 export default function Pricelist() {
   const plans = [
     {
-      badge: "VALID 30 DAYS",
-      title: "10 Session Pass",
-      price: "Rp 2.000.000",
-      desc: "10 sessions valid for 30 days",
-    },
-    {
       badge: "VALID 1 DAY",
       title: "Day Pass",
       price: "Rp 350.000",
@@ -21,6 +15,12 @@ export default function Pricelist() {
       title: "Weekly Pass",
       price: "Rp 1.200.000",
       desc: "Unlimited access for 7 days",
+    },
+    {
+      badge: "VALID 30 DAYS",
+      title: "10 Session Pass",
+      price: "Rp 2.000.000",
+      desc: "10 sessions valid for 30 days",
     },
     {
       badge: "VALID 30 DAYS",
