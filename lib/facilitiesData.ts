@@ -29,6 +29,7 @@ export const facilitiesData: Record<string, Facility> = {
       "/images/sauna/sauna-2.webp", 
       "/images/sauna/sauna-3.webp", 
       "/images/sauna/sauna-4.webp", 
+      "/images/sauna/sauna-5.webp",
     ],
   },
   "ice-bath": {
@@ -50,6 +51,7 @@ export const facilitiesData: Record<string, Facility> = {
       "/images/icebath/icebath-2.webp", 
       "/images/icebath/icebath-3.webp", 
       "/images/icebath/icebath-4.webp", 
+      "/images/icebath/icebath-5.webp", 
     ],
   },
   "hot-pool": {
@@ -71,6 +73,7 @@ export const facilitiesData: Record<string, Facility> = {
       "/images/hotpool/hotpool-2.webp", 
       "/images/hotpool/hotpool-3.webp", 
       "/images/hotpool/hotpool-4.webp", 
+      "/images/hotpool/hotpool-5.webp",
     ],
   },
   "swimming-pool": {
@@ -92,6 +95,7 @@ export const facilitiesData: Record<string, Facility> = {
       "/images/swimmingpool/swimpool-2.webp", 
       "/images/swimmingpool/swimpool-3.webp", 
       "/images/swimmingpool/swimpool-4.webp", 
+      "/images/swimmingpool/swimpool-5.webp", 
     ],
   },
 };

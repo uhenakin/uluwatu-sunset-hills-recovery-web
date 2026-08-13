@@ -9,7 +9,6 @@ import Loading from "@/components/Loading";
 
 const CARD_WIDTH = 280;
 const GAP_MOBILE = 16;
-const GAP_DESKTOP = 30;
 const ITEM_WIDTH = CARD_WIDTH + GAP_MOBILE;
 
 function OtherCard({ item }: { item: Facility }) {
@@ -105,7 +104,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
   const others = allFacilities.filter((f) => f.slug !== slug);
 
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false); 
 
   const trackOtherRef = useRef<HTMLDivElement>(null);
@@ -113,21 +111,17 @@ export default function FacilityDetail({ slug }: { slug: string }) {
 
   const trackGalleryRef = useRef<HTMLDivElement>(null);
   const isAdjustingGallery = useRef(false);
-  const GALLERY_ITEM_WIDTH = 220 + 12;
+  const GALLERY_ITEM_WIDTH = 280 + 20; // Lebar card galeri + gap
 
   useEffect(() => {
     setMounted(true);
-    const mql = window.matchMedia("(max-width: 768px)");
-    const update = () => setIsMobile(mql.matches);
-    update();
-    mql.addEventListener("change", update);
-    return () => mql.removeEventListener("change", update);
   }, []);
 
+  // Set initial scroll posisi tengah untuk infinity scroll Other Facilities
   useEffect(() => {
-    if (!isMobile || !trackOtherRef.current) return;
+    if (!trackOtherRef.current) return;
     trackOtherRef.current.scrollLeft = others.length * ITEM_WIDTH;
-  }, [isMobile, others.length]);
+  }, [others.length]);
 
   const handleScrollOther = useCallback(() => {
     const el = trackOtherRef.current;
@@ -147,12 +141,13 @@ export default function FacilityDetail({ slug }: { slug: string }) {
     }
   }, [others.length]);
 
-  const trackOtherItems = isMobile ? [...others, ...others, ...others] : others;
+  const trackOtherItems = [...others, ...others, ...others];
 
+  // Set initial scroll posisi tengah untuk infinity scroll Gallery
   useEffect(() => {
-    if (!isMobile || !trackGalleryRef.current || !data) return;
+    if (!trackGalleryRef.current || !data) return;
     trackGalleryRef.current.scrollLeft = data.gallery.length * GALLERY_ITEM_WIDTH;
-  }, [isMobile, data]);
+  }, [data]);
 
   const handleScrollGallery = useCallback(() => {
     const el = trackGalleryRef.current;
@@ -172,7 +167,15 @@ export default function FacilityDetail({ slug }: { slug: string }) {
     }
   }, [data]);
 
-  const trackGalleryItems = data && isMobile ? [...data.gallery, ...data.gallery, ...data.gallery] : data?.gallery ?? [];
+  const trackGalleryItems = data ? [...data.gallery, ...data.gallery, ...data.gallery] : [];
+
+  // Fungsi navigasi panah kiri & kanan untuk galeri
+  const scrollGalleryBy = (direction: 'left' | 'right') => {
+    const el = trackGalleryRef.current;
+    if (!el) return;
+    const scrollAmount = direction === 'left' ? -GALLERY_ITEM_WIDTH : GALLERY_ITEM_WIDTH;
+    el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  };
 
   if (!data) {
     return (
@@ -247,102 +250,81 @@ export default function FacilityDetail({ slug }: { slug: string }) {
               A glimpse into our luxurious spaces – every corner designed for your comfort and recovery.
             </p>
 
-            <div
-              className="gallery-grid-desktop"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                gap: "1rem",
-                marginBottom: "80px",
-              }}
-            >
-              {data.gallery.map((src) => (
-                <button
-                  key={src}
-                  type="button"
-                  onClick={() => setLightboxImg(src)}
-                  style={{
-                    border: "none",
-                    padding: 0,
-                    cursor: "zoom-in",
-                    borderRadius: "12px",
-                    overflow: "hidden",
-                    aspectRatio: "1/1",
-                    background: "rgba(213, 161, 92, 0.1)",
-                    transition: "transform 0.3s ease",
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = "scale(1.03)";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }}
-                >
-                  <img
-                    src={src}
-                    alt={data.title}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      display: "block",
-                    }}
-                  />
-                </button>
-              ))}
-            </div>
+            {/* Container Galeri dengan Tombol Panah Kiri Kanan untuk Desktop & Tablet */}
+            <div style={{ position: "relative", width: "100%", marginBottom: "80px" }}>
+              <button
+                type="button"
+                onClick={() => scrollGalleryBy('left')}
+                className="gallery-arrow-btn gallery-arrow-left"
+                aria-label="Previous slide"
+              >
+                ‹
+              </button>
 
-            <div
-              ref={trackGalleryRef}
-              onScroll={handleScrollGallery}
-              className="gallery-track-mobile"
-              style={{
-                display: "none",
-                flexDirection: "row",
-                flexWrap: "nowrap",
-                gap: "12px",
-                overflowX: "auto",
-                paddingLeft: "calc(50% - 110px)",
-                paddingRight: "calc(50% - 110px)",
-                scrollPaddingLeft: "calc(50% - 110px)",
-                scrollPaddingRight: "calc(50% - 110px)",
-                scrollSnapType: "x mandatory",
-                WebkitOverflowScrolling: "touch",
-                touchAction: "pan-x",
-                marginBottom: "60px",
-              }}
-            >
-              {trackGalleryItems.map((src, i) => (
-                <button
-                  key={`${src}-${i}`}
-                  type="button"
-                  onClick={() => setLightboxImg(src)}
-                  style={{
-                    border: "none",
-                    padding: 0,
-                    cursor: "zoom-in",
-                    borderRadius: "12px",
-                    overflow: "hidden",
-                    flex: "0 0 220px",
-                    width: "220px",
-                    minWidth: "220px",
-                    aspectRatio: "1/1",
-                    background: "rgba(213, 161, 92, 0.1)",
-                    scrollSnapAlign: "center",
-                  }}
-                >
-                  <img
-                    src={src}
-                    alt={data.title}
+              <button
+                type="button"
+                onClick={() => scrollGalleryBy('right')}
+                className="gallery-arrow-btn gallery-arrow-right"
+                aria-label="Next slide"
+              >
+                ›
+              </button>
+
+              <div
+                ref={trackGalleryRef}
+                onScroll={handleScrollGallery}
+                className="gallery-track-slider"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "nowrap",
+                  gap: "20px",
+                  overflowX: "auto",
+                  paddingLeft: "calc(50% - 140px)",
+                  paddingRight: "calc(50% - 140px)",
+                  scrollPaddingLeft: "calc(50% - 140px)",
+                  scrollPaddingRight: "calc(50% - 140px)",
+                  scrollSnapType: "x mandatory",
+                  WebkitOverflowScrolling: "touch",
+                  touchAction: "pan-x",
+                  willChange: "transform",
+                  width: "100%",
+                }}
+              >
+                {trackGalleryItems.map((src, i) => (
+                  <button
+                    key={`${src}-${i}`}
+                    type="button"
+                    onClick={() => setLightboxImg(src)}
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      display: "block",
+                      border: "none",
+                      padding: 0,
+                      cursor: "zoom-in",
+                      borderRadius: "16px",
+                      overflow: "hidden",
+                      flex: "0 0 280px",
+                      width: "280px",
+                      minWidth: "280px",
+                      aspectRatio: "4/3",
+                      background: "rgba(213, 161, 92, 0.1)",
+                      scrollSnapAlign: "center",
+                      boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
+                      transition: "transform 0.3s ease",
                     }}
-                  />
-                </button>
-              ))}
+                  >
+                    <img
+                      src={src}
+                      alt={data.title}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
 
             <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
@@ -352,18 +334,12 @@ export default function FacilityDetail({ slug }: { slug: string }) {
               Discover more of our premium amenities – each crafted to enhance your wellness journey.
             </p>
 
-            <div className="other-grid-desktop" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "30px", width: "100%" }}>
-              {others.map((item) => (
-                <OtherCard key={item.slug} item={item} />
-              ))}
-            </div>
-
             <div
               ref={trackOtherRef}
               onScroll={handleScrollOther}
               className="other-track-mobile"
               style={{
-                display: "none",
+                display: "flex",
                 flexDirection: "row",
                 flexWrap: "nowrap",
                 gap: `${GAP_MOBILE}px`,
@@ -467,22 +443,63 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           margin-bottom: 0.6rem;
         }
         
-        /* ✅ Paragraf benefit dibesarkan sedikit */
         .benefit-desc {
           color: #4a4a4a;
           opacity: 0.9;
-          font-size: 1rem; /* Naik sedikit dari 0.92rem */
+          font-size: 1rem;
           line-height: 1.65;
         }
 
+        /* --- STYLING TOMBOL PANAH GALERI --- */
+        .gallery-track-slider::-webkit-scrollbar,
+        .other-track-mobile::-webkit-scrollbar {
+          display: none !important;
+        }
+
+        .gallery-arrow-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+          background: rgba(255, 255, 255, 0.9);
+          color: #d5a15c;
+          border: 1px solid rgba(213, 161, 92, 0.4);
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          font-size: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+          transition: all 0.3s ease;
+          backdrop-filter: blur(8px);
+          line-height: 1;
+        }
+
+        .gallery-arrow-btn:hover {
+          background-color: #d5a15c;
+          color: #ffffff;
+          border-color: #d5a15c;
+          transform: translateY(-50%) scale(1.08);
+          box-shadow: 0 6px 20px rgba(213, 161, 92, 0.3);
+        }
+
+        .gallery-arrow-left {
+          left: 15px;
+        }
+
+        .gallery-arrow-right {
+          right: 15px;
+        }
+
         @media (max-width: 768px) {
-          .gallery-grid-desktop { display: none !important; }
-          .gallery-track-mobile { display: flex !important; }
-          .gallery-track-mobile::-webkit-scrollbar { display: none !important; }
-          .other-grid-desktop { display: none !important; }
-          .other-track-mobile { display: flex !important; }
-          .other-track-mobile::-webkit-scrollbar { display: none !important; }
-          
+          /* Hilangkan tombol panah di layar mobile HP kecil jika ingin bersih, atau biarkan tetap ada */
+          .gallery-arrow-btn {
+            display: none !important;
+          }
+
           .detail-hero-title {
             font-size: 2.1rem !important;
             margin-bottom: 0.8rem !important;
@@ -496,7 +513,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             line-height: 1.6 !important;
           }
 
-          /* ✅ Penyesuaian agar di layar mobile juga sedikit lebih nyaman dibaca */
           .benefit-desc {
             font-size: 0.95rem !important; 
           }
