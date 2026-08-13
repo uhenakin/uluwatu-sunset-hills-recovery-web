@@ -10,7 +10,7 @@ const facilities = [
   {
     slug: "sauna",
     title: "Sauna",
-    desc: "Detoxify and unwind in our premium wood-fired saunas. Relieving tension and promoting cardiovascular health.",
+    desc: "Detoxify and unwind in our premium hot stone saunas. Let the healing steam relieve tension and promote cardiovascular health.",
     cardImage: "/images/card/sauna.webp"
   },
   {
@@ -53,7 +53,7 @@ function RecoveryCard({
       }}
       style={{
         textDecoration: "none",
-        backgroundColor: "rgba(255, 255, 255, 0.7)",
+        backgroundColor: "rgba(255, 255, 255, 0.85)",
         backdropFilter: "blur(10px)",
         border: "1px solid rgba(213, 161, 92, 0.25)",
         borderRadius: "20px",
@@ -149,8 +149,11 @@ export default function Recovery() {
       style={{
         position: "relative",
         padding: "140px 5%",
-        background: "none",
-        backgroundColor: "#ffffff",
+        /* ✅ Memasang background bg-recovery.webp dengan gradasi putih mulus di atas dan bawah */
+        backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.88) 20%, rgba(255, 255, 255, 0.88) 80%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-recovery.webp")',
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -173,7 +176,6 @@ export default function Recovery() {
             The <span style={{ color: "#d5a15c", fontStyle: "italic" }}>Recovery</span>
           </h2>
 
-          {/* ✅ Paragraf disesuaikan dengan About */}
           <p
             className="recovery-desc"
             style={{
@@ -249,7 +251,6 @@ export default function Recovery() {
           .recovery-title {
             font-size: 2.1rem !important;
           }
-          /* ✅ Style paragraf mobile disesuaikan dengan About */
           .recovery-desc {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;

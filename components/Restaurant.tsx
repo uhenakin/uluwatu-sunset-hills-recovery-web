@@ -11,8 +11,11 @@ export default function Restaurant() {
         style={{
           position: "relative",
           padding: "140px 5%",
-          backgroundImage: "none",
-          backgroundColor: "#ffffff",
+          /* ✅ Memasang background bg-resto.webp dengan gradasi putih mulus di atas dan bawah */
+          backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.88) 20%, rgba(255, 255, 255, 0.88) 80%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-resto.webp")',
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -120,29 +123,28 @@ export default function Restaurant() {
             opacity: 0.85;
           }
 
-          /* ✅ Tombol yang dibuat jauh lebih hidup dengan kilauan dan gradasi dinamis */
+          /* ✅ Tombol hidup dengan ukuran font & padding persis seperti Book Now (10px 24px, 0.88rem)[cite: 3, 4] */
           :global(.btn-menu-gold-box),
           .btn-menu-gold-box {
             position: relative !important;
             overflow: hidden !important;
             display: inline-block !important;
-            padding: 16px 45px !important;
+            padding: 10px 24px !important;
             background: linear-gradient(45deg, #c4904a, #d5a15c, #e8c38c, #d5a15c, #c4904a) !important;
             background-size: 300% auto !important;
             color: #ffffff !important;
             border: none !important;
-            font-weight: 700 !important;
+            font-weight: 600 !important;
             text-decoration: none !important;
-            letter-spacing: 1.5px !important;
+            letter-spacing: 1.2px !important;
             text-transform: uppercase !important;
-            font-size: 0.9rem !important;
-            border-radius: 6px !important;
-            box-shadow: 0 4px 20px rgba(213, 161, 92, 0.4) !important;
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease !important;
-            animation: pulse-gold-menu 2.5s infinite, gradient-shift 4s ease infinite !important;
+            font-size: 0.88rem !important;
+            border-radius: 4px !important;
+            box-shadow: 0 4px 15px rgba(213, 161, 92, 0.35) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            animation: pulse-gold-menu 2s infinite, gradient-shift 4s ease infinite !important;
           }
 
-          /* Efek kilauan cahaya (Shine) yang berjalan */
           .btn-menu-gold-box::after {
             content: "";
             position: absolute;
@@ -156,14 +158,15 @@ export default function Restaurant() {
           }
 
           .btn-menu-gold-box:hover {
-            transform: translateY(-6px) scale(1.05) !important;
-            box-shadow: 0 15px 35px rgba(213, 161, 92, 0.6) !important;
-            animation: gradient-shift 2s ease infinite !important; /* Animasi warna lebih cepat saat di-hover */
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 10px 25px rgba(213, 161, 92, 0.55) !important;
+            background-color: #c4904a !important;
+            animation: gradient-shift 2s ease infinite !important;
           }
 
           @keyframes pulse-gold-menu {
             0% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0.6); }
-            70% { box-shadow: 0 0 0 15px rgba(213, 161, 92, 0); }
+            70% { box-shadow: 0 0 0 12px rgba(213, 161, 92, 0); }
             100% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0); }
           }
 
@@ -188,10 +191,6 @@ export default function Restaurant() {
               font-size: 0.88rem !important;
               line-height: 1.6 !important;
               margin-bottom: 25px !important;
-            }
-            .btn-menu-gold-box {
-              padding: 12px 22px !important;
-              font-size: 0.75rem !important;
             }
             .tax-notice {
               font-size: 0.68rem !important;

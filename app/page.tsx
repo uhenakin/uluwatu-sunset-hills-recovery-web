@@ -41,8 +41,11 @@ export default function Home() {
       <section 
         className="hero-section" 
         style={{ 
-          backgroundImage: 'none', 
-          backgroundColor: '#ffffff',
+          /* ✅ Background di-center agar siluet proporsional di tengah */
+          backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 60%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-hero.webp")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
           borderBottom: 'none'
         }}
       >
@@ -52,12 +55,11 @@ export default function Home() {
           <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Recovery</span>
         </h1>
         
-        {/* ✅ Paragraf disesuaikan dengan style dari komponen About */}
         <p className="hero-desc">
           Elevate your well-being on the edge of the Uluwatu hills. Discover a hidden sanctuary where restorative therapies meet the endless horizon of the Indian Ocean and golden sunsets.
         </p>
         
-        {/* Tombol Recovery (Latar Emas, Teks Putih) & Pricelist (Latar Putih, Teks Emas) */}
+        {/* Tombol Recovery & Pricelist */}
         <div className="hero-buttons">
           <a href="#recovery" className="btn-recovery-hero">
             Recovery
@@ -80,7 +82,6 @@ export default function Home() {
           border-top: none !important;
         }
 
-        /* ✅ Style default/desktop paragraf disamakan dengan About */
         .hero-desc {
           font-size: clamp(1rem, 2vw, 1.25rem);
           line-height: 2;
@@ -164,7 +165,6 @@ export default function Home() {
             font-size: clamp(2.1rem, 7.5vw, 2.5rem) !important; 
             line-height: 1.15;
           }
-          /* ✅ Style mobile paragraf disamakan dengan About */
           .hero-desc {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;
