@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Josefin_Sans, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import SmoothScrolling from "../components/SmoothScrolling";
 
-const cormorant = Cormorant_Garamond({ 
+const josefinSans = Josefin_Sans({ 
   subsets: ["latin"], 
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  variable: "--font-cormorant", // Kita gunakan variabel yang sama agar otomatis merubah heading
 });
 
-const manrope = Manrope({ 
+const robotoSlab = Roboto_Slab({ 
   subsets: ["latin"], 
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-manrope",
+  variable: "--font-manrope", // Kita gunakan variabel yang sama agar otomatis merubah body text
 });
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${manrope.variable}`} data-scroll-behavior="smooth">
+    <html lang="en" className={`${josefinSans.variable} ${robotoSlab.variable}`} data-scroll-behavior="smooth">
       <body suppressHydrationWarning>
         <Navbar />
         <SmoothScrolling>

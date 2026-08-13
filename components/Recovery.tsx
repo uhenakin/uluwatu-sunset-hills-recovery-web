@@ -11,28 +11,24 @@ const facilities = [
     slug: "sauna",
     title: "Sauna",
     desc: "Detoxify and unwind in our premium wood-fired saunas. Relieving tension and promoting cardiovascular health.",
-    // ✅ DIUBAH KE WEBP
     cardImage: "/images/card/sauna.webp"
   },
   {
     slug: "ice-bath",
     title: "Ice Bath",
     desc: "Accelerate healing with our cold plunges. Proven to reduce inflammation and minimize muscle soreness.",
-    // ✅ DIUBAH KE WEBP
     cardImage: "/images/card/icebath.webp"
   },
   {
     slug: "hot-pool",
     title: "Hot Pool",
     desc: "Melt away stress in our therapeutic hot pools. The soothing warmth relaxes joints for restorative sleep.",
-    // ✅ DIUBAH KE WEBP
     cardImage: "/images/card/hotpool.webp"
   },
   {
     slug: "swimming-pool",
     title: "Swimming Pool",
     desc: "Enjoy a refreshing dip in our crystal-clear pool, perfectly positioned to capture the ocean breeze.",
-    // ✅ DIUBAH KE WEBP
     cardImage: "/images/card/swimpool.webp"
   }
 ];
@@ -57,9 +53,9 @@ function RecoveryCard({
       }}
       style={{
         textDecoration: "none",
-        backgroundColor: "rgba(255, 255, 255, 0.03)",
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
         backdropFilter: "blur(10px)",
-        border: "1px solid rgba(226, 176, 101, 0.15)",
+        border: "1px solid rgba(213, 161, 92, 0.25)",
         borderRadius: "20px",
         overflow: "hidden",
         display: "flex",
@@ -73,10 +69,10 @@ function RecoveryCard({
       onMouseOver={(e) => {
         e.currentTarget.style.borderColor = "var(--accent-gold)";
         e.currentTarget.style.transform = "translateY(-6px)";
-        e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.35)";
+        e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.1)";
       }}
       onMouseOut={(e) => {
-        e.currentTarget.style.borderColor = "rgba(226, 176, 101, 0.15)";
+        e.currentTarget.style.borderColor = "rgba(213, 161, 92, 0.25)";
         e.currentTarget.style.transform = "translateY(0)";
         e.currentTarget.style.boxShadow = "none";
       }}
@@ -91,10 +87,10 @@ function RecoveryCard({
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px" }}>
-        <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "var(--accent-gold)", marginBottom: "8px" }}>
+        <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "#2c2c2c", marginBottom: "8px" }}>
           {item.title}
         </h3>
-        <p style={{ color: "var(--text-light)", opacity: 0.85, lineHeight: 1.6, fontSize: "0.9rem", margin: 0 }}>
+        <p style={{ color: "#4a4a4a", opacity: 0.9, lineHeight: 1.6, fontSize: "0.9rem", margin: 0 }}>
           {item.desc}
         </p>
 
@@ -141,7 +137,6 @@ export default function Recovery() {
 
   const handleNavigate = (slug: string) => {
     setShowLoading(true);
-    // Biar loading sempat kelihatan sebentar sebelum pindah halaman
     setTimeout(() => {
       router.push(`/${slug}`);
     }, 900);
@@ -156,11 +151,10 @@ export default function Recovery() {
         position: "relative",
         padding: "140px 5%",
         backgroundImage: `
-          linear-gradient(to bottom, var(--bg-ocean) 0%, rgba(10, 15, 30, 0.55) 35%, rgba(10, 15, 30, 0.55) 65%, var(--bg-ocean) 100%),
+          linear-gradient(to bottom, #faf8ef 0%, rgba(250, 248, 239, 0.85) 35%, rgba(250, 248, 239, 0.85) 65%, #faf8ef 100%),
           url("/images/bg/bg-recovery.webp")
         `,
         backgroundSize: "cover",
-        /* ✅ Diubah posisi agar bergeser ke kanan (65% dari kiri) */
         backgroundPosition: "65% center", 
         backgroundRepeat: "no-repeat",
         display: "flex",
@@ -176,7 +170,7 @@ export default function Recovery() {
         <div style={{ textAlign: "center", width: "100%", zIndex: 2 }}>
           <h2
             className="font-luxury"
-            style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", color: "var(--text-light)", marginBottom: "20px" }}
+            style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", color: "#2c2c2c", marginBottom: "20px" }}
           >
             The <span style={{ color: "var(--accent-sunset)", fontStyle: "italic" }}>Recovery</span>
           </h2>
@@ -185,7 +179,7 @@ export default function Recovery() {
             style={{
               fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
               lineHeight: 1.8,
-              color: "var(--text-light)",
+              color: "#4a4a4a",
               maxWidth: "800px",
               opacity: 0.9,
               fontWeight: 300,
@@ -226,8 +220,7 @@ export default function Recovery() {
           gap: `${GAP}px`,
           width: "100%",
           overflowX: "auto",
-          // Biar card aktif selalu di tengah
-          paddingLeft: "calc(50% - 140px)", // 140 = CARD_WIDTH / 2
+          paddingLeft: "calc(50% - 140px)",
           paddingRight: "calc(50% - 140px)",
           scrollPaddingLeft: "calc(50% - 140px)",
           scrollPaddingRight: "calc(50% - 140px)",

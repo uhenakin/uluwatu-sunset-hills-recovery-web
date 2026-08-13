@@ -13,14 +13,12 @@ import { track } from "@/lib/tracking";
 export default function Home() {
   const isLoading = usePageLoading();
 
-  // Catat page_view sekali setelah loading selesai (bukan pas masih di layar Loading)
   useEffect(() => {
     if (!isLoading) {
       track("page_view");
     }
   }, [isLoading]);
 
-  // Hanya untuk memastikan hash tetap di-handle setelah loading
   useEffect(() => {
     if (!isLoading) {
       const hash = window.location.hash;
@@ -28,7 +26,6 @@ export default function Home() {
         const id = hash.replace("#", "");
         const element = document.getElementById(id);
         if (element) {
-          // Gunakan scrollIntoView dengan behavior 'auto' (instan, tanpa animasi)
           element.scrollIntoView({ behavior: "auto", block: "start" });
         }
       }
@@ -42,23 +39,21 @@ export default function Home() {
   return (
     <main>
       <section className="hero-section">
-        <h1 className="hero-title font-luxury" style={{ color: '#ffffff' }}>
+        {/* ✅ TULISAN ULUWATU SUNSET HILLS SEKARANG HITAM (#2c2c2c) */}
+        <h1 className="hero-title font-luxury" style={{ color: '#2c2c2c' }}>
           <span style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>Uluwatu Sunset Hills</span>
           <br />
           <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Recovery</span>
         </h1>
         
-        <p className="hero-desc">
+        <p className="hero-desc" style={{ color: '#4a4a4a' }}>
           Elevate your physical and mental wellbeing at Uluwatu's most exclusive recovery sanctuary. Ice baths, saunas, and holistic therapies await.
         </p>
         
-        {/* ✅ TOMBOL DIPERBARUI: RECOVERY DAN PRICELIST */}
         <div className="hero-buttons">
-          {/* Tombol pertama: Recovery, arahkan ke #recovery */}
           <a href="#recovery" className="btn-primary">
             Recovery
           </a>
-          {/* Tombol kedua: Pricelist, arahkan ke #pricelist */}
           <a href="#pricelist" className="btn-secondary">
             Pricelist
           </a>
@@ -71,18 +66,14 @@ export default function Home() {
       <Restaurant />
       <Contact />
 
-      {/* ✅ CSS KHUSUS UNTUK HP (Mobile) */}
       <style jsx>{`
         @media (max-width: 767px) {
           .hero-title {
-            /* Menyesuaikan ukuran font di HP agar muat satu baris tanpa terlalu kecil */
             font-size: 2.5rem !important; 
             line-height: 1.2;
           }
-
-          /* ✅ Menurunkan posisi tombol */
           .hero-buttons {
-            margin-top: 40px !important; /* Memberikan jarak 40px dari teks deskripsi */
+            margin-top: 40px !important; 
           }
         }
       `}</style>

@@ -12,7 +12,7 @@ const GAP_MOBILE = 16;
 const GAP_DESKTOP = 30;
 const ITEM_WIDTH = CARD_WIDTH + GAP_MOBILE;
 
-// 🔥 Komponen Kartu Other Facilities (DIUBAH 100% SAMA DENGAN RECOVERY CARD)
+// 🔥 Komponen Kartu Other Facilities (Disesuaikan tema krem & teks gelap)
 function OtherCard({ item }: { item: Facility }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +22,7 @@ function OtherCard({ item }: { item: Facility }) {
     setIsLoading(true);
     setTimeout(() => {
       router.push(item.route);
-    }, 900); // Disamakan jeda animasinya dengan Recovery
+    }, 900);
   };
 
   return (
@@ -38,11 +38,11 @@ function OtherCard({ item }: { item: Facility }) {
         style={{
           cursor: "pointer",
           textDecoration: "none",
-          backgroundColor: "rgba(255, 255, 255, 0.03)",
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
           backdropFilter: "blur(10px)",
-          border: "1px solid rgba(226, 176, 101, 0.15)",
+          border: "1px solid rgba(213, 161, 92, 0.25)",
           borderRadius: "20px",
-          overflow: "hidden", // 🔥 Supaya gambar edge-to-edge (penuh sampai pinggir atas)
+          overflow: "hidden",
           display: "flex",
           flexDirection: "column",
           transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
@@ -54,15 +54,14 @@ function OtherCard({ item }: { item: Facility }) {
         onMouseOver={(e) => {
           e.currentTarget.style.borderColor = "var(--accent-gold)";
           e.currentTarget.style.transform = "translateY(-6px)";
-          e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.35)";
+          e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.1)";
         }}
         onMouseOut={(e) => {
-          e.currentTarget.style.borderColor = "rgba(226, 176, 101, 0.15)";
+          e.currentTarget.style.borderColor = "rgba(213, 161, 92, 0.25)";
           e.currentTarget.style.transform = "translateY(0)";
           e.currentTarget.style.boxShadow = "none";
         }}
       >
-        {/* Kontainer Gambar (Sama persis dengan RecoveryCard) */}
         <div style={{ width: "100%", height: "210px", position: "relative", flexShrink: 0 }}>
           <img
             src={item.cardImage}
@@ -71,15 +70,13 @@ function OtherCard({ item }: { item: Facility }) {
           />
         </div>
 
-        {/* Kontainer Teks (Sama persis dengan RecoveryCard) */}
         <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px" }}>
-          <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "var(--accent-gold)", marginBottom: "8px" }}>
+          <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "#2c2c2c", marginBottom: "8px" }}>
             {item.title}
           </h3>
           
-          {/* 🔥 Ganti item.desc menjadi item.tagline 🔥 */}
           {item.tagline && (
-            <p style={{ color: "var(--text-light)", opacity: 0.85, lineHeight: 1.6, fontSize: "0.9rem", margin: 0 }}>
+            <p style={{ color: "#4a4a4a", opacity: 0.9, lineHeight: 1.6, fontSize: "0.9rem", margin: 0 }}>
               {item.tagline}
             </p>
           )}
@@ -108,21 +105,17 @@ export default function FacilityDetail({ slug }: { slug: string }) {
   const data = facilitiesData[slug];
   const others = allFacilities.filter((f) => f.slug !== slug);
 
-  // State untuk Lightbox
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false); 
 
-  // Ref untuk Other Facilities
   const trackOtherRef = useRef<HTMLDivElement>(null);
   const isAdjustingOther = useRef(false);
 
-  // Ref untuk Gallery
   const trackGalleryRef = useRef<HTMLDivElement>(null);
   const isAdjustingGallery = useRef(false);
   const GALLERY_ITEM_WIDTH = 220 + 12;
 
-  // Deteksi mobile & Mounted Component
   useEffect(() => {
     setMounted(true);
     const mql = window.matchMedia("(max-width: 768px)");
@@ -132,7 +125,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
     return () => mql.removeEventListener("change", update);
   }, []);
 
-  // --- LOGIC INFINITE SCROLL OTHER FACILITIES ---
   useEffect(() => {
     if (!isMobile || !trackOtherRef.current) return;
     trackOtherRef.current.scrollLeft = others.length * ITEM_WIDTH;
@@ -158,7 +150,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
 
   const trackOtherItems = isMobile ? [...others, ...others, ...others] : others;
 
-  // --- LOGIC INFINITE SCROLL GALLERY ---
   useEffect(() => {
     if (!isMobile || !trackGalleryRef.current || !data) return;
     trackGalleryRef.current.scrollLeft = data.gallery.length * GALLERY_ITEM_WIDTH;
@@ -186,9 +177,9 @@ export default function FacilityDetail({ slug }: { slug: string }) {
 
   if (!data) {
     return (
-      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "var(--bg-ocean)" }}>
+      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#faf8ef" }}>
         <div style={{ textAlign: "center" }}>
-          <h1 className="font-luxury" style={{ color: "var(--text-light)", marginBottom: "1rem" }}>
+          <h1 className="font-luxury" style={{ color: "#2c2c2c", marginBottom: "1rem" }}>
             Facility not found
           </h1>
           <Link href="/#recovery" style={{ color: "var(--accent-gold)" }}>
@@ -202,7 +193,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
   return (
     <>
       {/* ================= HALAMAN 1: HERO + BENEFITS ================= */}
-      <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center", backgroundColor: "#faf8ef" }}>
         
         {/* HERO */}
         <section
@@ -216,7 +207,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             textAlign: "center",
             padding: "120px 5% 60px 5%",
             backgroundImage: `
-              linear-gradient(to bottom, rgba(10,15,30,0.5) 0%, rgba(10,15,30,0.35) 50%, var(--bg-ocean) 100%),
+              linear-gradient(to bottom, rgba(250, 248, 239, 0.5) 0%, rgba(250, 248, 239, 0.85) 50%, #faf8ef 100%),
               url("${data.heroImage}")
             `,
             backgroundSize: "cover",
@@ -224,16 +215,16 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <h1 className="font-luxury" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "var(--text-light)", marginBottom: "1rem" }}>
+          <h1 className="font-luxury" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#2c2c2c", marginBottom: "1rem" }}>
             {data.title}
           </h1>
-          <p style={{ color: "var(--text-light)", opacity: 0.85, fontSize: "1.1rem", maxWidth: "600px" }}>
+          <p style={{ color: "#4a4a4a", opacity: 0.9, fontSize: "1.1rem", maxWidth: "600px" }}>
             {data.tagline}
           </p>
         </section>
 
         {/* BENEFITS */}
-        <section style={{ backgroundColor: "var(--bg-ocean)", padding: "40px 5% 80px 5%", display: "flex", justifyContent: "center" }}>
+        <section style={{ backgroundColor: "#faf8ef", padding: "40px 5% 80px 5%", display: "flex", justifyContent: "center" }}>
           <div style={{ width: "100%", maxWidth: "1100px" }}>
             <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "2rem", fontWeight: 600 }}>
               Benefits
@@ -255,15 +246,15 @@ export default function FacilityDetail({ slug }: { slug: string }) {
       </div>
 
       {/* ================= HALAMAN 2: GALLERY + OTHER FACILITIES ================= */}
-      <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-        <section style={{ backgroundColor: "var(--bg-ocean)", padding: "0 5% 120px 5%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center", backgroundColor: "#faf8ef" }}>
+        <section style={{ backgroundColor: "#faf8ef", padding: "0 5% 120px 5%", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div style={{ width: "100%", maxWidth: "1200px" }}>
 
             {/* GALLERY */}
             <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Gallery
             </span>
-            <p style={{ color: "var(--text-light)", opacity: 0.7, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
+            <p style={{ color: "#4a4a4a", opacity: 0.8, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
               A glimpse into our luxurious spaces – every corner designed for your comfort and recovery.
             </p>
 
@@ -289,7 +280,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
                     borderRadius: "12px",
                     overflow: "hidden",
                     aspectRatio: "1/1",
-                    background: "rgba(255,255,255,0.03)",
+                    background: "rgba(213, 161, 92, 0.1)",
                     transition: "transform 0.3s ease",
                   }}
                   onMouseOver={(e) => {
@@ -349,7 +340,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
                     width: "220px",
                     minWidth: "220px",
                     aspectRatio: "1/1",
-                    background: "rgba(255,255,255,0.03)",
+                    background: "rgba(213, 161, 92, 0.1)",
                     scrollSnapAlign: "center",
                   }}
                 >
@@ -371,7 +362,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Other Facilities
             </span>
-            <p style={{ color: "var(--text-light)", opacity: 0.7, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
+            <p style={{ color: "#4a4a4a", opacity: 0.8, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
               Discover more of our premium amenities – each crafted to enhance your wellness journey.
             </p>
 
@@ -472,7 +463,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         document.body
       )}
 
-      {/* GLOBAL STYLES (TERMASUK ZIG-ZAG MOBILE BENEFITS) */}
+      {/* GLOBAL STYLES */}
       <style jsx>{`
         .benefits-container {
           display: grid;
@@ -480,20 +471,20 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           gap: 1.75rem;
         }
         .benefit-item {
-          background-color: rgba(255,255,255,0.03);
-          border: 1px solid rgba(226, 176, 101, 0.15);
+          background-color: rgba(255, 255, 255, 0.7);
+          border: 1px solid rgba(213, 161, 92, 0.25);
           border-radius: 16px;
           padding: 1.75rem;
           transition: all 0.3s ease;
         }
         .benefit-title {
-          color: var(--accent-gold);
+          color: #2c2c2c;
           font-size: 1.2rem;
           margin-bottom: 0.6rem;
         }
         .benefit-desc {
-          color: var(--text-light);
-          opacity: 0.8;
+          color: #4a4a4a;
+          opacity: 0.9;
           font-size: 0.92rem;
           line-height: 1.6;
         }
