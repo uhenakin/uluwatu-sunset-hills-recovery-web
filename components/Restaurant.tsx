@@ -11,14 +11,8 @@ export default function Restaurant() {
         style={{
           position: "relative",
           padding: "140px 5%",
-          /* ✅ Gradasi murni menggunakan warna krem (#faf8ef) agar solid dan menyatu */
-          backgroundImage: `
-            linear-gradient(to bottom, #faf8ef 0%, rgba(250, 248, 239, 0.92) 25%, rgba(250, 248, 239, 0.92) 75%, #faf8ef 100%),
-            url("/images/bg/bg-resto.webp")
-          `,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+          backgroundImage: "none", /* ✅ Gambar latar dihilangkan */
+          backgroundColor: "var(--bg-ocean)", /* ✅ Menggunakan warna solid */
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

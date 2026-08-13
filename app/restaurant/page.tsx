@@ -6,7 +6,7 @@ import Loading from "@/components/Loading";
 export default function RestaurantPage() {
   const isLoading = usePageLoading();
   
-  // Array 19 gambar menu (sudah format .webp)[cite: 12]
+  // Array 19 gambar menu (sudah format .webp)
   const menuImages = Array.from({ length: 19 }, (_, i) => `/images/restaurant/${i + 1}.webp`);
 
   if (isLoading) {
@@ -41,34 +41,62 @@ export default function RestaurantPage() {
         </div>
       ))}
 
-      {/* Tombol Book Now */}
-      <div style={{ textAlign: "center", marginTop: "40px" }}>
+      {/* Tombol Book Now yang Lebih Hidup */}
+      <div style={{ textAlign: "center", marginTop: "50px", marginBottom: "40px" }}>
         <a 
           href="/#contact" 
-          style={{ 
-            display: "inline-block",
-            padding: "14px 40px",
-            backgroundColor: "#d5a15c",
-            color: "#ffffff",
-            fontWeight: 600,
-            textDecoration: "none",
-            borderRadius: "6px",
-            fontSize: "0.9rem",
-            letterSpacing: "1px",
-            textTransform: "uppercase",
-            transition: "all 0.3s ease",
-          }}
+          className="btn-book-alive"
         >
           Book Now
         </a>
       </div>
 
-      {/* CSS Khusus untuk mengatur tampilan Desktop vs Mobile */}
+      {/* CSS Khusus untuk mengatur tampilan Desktop vs Mobile & Animasi */}
       <style jsx>{`
         /* --- TAMPILAN MOBILE / HP (Default) --- */
         .desktop-wide-wrapper {
           max-width: 400px;
           margin: 20px auto;
+        }
+
+        /* --- ANIMASI TOMBOL BOOK NOW --- */
+        .btn-book-alive {
+          display: inline-block;
+          padding: 16px 45px;
+          background-color: #d5a15c;
+          color: #ffffff;
+          font-weight: 600;
+          text-decoration: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          box-shadow: 0 4px 15px rgba(213, 161, 92, 0.3);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          
+          /* Efek denyut (pulse) terus-menerus */
+          animation: pulse-gold 2s infinite;
+        }
+
+        /* Efek saat kursor diarahkan (hover) */
+        .btn-book-alive:hover {
+          transform: translateY(-5px) scale(1.05);
+          box-shadow: 0 15px 30px rgba(213, 161, 92, 0.5);
+          background-color: #c4904a;
+          animation: none; /* Hentikan denyut saat di-hover */
+        }
+
+        /* Keyframes untuk efek denyut memancarkan warna emas */
+        @keyframes pulse-gold {
+          0% {
+            box-shadow: 0 0 0 0 rgba(213, 161, 92, 0.6);
+          }
+          70% {
+            box-shadow: 0 0 0 15px rgba(213, 161, 92, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(213, 161, 92, 0);
+          }
         }
 
         /* --- TAMPILAN DESKTOP (Layar di atas 1024px) --- */

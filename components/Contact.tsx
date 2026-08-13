@@ -41,8 +41,8 @@ export default function Contact() {
       <section id="contact" style={{ 
         minHeight: '100vh', 
         padding: '160px 5% 100px 5%', 
-        /* ✅ Background murni #faf8ef agar menyatu mulus tanpa garis batas */
-        backgroundColor: '#faf8ef', 
+        /* ✅ Gradasi memudar: Putih (atas) -> Krem (tengah) -> Putih (bawah) */
+        background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)', 
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -53,7 +53,7 @@ export default function Contact() {
         
         <h2 className="font-luxury" style={{ 
           fontSize: 'clamp(3rem, 6vw, 4.5rem)', 
-          color: '#2c2c2c', 
+          color: '#d5a15c', 
           marginBottom: '20px' 
         }}>
           Begin Your <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Journey</span>
@@ -71,7 +71,6 @@ export default function Contact() {
           Ready to elevate your well-being? Whether you are looking to recover after an intense surf session, rejuvenate in our thermal sanctuary, or dine on exquisite plant-based cuisine overlooking the Indian Ocean—your paradise awaits. Secure your experience with us today.
         </p>
 
-        {/* ✅ AREA GRID 2x2 MOBILE & 4 KOLOM DESKTOP */}
         <div className="contact-grid">
           
           {/* 1. WhatsApp */}
@@ -143,7 +142,6 @@ export default function Contact() {
           © {new Date().getFullYear()} Uluwatu Sunset Hills Recovery. All Rights Reserved.
         </div>
 
-        {/* ✅ CSS GRID 2 KOLOM DI MOBILE & 4 KOLOM DI DESKTOP */}
         <style jsx>{`
           .contact-grid {
             display: grid;
@@ -188,7 +186,6 @@ export default function Contact() {
             }
           }
         `}</style>
-
       </section>
     </Reveal>
   );

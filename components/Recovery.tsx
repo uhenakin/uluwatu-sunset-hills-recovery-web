@@ -87,7 +87,8 @@ function RecoveryCard({
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px" }}>
-        <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "#2c2c2c", marginBottom: "8px" }}>
+        {/* ✅ Judul kartu diubah dari hitam (#2c2c2c) menjadi emas (#d5a15c) */}
+        <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "#d5a15c", marginBottom: "8px" }}>
           {item.title}
         </h3>
         <p style={{ color: "#4a4a4a", opacity: 0.9, lineHeight: 1.6, fontSize: "0.9rem", margin: 0 }}>
@@ -150,13 +151,8 @@ export default function Recovery() {
       style={{
         position: "relative",
         padding: "140px 5%",
-        backgroundImage: `
-          linear-gradient(to bottom, #faf8ef 0%, rgba(250, 248, 239, 0.85) 35%, rgba(250, 248, 239, 0.85) 65%, #faf8ef 100%),
-          url("/images/bg/bg-recovery.webp")
-        `,
-        backgroundSize: "cover",
-        backgroundPosition: "65% center", 
-        backgroundRepeat: "no-repeat",
+        background: "none",
+        backgroundColor: "#ffffff",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -170,9 +166,13 @@ export default function Recovery() {
         <div style={{ textAlign: "center", width: "100%", zIndex: 2 }}>
           <h2
             className="font-luxury"
-            style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", color: "#2c2c2c", marginBottom: "20px" }}
+            style={{ 
+              fontSize: "clamp(3rem, 6vw, 4.5rem)", 
+              color: "#d5a15c", 
+              marginBottom: "20px" 
+            }}
           >
-            The <span style={{ color: "var(--accent-sunset)", fontStyle: "italic" }}>Recovery</span>
+            The <span style={{ color: "#d5a15c", fontStyle: "italic" }}>Recovery</span>
           </h2>
 
           <p

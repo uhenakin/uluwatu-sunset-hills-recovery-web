@@ -15,7 +15,8 @@ export default function About() {
       <section id="about" style={{
         minHeight: '100vh',
         padding: '120px 5%',
-        backgroundColor: 'var(--bg-ocean)',
+        /* ✅ Gradasi memudar: Putih (atas) -> Krem (tengah) -> Putih (bawah) */
+        background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -26,10 +27,11 @@ export default function About() {
 
         <h2 className="font-luxury" style={{
           fontSize: 'clamp(3rem, 6vw, 4.5rem)',
-          color: 'var(--text-light)',
-          marginBottom: '40px'
+          color: '#d5a15c', 
+          marginBottom: '40px',
+          textShadow: 'none'
         }}>
-          The <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Sanctuary</span>
+          The <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Sanctuary</span>
         </h2>
 
         <div style={{
@@ -42,9 +44,9 @@ export default function About() {
           <p style={{
             fontSize: 'clamp(1rem, 2vw, 1.25rem)',
             lineHeight: '2',
-            color: 'var(--text-light)',
+            color: '#2c2c2c',
             opacity: '0.9',
-            fontWeight: '300'
+            fontWeight: '400'
           }}>
             Uluwatu Sunset Hills Recovery is a premium recovery and relaxation destination, perched atop the cliffs of Uluwatu, Bali, overlooking the Indian Ocean. Born from the need for a quality sanctuary amid modern lifestyle demands, we provide a holistic space to restore your body and mind — set apart from the noise below, where the ocean air and open sky become part of the recovery itself.
           </p>
@@ -52,9 +54,9 @@ export default function About() {
           <p style={{
             fontSize: 'clamp(1rem, 2vw, 1.25rem)',
             lineHeight: '2',
-            color: 'var(--text-light)',
+            color: '#2c2c2c',
             opacity: '0.9',
-            fontWeight: '300'
+            fontWeight: '400'
           }}>
             Our approach combines the benefits of warm water immersion, sauna therapy, and ice baths to support your recovery journey. Immerse yourself in our signature contrast therapy, unwind in our hotpool, and restore your inner balance with treatments tailored to you.
           </p>
@@ -87,12 +89,12 @@ export default function About() {
                 flex: '1 1 0',
                 minWidth: '130px',
                 padding: '10px 24px',
-                borderLeft: index === 0 ? 'none' : '1px solid rgba(226, 176, 101, 0.2)',
+                borderLeft: index === 0 ? 'none' : '1px solid rgba(213, 161, 92, 0.3)',
               }}
             >
               <span className="font-luxury" style={{
                 fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-                color: 'var(--accent-gold)',
+                color: '#d5a15c',
                 lineHeight: '1',
                 marginBottom: '10px',
               }}>
@@ -101,9 +103,9 @@ export default function About() {
               <span style={{
                 fontSize: '0.7rem',
                 letterSpacing: '2px',
-                color: 'var(--text-light)',
-                opacity: '0.6',
-                fontWeight: '500',
+                color: '#2c2c2c',
+                opacity: '0.8',
+                fontWeight: '600',
                 textTransform: 'uppercase',
               }}>
                 {stat.label}
@@ -129,7 +131,7 @@ export default function About() {
             border-left: none !important;
           }
           .about-stat-item:nth-child(n+3) {
-            border-top: 1px solid rgba(226, 176, 101, 0.2);
+            border-top: 1px solid rgba(213, 161, 92, 0.3);
             padding-top: 20px !important;
           }
         }

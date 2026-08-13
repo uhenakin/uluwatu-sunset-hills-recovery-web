@@ -71,7 +71,7 @@ function OtherCard({ item }: { item: Facility }) {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px" }}>
-          <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "#2c2c2c", marginBottom: "8px" }}>
+          <h3 className="font-luxury" style={{ fontSize: "1.35rem", color: "#d5a15c", marginBottom: "8px" }}>
             {item.title}
           </h3>
           
@@ -179,7 +179,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
     return (
       <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#faf8ef" }}>
         <div style={{ textAlign: "center" }}>
-          <h1 className="font-luxury" style={{ color: "#2c2c2c", marginBottom: "1rem" }}>
+          <h1 className="font-luxury" style={{ color: "#d5a15c", marginBottom: "1rem" }}>
             Facility not found
           </h1>
           <Link href="/#recovery" style={{ color: "var(--accent-gold)" }}>
@@ -199,23 +199,19 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         <section
           style={{
             position: "relative",
-            minHeight: "45vh",
+            minHeight: "35vh",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
-            padding: "120px 5% 60px 5%",
-            backgroundImage: `
-              linear-gradient(to bottom, rgba(250, 248, 239, 0.5) 0%, rgba(250, 248, 239, 0.85) 50%, #faf8ef 100%),
-              url("${data.heroImage}")
-            `,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
+            padding: "120px 5% 40px 5%",
+            /* ✅ Background foto hero dihapus total */
+            background: "none",
+            backgroundColor: "#faf8ef",
           }}
         >
-          <h1 className="font-luxury" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#2c2c2c", marginBottom: "1rem" }}>
+          <h1 className="font-luxury" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#d5a15c", marginBottom: "1rem" }}>
             {data.title}
           </h1>
           <p style={{ color: "#4a4a4a", opacity: 0.9, fontSize: "1.1rem", maxWidth: "600px" }}>
@@ -226,7 +222,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         {/* BENEFITS */}
         <section style={{ backgroundColor: "#faf8ef", padding: "40px 5% 80px 5%", display: "flex", justifyContent: "center" }}>
           <div style={{ width: "100%", maxWidth: "1100px" }}>
-            <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "2rem", fontWeight: 600 }}>
+            <span className="font-luxury" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "2rem", fontWeight: 600 }}>
               Benefits
             </span>
             <div className="benefits-container">
@@ -251,7 +247,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           <div style={{ width: "100%", maxWidth: "1200px" }}>
 
             {/* GALLERY */}
-            <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
+            <span className="font-luxury" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Gallery
             </span>
             <p style={{ color: "#4a4a4a", opacity: 0.8, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
@@ -359,7 +355,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             </div>
 
             {/* OTHER FACILITIES */}
-            <span className="font-luxury" style={{ display: "block", color: "var(--accent-sunset)", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
+            <span className="font-luxury" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Other Facilities
             </span>
             <p style={{ color: "#4a4a4a", opacity: 0.8, maxWidth: "600px", marginBottom: "2rem", fontSize: "1rem", lineHeight: 1.6 }}>
@@ -468,20 +464,23 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         .benefits-container {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-          gap: 1.75rem;
+          gap: 2.5rem;
         }
+        
         .benefit-item {
-          background-color: rgba(255, 255, 255, 0.7);
-          border: 1px solid rgba(213, 161, 92, 0.25);
-          border-radius: 16px;
-          padding: 1.75rem;
-          transition: all 0.3s ease;
+          background-color: transparent !important;
+          border: none !important;
+          padding: 0 !important;
+          border-radius: 0 !important;
+          position: relative;
         }
+        
         .benefit-title {
-          color: #2c2c2c;
+          color: #d5a15c;
           font-size: 1.2rem;
           margin-bottom: 0.6rem;
         }
+        
         .benefit-desc {
           color: #4a4a4a;
           opacity: 0.9;
@@ -497,9 +496,8 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           .other-track-mobile { display: flex !important; }
           .other-track-mobile::-webkit-scrollbar { display: none !important; }
           
-          /* BENEFITS ZIG-ZAG EDITORIAL (MOBILE ONLY) */
+          /* BENEFITS ZIG-ZAG EDITORIAL (MOBILE) */
           .benefits-container { display: flex; flex-direction: column; gap: 3rem; }
-          .benefit-item { background-color: transparent; border: none; padding: 0; border-radius: 0; position: relative; }
           .benefit-item:nth-child(odd) { text-align: left; padding-right: 15%; }
           .benefit-item:nth-child(even) { text-align: right; padding-left: 15%; }
           .benefit-item::before { content: ""; position: absolute; top: -12px; width: 40px; height: 2px; background-color: var(--accent-gold); opacity: 0.6; }
