@@ -69,7 +69,7 @@ export default function Restaurant() {
             </Link>
           </div>
 
-          <p style={{ fontSize: "0.75rem", fontWeight: 500, fontStyle: "italic", marginTop: "20px", color: "#2c2c2c" }}>
+          <p className="tax-notice">
             Prices are subject to Government TAX 10% + 5% service charge.
           </p>
 
@@ -110,7 +110,16 @@ export default function Restaurant() {
             font-weight: 600;
           }
 
-          /* ✅ Kotak emas dengan efek hover yang jauh lebih hidup dan dinamis */
+          /* ✅ Ukuran teks pajak default (Desktop & Tablet: lebih besar / jelas) */
+          .tax-notice {
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-style: italic;
+            margin-top: 20px;
+            color: #2c2c2c;
+            opacity: 0.85;
+          }
+
           :global(.btn-menu-gold-box),
           .btn-menu-gold-box {
             display: inline-block !important;
@@ -157,6 +166,10 @@ export default function Restaurant() {
             .btn-menu-gold-box {
               padding: 14px 25px !important;
               font-size: 0.8rem !important;
+            }
+            /* ✅ Dikecilkan sedikit pada layar mobile agar tetap rapi */
+            .tax-notice {
+              font-size: 0.78rem !important;
             }
           }
 

@@ -48,7 +48,7 @@ export default function Navbar() {
           
           <div className="logo-container" style={{ 
             position: 'relative', 
-            height: '86px', /* Logo desktop/tablet tetap megah */
+            height: '72px', /* ✅ Logo desktop/tablet dikecilkan sedikit */
             width: 'auto', 
             aspectRatio: '1 / 1',
             cursor: 'pointer', 
@@ -59,7 +59,7 @@ export default function Navbar() {
               alt="Uluwatu Sunset Hills"
               fill={true}
               priority={true}
-              sizes="86px"
+              sizes="72px"
               style={{ objectFit: 'contain' }}
             />
           </div>
@@ -106,16 +106,16 @@ export default function Navbar() {
 
       <style jsx>{`
         .navbar {
-          padding: 20px 5% !important;
+          padding: 14px 5% !important; /* ✅ Padding desktop diperkecil sedikit */
         }
 
         .nav-desktop-menu {
-          gap: 42px !important;
+          gap: 34px !important; /* ✅ Jarak antar menu diperkecil sedikit */
         }
 
         .nav-link-btn {
-          font-size: 1.05rem !important;
-          letter-spacing: 1.5px !important;
+          font-size: 0.96rem !important; /* ✅ Ukuran font menu desktop dikecilkan sedikit */
+          letter-spacing: 1.2px !important;
           font-weight: 500;
         }
 
@@ -123,10 +123,10 @@ export default function Navbar() {
           background-color: #d5a15c;
           color: #ffffff;
           border: 1px solid #d5a15c;
-          padding: 12px 28px;
-          font-size: 0.95rem;
+          padding: 10px 24px; /* ✅ Tombol book desktop diperkecil sedikit */
+          font-size: 0.88rem;
           font-weight: 600;
-          letter-spacing: 1.5px;
+          letter-spacing: 1.2px;
           text-transform: uppercase;
           border-radius: 4px;
           box-shadow: 0 4px 15px rgba(213, 161, 92, 0.35);
@@ -155,11 +155,11 @@ export default function Navbar() {
 
         @media (max-width: 768px) {
           .navbar {
-            padding: 14px 5% !important;
+            padding: 10px 5% !important; /* ✅ Padding mobile dikecilkan sedikit */
           }
           .logo-container {
-            height: 48px !important; /* ✅ Logo mobile disesuaikan menjadi 48px agar tidak terlalu besar */
-            width: 48px !important;
+            height: 40px !important; /* ✅ Logo mobile dikecilkan sedikit dari 48px ke 40px */
+            width: 40px !important;
           }
         }
       `}</style>
