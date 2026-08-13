@@ -186,7 +186,7 @@ export default function Recovery() {
               margin: "0 auto 60px auto",
             }}
           >
-            "Our contrast therapies offer a profound restorative journey, designed to accelerate physical healing, soothe the mind, and elevate your overall well-being. Here, amid the cliffs and ocean air of Uluwatu, the ritual of ice and heat becomes more than recovery — it becomes a moment of stillness, strength, and renewal"
+            Our contrast therapies offer a profound restorative journey, designed to accelerate physical healing, soothe the mind, and elevate your overall well-being. Here, amid the cliffs and ocean air of Uluwatu, the ritual of ice and heat becomes more than recovery — it becomes a moment of stillness, strength, and renewal.
           </p>
         </div>
       </Reveal>

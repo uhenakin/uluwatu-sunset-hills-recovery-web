@@ -3,13 +3,8 @@
 import { useEffect } from "react";
 import Reveal from "./Reveal";
 
-// Port backend tracking. Isi NEXT_PUBLIC_API_PORT di .env.local kalau backend jalan di port lain (default 8000).
 const API_PORT = process.env.NEXT_PUBLIC_API_PORT || "8000";
 
-// Kalau NEXT_PUBLIC_API_URL diisi (misal domain production https://api.xxx.com), itu yang dipakai.
-// Kalau kosong, otomatis pakai hostname yang lagi diakses browser + API_PORT.
-// Jadi pas testing ganti-ganti wifi/IP, nggak perlu edit .env sama sekali —
-// selama backend jalan di device yang sama dengan frontend, port tetap sama.
 function getTrackUrl(): string {
   if (process.env.NEXT_PUBLIC_API_URL) {
     return `${process.env.NEXT_PUBLIC_API_URL}/track`;
@@ -27,12 +22,10 @@ function track(eventType: string) {
     fetch(trackUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      credentials: "include", // wajib, biar cookie session "vid" ikut kekirim & diset
-      keepalive: true, // request tetap jalan walau user langsung pindah ke WA/IG/dll
+      credentials: "include",
+      keepalive: true,
       body: JSON.stringify({ event_type: eventType, path: window.location.pathname }),
-    }).catch(() => {
-      // sengaja di-silent-kan: kalau tracking gagal, jangan ganggu pengalaman user
-    });
+    }).catch(() => {});
   } catch {
     // no-op
   }
@@ -48,7 +41,8 @@ export default function Contact() {
       <section id="contact" style={{ 
         minHeight: '100vh', 
         padding: '160px 5% 100px 5%', 
-        backgroundColor: 'var(--bg-ocean)', 
+        /* ✅ Background murni #faf8ef agar menyatu mulus tanpa garis batas */
+        backgroundColor: '#faf8ef', 
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -59,7 +53,7 @@ export default function Contact() {
         
         <h2 className="font-luxury" style={{ 
           fontSize: 'clamp(3rem, 6vw, 4.5rem)', 
-          color: 'var(--text-light)', 
+          color: '#2c2c2c', 
           marginBottom: '20px' 
         }}>
           Begin Your <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Journey</span>
@@ -68,7 +62,7 @@ export default function Contact() {
         <p style={{
           fontSize: 'clamp(1rem, 2vw, 1.2rem)', 
           lineHeight: '1.8', 
-          color: 'var(--text-light)', 
+          color: '#4a4a4a', 
           maxWidth: '800px',
           opacity: '0.9',
           fontWeight: '300',
@@ -137,16 +131,13 @@ export default function Contact() {
         </div>
 
         <div style={{
-          position: 'absolute',
-          bottom: 'max(30px, env(safe-area-inset-bottom) + 20px)',
-          left: 0,
-          right: 0,
+          marginTop: '60px',
           fontSize: '0.8rem',
-          color: 'var(--text-light)',
-          opacity: '0.5',
+          color: '#4a4a4a',
+          opacity: '0.8',
           letterSpacing: '1px',
           textAlign: 'center',
-          padding: '0 20px',
+          width: '100%',
           lineHeight: '1.4'
         }}>
           © {new Date().getFullYear()} Uluwatu Sunset Hills Recovery. All Rights Reserved.
@@ -156,7 +147,6 @@ export default function Contact() {
         <style jsx>{`
           .contact-grid {
             display: grid;
-            /* ✅ MOBILE / HP: Jadinya 2 Kolom (2x2) */
             grid-template-columns: 1fr 1fr;
             gap: 16px;
             width: 100%;
@@ -176,9 +166,8 @@ export default function Contact() {
             text-transform: uppercase;
             font-size: 0.85rem;
             
-            /* Gaya seragam (border emas, background transparan) */
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(226, 176, 101, 0.3);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(213, 161, 92, 0.25);
             color: var(--accent-gold);
             
             transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
@@ -187,11 +176,10 @@ export default function Contact() {
 
           .contact-item:hover {
             transform: translateY(-4px);
-            background-color: rgba(226, 176, 101, 0.15);
+            background-color: rgba(213, 161, 92, 0.15);
             border-color: var(--accent-gold);
           }
 
-          /* ✅ DESKTOP / TABLET: Ubah menjadi 4 kolom (1 baris penuh) */
           @media (min-width: 768px) {
             .contact-grid {
               grid-template-columns: 1fr 1fr 1fr 1fr;
