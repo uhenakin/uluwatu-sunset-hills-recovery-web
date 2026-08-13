@@ -9,6 +9,7 @@ import Loading from "@/components/Loading";
 
 const CARD_WIDTH = 280;
 const GAP_MOBILE = 16;
+const GAP_DESKTOP = 30;
 const ITEM_WIDTH = CARD_WIDTH + GAP_MOBILE;
 
 function OtherCard({ item }: { item: Facility }) {
@@ -104,6 +105,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
   const others = allFacilities.filter((f) => f.slug !== slug);
 
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false); 
 
   const trackOtherRef = useRef<HTMLDivElement>(null);
@@ -111,17 +113,22 @@ export default function FacilityDetail({ slug }: { slug: string }) {
 
   const trackGalleryRef = useRef<HTMLDivElement>(null);
   const isAdjustingGallery = useRef(false);
-  const GALLERY_ITEM_WIDTH = 280 + 20; // Lebar card galeri + gap
+  const GALLERY_ITEM_WIDTH = 280 + 20;
 
   useEffect(() => {
     setMounted(true);
+    const mql = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
   }, []);
 
-  // Set initial scroll posisi tengah untuk infinity scroll Other Facilities
+  // Set initial scroll posisi tengah untuk infinity scroll Other Facilities (Mobile)
   useEffect(() => {
-    if (!trackOtherRef.current) return;
+    if (!isMobile || !trackOtherRef.current) return;
     trackOtherRef.current.scrollLeft = others.length * ITEM_WIDTH;
-  }, [others.length]);
+  }, [isMobile, others.length]);
 
   const handleScrollOther = useCallback(() => {
     const el = trackOtherRef.current;
@@ -141,7 +148,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
     }
   }, [others.length]);
 
-  const trackOtherItems = [...others, ...others, ...others];
+  const trackOtherItems = isMobile ? [...others, ...others, ...others] : others;
 
   // Set initial scroll posisi tengah untuk infinity scroll Gallery
   useEffect(() => {
@@ -169,7 +176,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
 
   const trackGalleryItems = data ? [...data.gallery, ...data.gallery, ...data.gallery] : [];
 
-  // Fungsi navigasi panah kiri & kanan untuk galeri
   const scrollGalleryBy = (direction: 'left' | 'right') => {
     const el = trackGalleryRef.current;
     if (!el) return;
@@ -250,7 +256,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
               A glimpse into our luxurious spaces – every corner designed for your comfort and recovery.
             </p>
 
-            {/* Container Galeri dengan Tombol Panah Kiri Kanan untuk Desktop & Tablet */}
             <div style={{ position: "relative", width: "100%", marginBottom: "80px" }}>
               <button
                 type="button"
@@ -334,12 +339,19 @@ export default function FacilityDetail({ slug }: { slug: string }) {
               Discover more of our premium amenities – each crafted to enhance your wellness journey.
             </p>
 
+            {/* Other Facilities dikembalikan menggunakan Grid untuk Desktop dan Track untuk Mobile seperti semula */}
+            <div className="other-grid-desktop" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "30px", width: "100%" }}>
+              {others.map((item) => (
+                <OtherCard key={item.slug} item={item} />
+              ))}
+            </div>
+
             <div
               ref={trackOtherRef}
               onScroll={handleScrollOther}
               className="other-track-mobile"
               style={{
-                display: "flex",
+                display: "none",
                 flexDirection: "row",
                 flexWrap: "nowrap",
                 gap: `${GAP_MOBILE}px`,
@@ -450,7 +462,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           line-height: 1.65;
         }
 
-        /* --- STYLING TOMBOL PANAH GALERI --- */
         .gallery-track-slider::-webkit-scrollbar,
         .other-track-mobile::-webkit-scrollbar {
           display: none !important;
@@ -495,7 +506,9 @@ export default function FacilityDetail({ slug }: { slug: string }) {
         }
 
         @media (max-width: 768px) {
-          /* Hilangkan tombol panah di layar mobile HP kecil jika ingin bersih, atau biarkan tetap ada */
+          .other-grid-desktop { display: none !important; }
+          .other-track-mobile { display: flex !important; }
+          
           .gallery-arrow-btn {
             display: none !important;
           }
@@ -523,6 +536,11 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           .benefit-item::before { content: ""; position: absolute; top: -12px; width: 40px; height: 2px; background-color: var(--accent-gold); opacity: 0.6; }
           .benefit-item:nth-child(odd)::before { left: 0; }
           .benefit-item:nth-child(even)::before { right: 0; }
+        }
+
+        @media (min-width: 769px) {
+          .other-grid-desktop { display: flex !important; }
+          .other-track-mobile { display: none !important; }
         }
       `}</style>
     </>
