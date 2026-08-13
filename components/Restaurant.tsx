@@ -63,7 +63,7 @@ export default function Restaurant() {
           <div style={{ marginBottom: "20px" }}>
             <Link
               href="/restaurant"
-              className="btn-menu-alive"
+              className="btn-menu-gold-box"
             >
               Explore Complete Menu →
             </Link>
@@ -110,27 +110,32 @@ export default function Restaurant() {
             font-weight: 600;
           }
 
-          .btn-menu-alive {
-            display: inline-block;
-            padding: 16px 45px;
-            background-color: #d5a15c;
-            color: #ffffff;
-            font-weight: 600;
-            text-decoration: none;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(213, 161, 92, 0.35);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          /* ✅ Kotak emas dengan efek hover yang jauh lebih hidup dan dinamis */
+          :global(.btn-menu-gold-box),
+          .btn-menu-gold-box {
+            display: inline-block !important;
+            padding: 16px 45px !important;
+            background-color: #d5a15c !important;
+            color: #ffffff !important;
+            border: 1px solid #d5a15c !important;
+            font-weight: 600 !important;
+            text-decoration: none !important;
+            letter-spacing: 1.5px !important;
+            text-transform: uppercase !important;
+            font-size: 0.9rem !important;
+            border-radius: 6px !important;
+            box-shadow: 0 4px 20px rgba(213, 161, 92, 0.35) !important;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
             animation: pulse-gold-menu 2s infinite;
           }
 
-          .btn-menu-alive:hover {
-            transform: translateY(-5px) scale(1.04);
-            box-shadow: 0 12px 30px rgba(213, 161, 92, 0.55);
-            background-color: #c4904a;
-            animation: none;
+          .btn-menu-gold-box:hover {
+            transform: translateY(-6px) scale(1.06) !important;
+            box-shadow: 0 15px 35px rgba(213, 161, 92, 0.6) !important;
+            background-color: #c4904a !important;
+            color: #ffffff !important;
+            border-color: #c4904a !important;
+            animation: none !important;
           }
 
           @keyframes pulse-gold-menu {
@@ -148,6 +153,10 @@ export default function Restaurant() {
               font-size: 0.88rem !important;
               line-height: 1.6 !important;
               margin-bottom: 25px !important;
+            }
+            .btn-menu-gold-box {
+              padding: 14px 25px !important;
+              font-size: 0.8rem !important;
             }
           }
 
