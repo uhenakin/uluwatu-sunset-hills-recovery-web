@@ -160,11 +160,9 @@ export default function Recovery() {
   return (
     <section
       id="recovery"
+      className="responsive-section"
       style={{
         position: "relative",
-        /* ✅ Diseragamkan padding & ditambah scrollMarginTop */
-        padding: "140px 5% 100px 5%",
-        scrollMarginTop: "80px",
         backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.88) 20%, rgba(255, 255, 255, 0.88) 80%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-recovery.webp")',
         backgroundSize: "cover",
         backgroundPosition: "center center",
@@ -185,7 +183,7 @@ export default function Recovery() {
             style={{ 
               fontSize: "clamp(3rem, 6vw, 4.5rem)", 
               color: "#d5a15c", 
-              marginBottom: "30px" /* ✅ Diseragamkan menjadi 30px */
+              marginBottom: "30px" 
             }}
           >
             The <span style={{ color: "#d5a15c", fontStyle: "italic" }}>Recovery</span>
@@ -202,8 +200,7 @@ export default function Recovery() {
               fontWeight: 400,
               margin: "0 auto 80px auto", 
             }}
-          >
-            Immerse yourself in the ultimate cycle of renewal. Our contrast therapies harness the raw power of ice and heat to accelerate physical healing and deeply calm the mind. Surrounded by the majestic Uluwatu hills and the soothing ocean breeze, every session transcends simple recovery—guiding you toward profound inner strength.
+          >Experience the ultimate cycle of renewal. Our contrast therapies use ice and heat to accelerate healing and calm the mind—surrounded by Uluwatu's hills and ocean breeze.
           </p>
         </div>
       </Reveal>
@@ -253,12 +250,24 @@ export default function Recovery() {
       </div>
 
       <style jsx>{`
+        /* ✅ Responsif Padding & Margin Navbar */
+        .responsive-section {
+          padding: 140px 5% 100px 5%;
+          scroll-margin-top: 80px;
+        }
+
         .recovery-desc {
           text-align: justify;
           text-align-last: center;
         }
 
         @media (max-width: 768px) {
+          /* ✅ Di HP jarak diperkecil */
+          .responsive-section {
+            padding: 80px 5% 60px 5%;
+            scroll-margin-top: 70px;
+          }
+
           .recovery-desktop-grid {
             display: none !important;
           }

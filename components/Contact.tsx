@@ -38,11 +38,9 @@ export default function Contact() {
 
   return (
     <Reveal>
-     <section id="contact" style={{ 
+      <section id="contact" style={{ 
         minHeight: '100vh', 
-        /* ✅ Diseragamkan padding & ditambah scrollMarginTop */
-        padding: '140px 5% 100px 5%',
-        scrollMarginTop: '80px',
+        padding: '160px 5% 100px 5%', 
         background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)', 
         display: 'flex',
         flexDirection: 'column',
@@ -131,7 +129,7 @@ export default function Contact() {
 
         </div>
 
-        <div className="contact-copyright" style={{
+        <div className="copyright-notice" style={{
           position: 'absolute',
           bottom: '30px',
           left: '0',
@@ -143,7 +141,9 @@ export default function Contact() {
           textAlign: 'center',
           lineHeight: '1.4'
         }}>
-          © {new Date().getFullYear()} Uluwatu Sunset Hills Recovery. All Rights Reserved.
+          © {new Date().getFullYear()} Uluwatu Sunset Hills Recovery.
+          <br />
+          All Rights Reserved.
         </div>
 
         <style jsx>{`
@@ -199,9 +199,11 @@ export default function Contact() {
               text-align-last: center !important;
               padding: 0 15px;
             }
-            .contact-copyright {
-              font-size: 0.65rem !important;
-              padding: 0 20px;
+
+            .copyright-notice {
+              font-size: 0.6rem !important;
+              letter-spacing: 0.5px !important;
+              line-height: 1.5 !important;
             }
           }
 

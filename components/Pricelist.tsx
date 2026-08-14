@@ -89,10 +89,7 @@ export default function Pricelist() {
 
   return (
     <Reveal>
-      <section id="pricelist" style={{
-        /* ✅ Diseragamkan padding & disesuaikan scrollMarginTop */
-        padding: '140px 5% 100px 5%',
-        scrollMarginTop: '80px',
+      <section id="pricelist" className="responsive-section" style={{
         background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)',
         display: 'flex',
         flexDirection: 'column',
@@ -103,7 +100,7 @@ export default function Pricelist() {
           <h2 className="font-luxury pricelist-title" style={{
             fontSize: 'clamp(3rem, 6vw, 4.5rem)', 
             color: '#d5a15c', 
-            marginBottom: '30px' /* ✅ Diseragamkan menjadi 30px */
+            marginBottom: '30px'
           }}>
             Recovery <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Pricelist</span>
           </h2>
@@ -115,6 +112,7 @@ export default function Pricelist() {
           }}>
             Choose the recovery plan that works best for you. From Day Pass to full memberships, every option is crafted to deliver a truly exceptional experience
           </p>
+          
         </div>
 
         <div
@@ -142,12 +140,24 @@ export default function Pricelist() {
       </section>
 
       <style jsx>{`
+        /* ✅ Responsif Padding & Margin Navbar */
+        .responsive-section {
+          padding: 140px 5% 100px 5%;
+          scroll-margin-top: 80px;
+        }
+
         .pricelist-desc {
           text-align: justify;
           text-align-last: center;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
+          /* ✅ Di HP jarak diperkecil */
+          .responsive-section {
+            padding: 80px 5% 60px 5%;
+            scroll-margin-top: 70px;
+          }
+
           .pricelist-grid { gap: 16px !important; grid-template-columns: 1fr !important; }
           .pricelist-card-wrap { grid-column: span 1 !important; }
           .pricelist-title {

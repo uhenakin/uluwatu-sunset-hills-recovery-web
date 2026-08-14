@@ -12,11 +12,7 @@ export default function About() {
 
   return (
     <Reveal>
-      <section id="about" style={{
-        minHeight: '100vh',
-        /* ✅ Diseragamkan padding & ditambah scrollMarginTop */
-        padding: '140px 5% 100px 5%',
-        scrollMarginTop: '80px', 
+      <section id="about" className="responsive-section-vh" style={{
         background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)',
         display: 'flex',
         flexDirection: 'column',
@@ -28,7 +24,7 @@ export default function About() {
 
         <h2 className="font-luxury about-title" style={{
           color: '#d5a15c', 
-          marginBottom: '30px', /* ✅ Jarak disamakan menjadi 30px */
+          marginBottom: '30px',
           textShadow: 'none'
         }}>
           The <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Sanctuary</span>
@@ -106,6 +102,12 @@ export default function About() {
       </section>
 
       <style jsx>{`
+        .responsive-section-vh {
+          padding: 140px 5% 100px 5%;
+          scroll-margin-top: 80px;
+          min-height: 100vh;
+        }
+
         .about-title {
           font-size: clamp(3rem, 6vw, 4.5rem);
         }
@@ -120,7 +122,14 @@ export default function About() {
           text-align-last: center !important;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
+          /* ✅ Di HP jarak atas juga diperkecil agar mendekat ke Hero */
+          .responsive-section-vh {
+            padding: 40px 5% 60px 5%;
+            scroll-margin-top: 70px;
+            min-height: auto;
+          }
+
           .about-title {
             font-size: 2.1rem !important;
             margin-bottom: 20px !important;
@@ -128,8 +137,8 @@ export default function About() {
           .about-text {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;
-            text-align: center !important;
-            text-align-last: center !important;
+            text-align: justify !important;
+            text-align-last: left !important;
             padding: 0 15px;
           }
           .about-stats {

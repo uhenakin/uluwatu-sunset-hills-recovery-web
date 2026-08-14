@@ -6,13 +6,11 @@ import Reveal from "./Reveal";
 export default function Restaurant() {
   return (
     <Reveal>
-     <section
+      <section
         id="restaurant"
+        className="responsive-section"
         style={{
           position: "relative",
-          /* ✅ Diseragamkan padding & ditambah scrollMarginTop */
-          padding: "140px 5% 100px 5%",
-          scrollMarginTop: "80px",
           backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.88) 20%, rgba(255, 255, 255, 0.88) 80%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-resto.webp")',
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -47,12 +45,13 @@ export default function Restaurant() {
               width: "100%",
             }}
           >
-            Our restaurant features plant-based and vegetarian delights that will feed your soul and make your tastebuds come alive with exciting new fresh flavors! We feel food can be delicious without compromising its nutritional value. Please Enjoy!!
+            Our restaurant features plant-based and vegetarian delights that will feed your soul and make your tastebuds come alive with exciting new fresh flavors!
+            We feel food can be delicious without compromising its nutritional value. Please Enjoy!!
           </p>
 
-          <div style={{ width: "100px", height: "3px", backgroundColor: "var(--accent-gold)", margin: "0 auto 60px auto" }} />
+          <div style={{ width: "100px", height: "3px", backgroundColor: "var(--accent-gold)", margin: "0 auto 35px auto" }} />
 
-          <div className="schedule-container" style={{ maxWidth: "800px", margin: "0 auto 50px auto" }}>
+          <div className="schedule-container" style={{ maxWidth: "800px", margin: "0 auto 45px auto" }}>
             <div className="schedule-item">
               <h3 className="schedule-title font-luxury">BREAKFAST</h3>
               <span className="schedule-time">8AM - 11AM</span>
@@ -80,6 +79,12 @@ export default function Restaurant() {
         </div>
 
         <style jsx>{`
+          /* ✅ Responsif Padding & Margin Navbar */
+          .responsive-section {
+            padding: 140px 5% 100px 5%;
+            scroll-margin-top: 80px;
+          }
+
           .restaurant-desc {
             text-align: justify !important;
             text-align-last: center !important;
@@ -119,12 +124,11 @@ export default function Restaurant() {
             font-weight: 600;
           }
 
-          /* ✅ Desktop: Ukuran font tax-notice dibesarkan sedikit menjadi 1.05rem */
           .tax-notice {
             font-size: 1.05rem; 
             font-weight: 500;
             font-style: italic;
-            margin-top: 25px;
+            margin-top: 20px;
             color: #2c2c2c;
             opacity: 0.85;
           }
@@ -187,7 +191,13 @@ export default function Restaurant() {
             100% { background-position: 0% 50%; }
           }
 
-          @media (max-width: 767px) {
+          @media (max-width: 768px) {
+            /* ✅ Di HP jarak diperkecil */
+            .responsive-section {
+              padding: 80px 5% 60px 5%;
+              scroll-margin-top: 70px;
+            }
+
             .restaurant-title {
               font-size: 2.1rem !important;
               margin-bottom: 20px !important;
@@ -200,12 +210,18 @@ export default function Restaurant() {
               text-align-last: center !important;
               padding: 0 15px;
             }
+            .schedule-container {
+              gap: 2px !important;
+            }
+            .schedule-item {
+              padding: 6px 0 !important;
+              gap: 2px !important;
+            }
             .btn-menu-gold-box {
               padding: 12px 22px !important;
               font-size: 0.75rem !important;
             }
             
-            /* ✅ Mobile: Perkecil font & paksa jadi 1 baris agar 'charge' tidak turun */
             .tax-notice {
               font-size: 0.62rem !important;
               white-space: nowrap !important;

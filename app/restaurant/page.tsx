@@ -1,133 +1,219 @@
 "use client";
 
+import { useEffect } from "react";
 import { usePageLoading } from "@/hooks/usePageLoading";
 import Loading from "@/components/Loading";
+import About from "../components/About";
+import Recovery from "../components/Recovery";
+import Pricelist from "../components/Pricelist";
+import Restaurant from "../components/Restaurant";
+import Contact from "../components/Contact";
+import { track } from "@/lib/tracking";
 
-export default function RestaurantPage() {
+export default function Home() {
   const isLoading = usePageLoading();
-  
-  // Array 19 gambar menu (sudah format .webp)
-  const menuImages = Array.from({ length: 19 }, (_, i) => `/images/restaurant/${i + 1}.webp`);
+
+  useEffect(() => {
+    if (!isLoading) {
+      track("page_view");
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      }
+    }
+  }, [isLoading]);
 
   if (isLoading) {
     return <Loading />;
   }
 
   return (
-    <div style={{ backgroundColor: "#faf8ef", minHeight: "100vh", padding: "80px 20px" }}>
-
-      {/* Loop untuk menampilkan semua gambar dengan efek sudut bergradasi menyatu dengan background */}
-      {menuImages.map((src, index) => (
-        <div
-          key={index}
-          className="desktop-wide-wrapper menu-vignette-container"
-          style={{
-            /* ✅ Kita hapus border dan shadow agar gambar benar-benar melebur */
-            borderRadius: "12px",
-            overflow: "hidden",
-            position: "relative",
-          }}
-        >
-          <img 
-            src={src} 
-            alt={`Menu ${index + 1}`}
-            style={{ 
-              width: "100%", 
-              height: "auto", 
-              display: "block",
-            }} 
-          />
-          {/* ✅ Lapisan gradasi tebal di setiap sisi menggunakan warna background halaman (#faf8ef) */}
-          <div className="vignette-overlay" />
+    <main style={{ backgroundColor: '#ffffff' }}>
+      <section 
+        className="hero-section responsive-hero" 
+        style={{ 
+          backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 60%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-hero.webp")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          borderBottom: 'none',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <h1 className="hero-title font-luxury" style={{ textShadow: 'none', marginBottom: '30px' }}>
+          <span style={{ color: '#d5a15c', whiteSpace: 'nowrap', display: 'inline-block' }}>Uluwatu Sunset Hills</span>
+          <br />
+          <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Recovery</span>
+        </h1>
+        
+        <p className="hero-desc">
+          Elevate your well-being on the edge of the Uluwatu hills. Discover a hidden sanctuary where restorative therapies meet the endless horizon of the Indian Ocean and golden sunsets.
+        </p>
+        
+        <div className="hero-buttons">
+          <a href="#recovery" className="btn-recovery-hero">
+            Recovery
+          </a>
+          <a href="#pricelist" className="btn-pricelist-hero">
+            Pricelist
+          </a>
         </div>
-      ))}
+      </section>
 
-      {/* Tombol Book Now yang Lebih Hidup */}
-      <div style={{ textAlign: "center", marginTop: "50px", marginBottom: "40px" }}>
-        <a 
-          href="/#contact"
-          className="btn-book-alive"
-        >
-          Book Now
-        </a>
-      </div>
+      <About />
+      <Recovery />
+      <Pricelist />
+      <Restaurant />
+      <Contact />
 
       <style jsx>{`
-        /* --- EFEK GRADASI MENYATU DENGAN BACKGROUND (#faf8ef) --- */
-        .menu-vignette-container {
-          position: relative;
+        :global(section) {
+          border-bottom: none !important;
+          border-top: none !important;
         }
 
-        .vignette-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
+        /* ✅ Responsif Padding untuk Hero */
+        .responsive-hero {
+          padding: 140px 5% 80px 5%;
+        }
+
+        .hero-desc {
+          font-size: clamp(1rem, 2vw, 1.25rem);
+          line-height: 2;
+          color: #2c2c2c;
+          opacity: 0.9;
+          font-weight: 400;
+          text-shadow: none;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 80px; 
+          text-align: justify;
+          text-align-last: center;
+        }
+
+        .hero-buttons {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
           width: 100%;
-          height: 100%;
-          pointer-events: none;
-          border-radius: 12px;
-          /* ✅ Membayangkan warna krem #faf8ef masuk dari ke-4 sisi gambar */
-          box-shadow: 
-            inset 0px 15px 25px -10px #faf8ef,   /* Atas */
-            inset 0px -15px 25px -10px #faf8ef,  /* Bawah */
-            inset 15px 0px 25px -10px #faf8ef,   /* Kiri */
-            inset -15px 0px 25px -10px #faf8ef;  /* Kanan */
         }
 
-        /* --- TAMPILAN MOBILE / HP (Default) --- */
-        .desktop-wide-wrapper {
-          max-width: 400px;
-          margin: 20px auto;
-        }
-
-        /* --- ANIMASI TOMBOL BOOK NOW --- */
-        .btn-book-alive {
+        .btn-recovery-hero {
           display: inline-block;
           padding: 16px 45px;
           background-color: #d5a15c;
           color: #ffffff;
-          font-weight: 600;
+          border: 1px solid #d5a15c;
           text-decoration: none;
-          border-radius: 8px;
-          font-size: 1rem;
           letter-spacing: 1.5px;
           text-transform: uppercase;
-          box-shadow: 0 4px 15px rgba(213, 161, 92, 0.3);
+          font-size: 0.85rem;
+          font-weight: 600;
+          border-radius: 4px;
+          text-align: center;
+          box-shadow: 0 4px 15px rgba(213, 161, 92, 0.35);
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          animation: pulse-gold 2s infinite;
+          animation: pulse-gold-rec 2s infinite;
         }
 
-        .btn-book-alive:hover {
-          transform: translateY(-5px) scale(1.05);
-          box-shadow: 0 15px 30px rgba(213, 161, 92, 0.5);
-          background-color: #c4904a;
+        .btn-recovery-hero:hover {
+          transform: translateY(-4px) scale(1.04);
+          background-color: #ffffff;
+          color: #d5a15c;
+          border-color: #d5a15c;
+          box-shadow: 0 10px 25px rgba(213, 161, 92, 0.4);
           animation: none;
         }
 
-        @keyframes pulse-gold {
+        .btn-pricelist-hero {
+          display: inline-block;
+          padding: 16px 45px;
+          background-color: #ffffff;
+          color: #d5a15c;
+          border: 1px solid #d5a15c;
+          text-decoration: none;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          font-size: 0.85rem;
+          font-weight: 600;
+          border-radius: 4px;
+          text-align: center;
+          box-shadow: 0 4px 15px rgba(213, 161, 92, 0.25);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          animation: pulse-white-price 2s infinite;
+        }
+
+        .btn-pricelist-hero:hover {
+          transform: translateY(-4px) scale(1.04);
+          background-color: #d5a15c;
+          color: #ffffff;
+          border-color: #d5a15c;
+          box-shadow: 0 10px 25px rgba(213, 161, 92, 0.4);
+          animation: none;
+        }
+
+        @keyframes pulse-gold-rec {
           0% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0.6); }
-          70% { box-shadow: 0 0 0 15px rgba(213, 161, 92, 0); }
+          70% { box-shadow: 0 0 0 12px rgba(213, 161, 92, 0); }
           100% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0); }
         }
 
-        /* --- TAMPILAN DESKTOP (Layar di atas 1024px) --- */
-        @media (min-width: 1024px) {
-          .desktop-wide-wrapper {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0px auto; /* Margin dihilangkan agar tumpukan gambar lebih padat menyatu */
+        @keyframes pulse-white-price {
+          0% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0.4); }
+          70% { box-shadow: 0 0 0 12px rgba(213, 161, 92, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0); }
+        }
+
+        @media (max-width: 767px) {
+          .responsive-hero {
+            padding: 100px 5% 40px 5%;
           }
           
-          /* Efek gradasi dipertebal di desktop agar semakin blur pinggirannya */
-          .vignette-overlay {
-            box-shadow: 
-              inset 0px 40px 60px -20px #faf8ef,
-              inset 0px -40px 60px -20px #faf8ef,
-              inset 40px 0px 60px -20px #faf8ef,
-              inset -40px 0px 60px -20px #faf8ef;
+          .hero-title {
+            font-size: clamp(2.1rem, 7.5vw, 2.5rem) !important; 
+            line-height: 1.15;
+          }
+          
+          .hero-desc {
+            font-size: 0.88rem !important;
+            line-height: 1.6 !important;
+            padding: 0 15px;
+            margin-bottom: 40px !important; 
+            text-align: center !important;
+            text-align-last: center !important;
+          }
+          
+          .hero-buttons {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            flex-direction: row; /* ✅ Diubah menjadi row agar bersebelahan (kiri kanan) */
+            gap: 12px;
+            padding: 0 10px;
+          }
+          
+          .btn-recovery-hero, .btn-pricelist-hero {
+            padding: 14px 10px; /* ✅ Menyesuaikan padding agar rapi */
+            font-size: 0.75rem;
+            flex: 1; /* ✅ Membagi lebar tombol persis 50:50 */
+            width: auto;
           }
         }
       `}</style>
-    </div>
+    </main>
   );
 }
