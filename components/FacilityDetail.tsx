@@ -244,7 +244,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           </p>
         </section>
 
-        <section style={{ backgroundColor: "#faf8ef", padding: "60px 5% 100px 5%", display: "flex", justifyContent: "center" }}>
+        <section className="benefits-section" style={{ backgroundColor: "#faf8ef", padding: "60px 5% 100px 5%", display: "flex", justifyContent: "center" }}>
           <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
             <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "2rem", fontWeight: 600 }}>
               Benefits
@@ -575,7 +575,11 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             text-align: center !important;
             text-align-last: center !important;
             padding: 0 15px !important;
-            margin: 0 auto 60px auto !important; 
+            margin: 0 auto 30px auto !important; 
+          }
+
+          .benefits-section {
+            padding: 20px 5% 100px 5% !important;
           }
 
           .detail-section-desc {
