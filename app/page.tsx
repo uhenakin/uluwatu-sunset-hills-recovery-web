@@ -247,7 +247,7 @@ export default function Home() {
 
         @media (max-width: 767px) {
           .responsive-hero {
-            padding: 160px 5% 60px 5% !important; 
+            padding: 80px 5% 60px 5% !important; 
             min-height: auto;
           }
           
