@@ -131,7 +131,7 @@ export default function Contact() {
 
         </div>
 
-        <div style={{
+        <div className="contact-copyright" style={{
           position: 'absolute',
           bottom: '30px',
           left: '0',
@@ -198,6 +198,10 @@ export default function Contact() {
               text-align: center !important;
               text-align-last: center !important;
               padding: 0 15px;
+            }
+            .contact-copyright {
+              font-size: 0.65rem !important;
+              padding: 0 20px;
             }
           }
 
