@@ -137,8 +137,8 @@ export default function About() {
           .about-text {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;
-            text-align: justify !important;
-            text-align-last: left !important;
+            text-align: center !important;
+            text-align-last: center !important;
             padding: 0 15px;
           }
           .about-stats {
