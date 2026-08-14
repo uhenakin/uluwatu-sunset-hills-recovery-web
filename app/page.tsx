@@ -41,15 +41,20 @@ export default function Home() {
       <section 
         className="hero-section" 
         style={{ 
-          /* ✅ Background di-center agar siluet proporsional di tengah */
           backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 60%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-hero.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          borderBottom: 'none'
+          borderBottom: 'none',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          padding: '140px 5% 80px 5%'
         }}
       >
-        <h1 className="hero-title font-luxury" style={{ textShadow: 'none' }}>
+        <h1 className="hero-title font-luxury" style={{ textShadow: 'none', marginBottom: '30px' }}>
           <span style={{ color: '#d5a15c', whiteSpace: 'nowrap', display: 'inline-block' }}>Uluwatu Sunset Hills</span>
           <br />
           <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Recovery</span>
@@ -82,6 +87,7 @@ export default function Home() {
           border-top: none !important;
         }
 
+        /* ✅ Desktop: Rata kiri kanan & baris akhir di tengah (max-width disamakan 1200px) */
         .hero-desc {
           font-size: clamp(1rem, 2vw, 1.25rem);
           line-height: 2;
@@ -89,6 +95,19 @@ export default function Home() {
           opacity: 0.9;
           font-weight: 400;
           text-shadow: none;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 80px; /* ✅ Margin bawah diperbesar agar tombol turun lebih jauh ke bawah */
+          text-align: justify;
+          text-align-last: center;
+        }
+
+        .hero-buttons {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          width: 100%;
         }
 
         /* --- TOMBOL RECOVERY (Latar Emas, Teks Putih) --- */
@@ -165,19 +184,29 @@ export default function Home() {
             font-size: clamp(2.1rem, 7.5vw, 2.5rem) !important; 
             line-height: 1.15;
           }
+          
+          /* ✅ Mobile: Rata tengah biasa & jarak lega ke tombol */
           .hero-desc {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;
             padding: 0 15px;
+            margin-bottom: 60px !important; /* Jarak ekstra untuk mobile */
+            text-align: center !important;
+            text-align-last: center !important;
           }
+          
           .hero-buttons {
-            margin-top: 20px !important; 
-            width: 85%;
-            max-width: 300px;
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+            flex-direction: column; /* Mengubah posisi tombol menjadi atas-bawah di HP */
+            gap: 15px;
           }
+          
           .btn-recovery-hero, .btn-pricelist-hero {
             padding: 14px 20px;
             font-size: 0.8rem;
+            width: 100%;
           }
         }
       `}</style>

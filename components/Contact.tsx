@@ -38,35 +38,37 @@ export default function Contact() {
 
   return (
     <Reveal>
-      <section id="contact" style={{ 
+     <section id="contact" style={{ 
         minHeight: '100vh', 
-        padding: '160px 5% 100px 5%', 
+        /* ✅ Diseragamkan padding & ditambah scrollMarginTop */
+        padding: '140px 5% 100px 5%',
+        scrollMarginTop: '80px',
         background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)', 
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center', 
         textAlign: 'center',
-        position: 'relative'
+        position: 'relative' 
       }}>
         
         <h2 className="font-luxury contact-title" style={{ 
           fontSize: 'clamp(3rem, 6vw, 4.5rem)', 
           color: '#d5a15c', 
-          marginBottom: '20px' 
+          marginBottom: '30px' /* ✅ Jarak disamakan menjadi 30px */
         }}>
           Begin Your <span style={{ color: 'var(--accent-sunset)', fontStyle: 'italic' }}>Journey</span>
         </h2>
 
-        {/* ✅ Paragraf Universal + Kalimat ajakan di bawahnya yang murni turun baris tanpa ubah font/warna */}
         <p className="contact-desc" style={{
           fontSize: 'clamp(1rem, 2vw, 1.25rem)', 
           lineHeight: '1.8', 
           color: '#2c2c2c', 
-          maxWidth: '800px',
+          width: '100%',
+          maxWidth: '1200px', 
+          margin: '0 auto 80px auto',
           opacity: '0.9',
           fontWeight: '400',
-          marginBottom: '50px'
         }}>
           Ready for a truly exceptional experience? Whether you are looking to unwind in our thermal sanctuary, enjoy restorative contrast therapies, or dine on exquisite plant-based cuisine overlooking the Indian Ocean—your paradise awaits.
           
@@ -77,7 +79,6 @@ export default function Contact() {
 
         <div className="contact-grid">
           
-          {/* 1. WhatsApp */}
           <a 
             href="https://wa.me/6281234567890" 
             target="_blank" 
@@ -91,7 +92,6 @@ export default function Contact() {
             WhatsApp
           </a>
 
-          {/* 2. Instagram */}
           <a 
             href="https://instagram.com/uluwatusunsethills" 
             target="_blank" 
@@ -105,7 +105,6 @@ export default function Contact() {
             Instagram
           </a>
 
-          {/* 3. Email */}
           <a 
             href="mailto:info@uluwatusunsethills.com"
             className="contact-item"
@@ -117,7 +116,6 @@ export default function Contact() {
             Email
           </a>
 
-          {/* 4. Location */}
           <a 
             href="https://maps.google.com/?q=Uluwatu+Sunset+Hills+Recovery" 
             target="_blank" 
@@ -134,19 +132,26 @@ export default function Contact() {
         </div>
 
         <div style={{
-          marginTop: '60px',
+          position: 'absolute',
+          bottom: '30px',
+          left: '0',
+          width: '100%',
           fontSize: '0.8rem',
           color: '#4a4a4a',
           opacity: '0.8',
           letterSpacing: '1px',
           textAlign: 'center',
-          width: '100%',
           lineHeight: '1.4'
         }}>
           © {new Date().getFullYear()} Uluwatu Sunset Hills Recovery. All Rights Reserved.
         </div>
 
         <style jsx>{`
+          .contact-desc {
+            text-align: justify !important;
+            text-align-last: center !important;
+          }
+
           .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -189,7 +194,10 @@ export default function Contact() {
             .contact-desc {
               font-size: 0.88rem !important;
               line-height: 1.6 !important;
-              margin-bottom: 35px !important;
+              margin-bottom: 60px !important;
+              text-align: center !important;
+              text-align-last: center !important;
+              padding: 0 15px;
             }
           }
 
@@ -197,7 +205,7 @@ export default function Contact() {
             .contact-grid {
               grid-template-columns: 1fr 1fr 1fr 1fr;
               gap: 20px;
-              max-width: 1000px;
+              max-width: 1200px; 
             }
           }
         `}</style>

@@ -6,7 +6,7 @@ import Loading from "@/components/Loading";
 export default function RestaurantPage() {
   const isLoading = usePageLoading();
   
-  // Array 19 gambar menu (sudah format .webp)[cite: 8]
+  // Array 19 gambar menu (sudah format .webp)
   const menuImages = Array.from({ length: 19 }, (_, i) => `/images/restaurant/${i + 1}.webp`);
 
   if (isLoading) {
@@ -16,17 +16,15 @@ export default function RestaurantPage() {
   return (
     <div style={{ backgroundColor: "#faf8ef", minHeight: "100vh", padding: "80px 20px" }}>
 
-      {/* Loop untuk menampilkan semua gambar dengan efek sudut bergradasi */}
+      {/* Loop untuk menampilkan semua gambar dengan efek sudut bergradasi menyatu dengan background */}
       {menuImages.map((src, index) => (
         <div
           key={index}
           className="desktop-wide-wrapper menu-vignette-container"
           style={{
+            /* ✅ Kita hapus border dan shadow agar gambar benar-benar melebur */
             borderRadius: "12px",
             overflow: "hidden",
-            border: "1px solid rgba(213, 161, 92, 0.3)",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-            backgroundColor: "rgba(255, 255, 255, 0.7)",
             position: "relative",
           }}
         >
@@ -39,7 +37,7 @@ export default function RestaurantPage() {
               display: "block",
             }} 
           />
-          {/* ✅ Lapisan gradasi tipis di setiap sudut (vignette) */}
+          {/* ✅ Lapisan gradasi tebal di setiap sisi menggunakan warna background halaman (#faf8ef) */}
           <div className="vignette-overlay" />
         </div>
       ))}
@@ -54,32 +52,35 @@ export default function RestaurantPage() {
         </a>
       </div>
 
-      {/* CSS Khusus untuk mengatur tampilan Desktop vs Mobile, Efek Gradasi Sudut, & Animasi */}
       <style jsx>{`
-        /* --- EFEK GRADASI SUDUT (VIGNETTE) PADA FOTO --- */
+        /* --- EFEK GRADASI MENYATU DENGAN BACKGROUND (#faf8ef) --- */
         .menu-vignette-container {
           position: relative;
         }
 
-        .menu-vignette-container::after {
-          content: "";
+        .vignette-overlay {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
           pointer-events: none;
-          box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.15);
           border-radius: 12px;
+          /* ✅ Membayangkan warna krem #faf8ef masuk dari ke-4 sisi gambar */
+          box-shadow: 
+            inset 0px 15px 25px -10px #faf8ef,   /* Atas */
+            inset 0px -15px 25px -10px #faf8ef,  /* Bawah */
+            inset 15px 0px 25px -10px #faf8ef,   /* Kiri */
+            inset -15px 0px 25px -10px #faf8ef;  /* Kanan */
         }
 
-        /* --- TAMPILAN MOBILE / HP (Default) ---[cite: 8] */
+        /* --- TAMPILAN MOBILE / HP (Default) --- */
         .desktop-wide-wrapper {
           max-width: 400px;
           margin: 20px auto;
         }
 
-        /* --- ANIMASI TOMBOL BOOK NOW ---[cite: 8] */
+        /* --- ANIMASI TOMBOL BOOK NOW --- */
         .btn-book-alive {
           display: inline-block;
           padding: 16px 45px;
@@ -93,38 +94,37 @@ export default function RestaurantPage() {
           text-transform: uppercase;
           box-shadow: 0 4px 15px rgba(213, 161, 92, 0.3);
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          
-          /* Efek denyut (pulse) terus-menerus */
           animation: pulse-gold 2s infinite;
         }
 
-        /* Efek saat kursor diarahkan (hover) */[cite: 8]
         .btn-book-alive:hover {
           transform: translateY(-5px) scale(1.05);
           box-shadow: 0 15px 30px rgba(213, 161, 92, 0.5);
           background-color: #c4904a;
-          animation: none; /* Hentikan denyut saat di-hover */
+          animation: none;
         }
 
-        /* Keyframes untuk efek denyut memancarkan warna emas */[cite: 8]
         @keyframes pulse-gold {
-          0% {
-            box-shadow: 0 0 0 0 rgba(213, 161, 92, 0.6);
-          }
-          70% {
-            box-shadow: 0 0 0 15px rgba(213, 161, 92, 0);
-          }
-          100% {
-            box-shadow: 0 0 0 0 rgba(213, 161, 92, 0);
-          }
+          0% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0.6); }
+          70% { box-shadow: 0 0 0 15px rgba(213, 161, 92, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0); }
         }
 
-        /* --- TAMPILAN DESKTOP (Layar di atas 1024px) ---[cite: 8] */
+        /* --- TAMPILAN DESKTOP (Layar di atas 1024px) --- */
         @media (min-width: 1024px) {
           .desktop-wide-wrapper {
             max-width: 1200px;
             width: 100%;
-            margin: 30px auto;
+            margin: 0px auto; /* Margin dihilangkan agar tumpukan gambar lebih padat menyatu */
+          }
+          
+          /* Efek gradasi dipertebal di desktop agar semakin blur pinggirannya */
+          .vignette-overlay {
+            box-shadow: 
+              inset 0px 40px 60px -20px #faf8ef,
+              inset 0px -40px 60px -20px #faf8ef,
+              inset 40px 0px 60px -20px #faf8ef,
+              inset -40px 0px 60px -20px #faf8ef;
           }
         }
       `}</style>

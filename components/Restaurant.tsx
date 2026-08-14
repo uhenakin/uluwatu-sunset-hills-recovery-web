@@ -6,12 +6,13 @@ import Reveal from "./Reveal";
 export default function Restaurant() {
   return (
     <Reveal>
-      <section
+     <section
         id="restaurant"
         style={{
           position: "relative",
-          padding: "140px 5%",
-          /* ✅ Memasang background bg-resto.webp dengan gradasi putih mulus di atas dan bawah */
+          /* ✅ Diseragamkan padding & ditambah scrollMarginTop */
+          padding: "140px 5% 100px 5%",
+          scrollMarginTop: "80px",
           backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.88) 20%, rgba(255, 255, 255, 0.88) 80%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-resto.webp")',
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -23,7 +24,7 @@ export default function Restaurant() {
           textAlign: "center",
         }}
       >
-        <div style={{ width: "100%", maxWidth: "900px", zIndex: 2 }}>
+        <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto", zIndex: 2 }}>
           
           <h2
             className="font-luxury restaurant-title"
@@ -42,16 +43,16 @@ export default function Restaurant() {
               color: "#2c2c2c",
               opacity: 0.9,
               fontWeight: 400,
-              marginBottom: "30px",
+              margin: "0 auto 50px auto",
+              width: "100%",
             }}
           >
             Our restaurant features plant-based and vegetarian delights that will feed your soul and make your tastebuds come alive with exciting new fresh flavors! We feel food can be delicious without compromising its nutritional value. Please Enjoy!!
           </p>
 
-          <div style={{ width: "100px", height: "3px", backgroundColor: "var(--accent-gold)", margin: "0 auto 40px auto" }} />
+          <div style={{ width: "100px", height: "3px", backgroundColor: "var(--accent-gold)", margin: "0 auto 60px auto" }} />
 
-          <div className="schedule-container">
-            
+          <div className="schedule-container" style={{ maxWidth: "800px", margin: "0 auto 50px auto" }}>
             <div className="schedule-item">
               <h3 className="schedule-title font-luxury">BREAKFAST</h3>
               <span className="schedule-time">8AM - 11AM</span>
@@ -61,7 +62,6 @@ export default function Restaurant() {
               <h3 className="schedule-title font-luxury">LUNCH - DINNER - GRAZING PLATTERS</h3>
               <span className="schedule-time">12PM - 8PM</span>
             </div>
-
           </div>
 
           <div style={{ marginBottom: "20px" }}>
@@ -80,11 +80,16 @@ export default function Restaurant() {
         </div>
 
         <style jsx>{`
+          .restaurant-desc {
+            text-align: justify !important;
+            text-align-last: center !important;
+          }
+
           .schedule-container {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-bottom: 40px;
+            width: 100%;
           }
 
           .schedule-item {
@@ -114,16 +119,16 @@ export default function Restaurant() {
             font-weight: 600;
           }
 
+          /* ✅ Desktop: Ukuran font tax-notice dibesarkan sedikit menjadi 1.05rem */
           .tax-notice {
-            font-size: 0.95rem;
+            font-size: 1.05rem; 
             font-weight: 500;
             font-style: italic;
-            margin-top: 20px;
+            margin-top: 25px;
             color: #2c2c2c;
             opacity: 0.85;
           }
 
-          /* ✅ Tombol hidup dengan ukuran font & padding persis seperti Book Now (10px 24px, 0.88rem)[cite: 3, 4] */
           :global(.btn-menu-gold-box),
           .btn-menu-gold-box {
             position: relative !important;
@@ -191,9 +196,20 @@ export default function Restaurant() {
               font-size: 0.88rem !important;
               line-height: 1.6 !important;
               margin-bottom: 25px !important;
+              text-align: center !important;
+              text-align-last: center !important;
+              padding: 0 15px;
             }
+            .btn-menu-gold-box {
+              padding: 12px 22px !important;
+              font-size: 0.75rem !important;
+            }
+            
+            /* ✅ Mobile: Perkecil font & paksa jadi 1 baris agar 'charge' tidak turun */
             .tax-notice {
-              font-size: 0.68rem !important;
+              font-size: 0.62rem !important;
+              white-space: nowrap !important;
+              margin-top: 15px !important;
             }
           }
 
@@ -212,6 +228,15 @@ export default function Restaurant() {
             
             .schedule-time {
               font-size: 1rem;
+            }
+          }
+
+          @media (min-width: 1024px) {
+            :global(.btn-menu-gold-box),
+            .btn-menu-gold-box {
+              padding: 16px 36px !important;
+              font-size: 1.05rem !important;
+              letter-spacing: 1.5px !important;
             }
           }
         `}</style>

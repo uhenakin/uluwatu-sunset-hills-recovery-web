@@ -90,27 +90,28 @@ export default function Pricelist() {
   return (
     <Reveal>
       <section id="pricelist" style={{
-        padding: '120px 5% 80px 5%',
+        /* ✅ Diseragamkan padding & disesuaikan scrollMarginTop */
+        padding: '140px 5% 100px 5%',
+        scrollMarginTop: '80px',
         background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
-        scrollMarginTop: '100px'
       }}>
         <div style={{ textAlign: 'center', width: '100%', maxWidth: '1200px' }}>
           <h2 className="font-luxury pricelist-title" style={{
             fontSize: 'clamp(3rem, 6vw, 4.5rem)', 
             color: '#d5a15c', 
-            marginBottom: '20px'
+            marginBottom: '30px' /* ✅ Diseragamkan menjadi 30px */
           }}>
             Recovery <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Pricelist</span>
           </h2>
-          {/* ✅ Paragraf disesuaikan dengan About */}
           <p className="pricelist-desc" style={{
             fontSize: 'clamp(1rem, 2vw, 1.25rem)', lineHeight: '2',
-            color: '#2c2c2c', maxWidth: '800px', opacity: '0.9',
-            fontWeight: '400', margin: '0 auto 60px auto'
+            color: '#2c2c2c', opacity: '0.9',
+            fontWeight: '400', margin: '0 auto 60px auto',
+            maxWidth: '100%' 
           }}>
             Choose the recovery plan that works best for you. From Day Pass to full memberships, every option is crafted to deliver a truly exceptional experience
           </p>
@@ -141,17 +142,24 @@ export default function Pricelist() {
       </section>
 
       <style jsx>{`
+        .pricelist-desc {
+          text-align: justify;
+          text-align-last: center;
+        }
+
         @media (max-width: 640px) {
           .pricelist-grid { gap: 16px !important; grid-template-columns: 1fr !important; }
           .pricelist-card-wrap { grid-column: span 1 !important; }
           .pricelist-title {
             font-size: 2.1rem !important;
           }
-          /* ✅ Style paragraf mobile disesuaikan dengan About */
           .pricelist-desc {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;
             margin-bottom: 40px !important;
+            text-align: center !important;
+            text-align-last: center !important;
+            padding: 0 15px;
           }
         }
         @media (min-width: 641px) and (max-width: 900px) {

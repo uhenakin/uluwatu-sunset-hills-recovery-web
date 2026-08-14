@@ -162,8 +162,9 @@ export default function Recovery() {
       id="recovery"
       style={{
         position: "relative",
-        padding: "140px 5%",
-        /* ✅ Memasang background bg-recovery.webp dengan gradasi putih mulus di atas dan bawah */
+        /* ✅ Diseragamkan padding & ditambah scrollMarginTop */
+        padding: "140px 5% 100px 5%",
+        scrollMarginTop: "80px",
         backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.88) 20%, rgba(255, 255, 255, 0.88) 80%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-recovery.webp")',
         backgroundSize: "cover",
         backgroundPosition: "center center",
@@ -184,7 +185,7 @@ export default function Recovery() {
             style={{ 
               fontSize: "clamp(3rem, 6vw, 4.5rem)", 
               color: "#d5a15c", 
-              marginBottom: "20px" 
+              marginBottom: "30px" /* ✅ Diseragamkan menjadi 30px */
             }}
           >
             The <span style={{ color: "#d5a15c", fontStyle: "italic" }}>Recovery</span>
@@ -196,10 +197,10 @@ export default function Recovery() {
               fontSize: "clamp(1rem, 2vw, 1.25rem)",
               lineHeight: 2,
               color: "#2c2c2c",
-              maxWidth: "800px",
+              maxWidth: "100%",
               opacity: 0.9,
               fontWeight: 400,
-              margin: "0 auto 60px auto",
+              margin: "0 auto 80px auto", 
             }}
           >
             Immerse yourself in the ultimate cycle of renewal. Our contrast therapies harness the raw power of ice and heat to accelerate physical healing and deeply calm the mind. Surrounded by the majestic Uluwatu hills and the soothing ocean breeze, every session transcends simple recovery—guiding you toward profound inner strength.
@@ -252,6 +253,11 @@ export default function Recovery() {
       </div>
 
       <style jsx>{`
+        .recovery-desc {
+          text-align: justify;
+          text-align-last: center;
+        }
+
         @media (max-width: 768px) {
           .recovery-desktop-grid {
             display: none !important;
@@ -265,10 +271,14 @@ export default function Recovery() {
           .recovery-title {
             font-size: 2.1rem !important;
           }
+          
           .recovery-desc {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;
             margin-bottom: 40px !important;
+            text-align: center !important;
+            text-align-last: center !important;
+            padding: 0 15px;
           }
         }
       `}</style>

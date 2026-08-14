@@ -137,7 +137,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
     return () => mql.removeEventListener("change", update);
   }, []);
 
-  // Set initial scroll posisi tengah untuk infinity scroll Other Facilities (Mobile)
   useEffect(() => {
     if (!isMobile || !trackOtherRef.current) return;
     trackOtherRef.current.scrollLeft = others.length * ITEM_WIDTH;
@@ -163,7 +162,6 @@ export default function FacilityDetail({ slug }: { slug: string }) {
 
   const trackOtherItems = isMobile ? [...others, ...others, ...others] : others;
 
-  // Set initial scroll posisi tengah untuk infinity scroll Gallery
   useEffect(() => {
     if (!trackGalleryRef.current || !data) return;
     trackGalleryRef.current.scrollLeft = data.gallery.length * GALLERY_ITEM_WIDTH;
@@ -224,21 +222,30 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
-            padding: "120px 5% 40px 5%",
+            padding: "120px 5% 80px 5%",
             background: "none",
             backgroundColor: "#faf8ef",
           }}
         >
-          <h1 className="font-luxury detail-hero-title" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#d5a15c", marginBottom: "1rem" }}>
+          <h1 className="font-luxury detail-hero-title" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#d5a15c", marginBottom: "30px" /* ✅ Jarak disamakan menjadi 30px */ }}>
             {data.title}
           </h1>
-          <p className="detail-hero-tagline" style={{ color: "#2c2c2c", opacity: 0.9, fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 2, fontWeight: 400, maxWidth: "600px" }}>
+          <p className="detail-hero-tagline" style={{ 
+            color: "#2c2c2c", 
+            opacity: 0.9, 
+            fontSize: "clamp(1rem, 2vw, 1.25rem)", 
+            lineHeight: 2, 
+            fontWeight: 400, 
+            maxWidth: "1200px", 
+            width: "100%",
+            margin: "0 auto"
+          }}>
             {data.tagline}
           </p>
         </section>
 
-        <section style={{ backgroundColor: "#faf8ef", padding: "40px 5% 80px 5%", display: "flex", justifyContent: "center" }}>
-          <div style={{ width: "100%", maxWidth: "1100px" }}>
+        <section style={{ backgroundColor: "#faf8ef", padding: "60px 5% 100px 5%", display: "flex", justifyContent: "center" }}>
+          <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
             <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "2rem", fontWeight: 600 }}>
               Benefits
             </span>
@@ -260,16 +267,25 @@ export default function FacilityDetail({ slug }: { slug: string }) {
 
       <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", justifyContent: "center", backgroundColor: "#faf8ef" }}>
         <section style={{ backgroundColor: "#faf8ef", padding: "0 5% 120px 5%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <div style={{ width: "100%", maxWidth: "1200px" }}>
+          <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
 
             <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Gallery
             </span>
-            <p className="detail-section-desc" style={{ color: "#2c2c2c", opacity: 0.9, fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 2, fontWeight: 400, maxWidth: "600px", marginBottom: "2rem" }}>
+            <p className="detail-section-desc" style={{ 
+              color: "#2c2c2c", 
+              opacity: 0.9, 
+              fontSize: "clamp(1rem, 2vw, 1.25rem)", 
+              lineHeight: 2, 
+              fontWeight: 400, 
+              maxWidth: "1200px", 
+              width: "100%", 
+              margin: "0 auto 3rem auto"
+            }}>
               A glimpse into our luxurious spaces – every corner designed for your comfort and recovery.
             </p>
 
-            <div style={{ position: "relative", width: "100%", marginBottom: "80px" }}>
+            <div style={{ position: "relative", width: "100%", marginBottom: "100px" }}>
               <button
                 type="button"
                 onClick={() => scrollGalleryBy('left')}
@@ -348,11 +364,19 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             <span className="font-luxury detail-section-title" style={{ display: "block", color: "#d5a15c", letterSpacing: "1px", textTransform: "capitalize", fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: "1rem", fontWeight: 600 }}>
               Other Facilities
             </span>
-            <p className="detail-section-desc" style={{ color: "#2c2c2c", opacity: 0.9, fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 2, fontWeight: 400, maxWidth: "600px", marginBottom: "2rem" }}>
+            <p className="detail-section-desc" style={{ 
+              color: "#2c2c2c", 
+              opacity: 0.9, 
+              fontSize: "clamp(1rem, 2vw, 1.25rem)", 
+              lineHeight: 2, 
+              fontWeight: 400, 
+              maxWidth: "1200px", 
+              width: "100%", 
+              margin: "0 auto 3rem auto"
+            }}>
               Discover more of our premium amenities – each crafted to enhance your wellness journey.
             </p>
 
-            {/* Other Facilities dikembalikan menggunakan Grid untuk Desktop dan Track untuk Mobile seperti semula */}
             <div className="other-grid-desktop" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "30px", width: "100%" }}>
               {others.map((item) => (
                 <OtherCard key={item.slug} item={item} />
@@ -448,6 +472,15 @@ export default function FacilityDetail({ slug }: { slug: string }) {
       )}
 
       <style jsx>{`
+        .detail-hero-tagline {
+          text-align: justify;
+          text-align-last: center;
+        }
+
+        .detail-section-desc {
+          text-align: left;
+        }
+
         .benefits-container {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -473,6 +506,7 @@ export default function FacilityDetail({ slug }: { slug: string }) {
           opacity: 0.9;
           font-size: 1rem;
           line-height: 1.65;
+          text-align: justify;
         }
 
         .gallery-track-slider::-webkit-scrollbar,
@@ -534,18 +568,33 @@ export default function FacilityDetail({ slug }: { slug: string }) {
             font-size: 1.8rem !important;
             margin-bottom: 1.2rem !important;
           }
-          .detail-hero-tagline, .detail-section-desc {
+          
+          .detail-hero-tagline {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;
+            text-align: center !important;
+            text-align-last: center !important;
+            padding: 0 15px !important;
+            margin: 0 auto 60px auto !important; 
+          }
+
+          .detail-section-desc {
+            font-size: 0.88rem !important;
+            line-height: 1.6 !important;
+            text-align: left !important;
+            padding: 0 15px !important;
+            margin: 0 auto 40px auto !important;
           }
 
           .benefit-desc {
             font-size: 0.95rem !important; 
+            text-align: left; 
           }
           
           .benefits-container { display: flex; flex-direction: column; gap: 3rem; }
           .benefit-item:nth-child(odd) { text-align: left; padding-right: 15%; }
           .benefit-item:nth-child(even) { text-align: right; padding-left: 15%; }
+          .benefit-item:nth-child(even) .benefit-desc { text-align: right; }
           .benefit-item::before { content: ""; position: absolute; top: -12px; width: 40px; height: 2px; background-color: var(--accent-gold); opacity: 0.6; }
           .benefit-item:nth-child(odd)::before { left: 0; }
           .benefit-item:nth-child(even)::before { right: 0; }

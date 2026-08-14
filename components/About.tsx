@@ -14,7 +14,9 @@ export default function About() {
     <Reveal>
       <section id="about" style={{
         minHeight: '100vh',
-        padding: '120px 5%',
+        /* ✅ Diseragamkan padding & ditambah scrollMarginTop */
+        padding: '140px 5% 100px 5%',
+        scrollMarginTop: '80px', 
         background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)',
         display: 'flex',
         flexDirection: 'column',
@@ -26,32 +28,31 @@ export default function About() {
 
         <h2 className="font-luxury about-title" style={{
           color: '#d5a15c', 
-          marginBottom: '35px',
+          marginBottom: '30px', /* ✅ Jarak disamakan menjadi 30px */
           textShadow: 'none'
         }}>
           The <span style={{ color: '#d5a15c', fontStyle: 'italic' }}>Sanctuary</span>
         </h2>
 
         <div style={{
-          maxWidth: '900px',
+          width: '100%',
+          maxWidth: '1200px', 
+          margin: '0 auto',
           display: 'flex',
           flexDirection: 'column',
           gap: '20px'
         }}>
-
           <p className="about-text">
             Uluwatu Sunset Hills Recovery is a premium recovery and relaxation destination, perched atop the cliffs of Uluwatu, Bali, overlooking the Indian Ocean. 
           </p>
-            <p className="about-text"> 
+          <p className="about-text"> 
             Born from the need for a quality sanctuary amid modern lifestyle demands, we provide a holistic space to restore your body and mind — set apart from the noise below, where the ocean air and open sky become part of the recovery itself.
           </p>
           <p className="about-text">
             Our approach combines the benefits of warm water immersion, sauna therapy, and ice baths to support your recovery journey. Immerse yourself in our signature contrast therapy, unwind in our hotpool, and restore your inner balance with treatments tailored to you.
           </p>
-
         </div>
 
-        {/* ============ HIGHLIGHT STATS ============ */}
         <div
           className="about-stats"
           style={{
@@ -108,12 +109,15 @@ export default function About() {
         .about-title {
           font-size: clamp(3rem, 6vw, 4.5rem);
         }
+        
         .about-text {
           font-size: clamp(1rem, 2vw, 1.25rem);
           line-height: 2;
           color: #2c2c2c;
           opacity: 0.9;
           font-weight: 400;
+          text-align: justify !important;
+          text-align-last: center !important;
         }
 
         @media (max-width: 640px) {
@@ -124,6 +128,9 @@ export default function About() {
           .about-text {
             font-size: 0.88rem !important;
             line-height: 1.6 !important;
+            text-align: center !important;
+            text-align-last: center !important;
+            padding: 0 15px;
           }
           .about-stats {
             gap: 20px 0 !important;
