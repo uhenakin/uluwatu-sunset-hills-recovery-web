@@ -14,8 +14,8 @@ export const facilitiesData: Record<string, Facility> = {
     slug: "sauna",
     route: "/sauna",
     title: "Sauna",
-    // 🔥 Tagline disamakan dengan deskripsi di Recovery.tsx
-    tagline: "Detoxify and unwind in our premium wood-fired saunas. Relieving tension and promoting cardiovascular health.",
+    // 🔥 Disamakan dengan Recovery.tsx
+    tagline: "Detoxify and unwind in our premium hot stone saunas. Let the healing steam relieve tension and promote cardiovascular health.",
     cardImage: "/images/card/sauna.webp", 
     heroImage: "/images/sauna/bg-sauna.webp", 
     benefits: [
@@ -35,8 +35,8 @@ export const facilitiesData: Record<string, Facility> = {
   "ice-bath": {
     slug: "ice-bath",
     route: "/ice-bath",
-    title: "Ice Bath",
-    // 🔥 Tagline disamakan dengan deskripsi di Recovery.tsx
+    title: "Cold Plunge",
+    // 🔥 Disamakan dengan Recovery.tsx
     tagline: "Accelerate healing with our cold plunges. Proven to reduce inflammation and minimize muscle soreness.",
     cardImage: "/images/card/icebath.webp", 
     heroImage: "/images/icebath/bg-icebath.webp", 
@@ -57,9 +57,9 @@ export const facilitiesData: Record<string, Facility> = {
   "hot-pool": {
     slug: "hot-pool",
     route: "/hot-pool",
-    title: "Hot Pool",
-    // 🔥 Tagline disamakan dengan deskripsi di Recovery.tsx
-    tagline: "Melt away stress in our therapeutic hot pools. The soothing warmth relaxes joints for restorative sleep.",
+    title: "Jacuzzi",
+    // 🔥 Disamakan dengan Recovery.tsx
+    tagline: "Melt away stress in our therapeutic jacuzzi. The soothing warmth relaxes joints for restorative sleep.",
     cardImage: "/images/card/hotpool.webp", 
     heroImage: "/images/hotpool/bg-hotpool.webp", 
     benefits: [
@@ -79,9 +79,9 @@ export const facilitiesData: Record<string, Facility> = {
   "swimming-pool": {
     slug: "swimming-pool",
     route: "/swimming-pool",
-    title: "Swimming Pool",
-    // 🔥 Tagline disamakan dengan deskripsi di Recovery.tsx
-    tagline: "Enjoy a refreshing dip in our crystal-clear pool, perfectly positioned to capture the ocean breeze.",
+    title: "25m Lap Pool",
+    // 🔥 Disamakan dengan Recovery.tsx
+    tagline: "Enjoy a refreshing dip in our crystal-clear 25-meter lap pool, perfectly positioned to capture the ocean breeze.",
     cardImage: "/images/card/swimpool.webp", 
     heroImage: "/images/swimmingpool/bg-swimpool.webp", 
     benefits: [
