@@ -67,7 +67,7 @@ export default function Home() {
         </p>
 
         <div className="hero-facilities">
-          Sauna &middot; Ice Bath &middot; Hot Pool &middot; Swimming Pool
+          25m Lap Pool &middot; Cold Plunge &middot; Jacuzzi &middot; Sauna
         </div>
         
         {/* ✅ Warna disamakan dengan paragraf */}
@@ -78,7 +78,8 @@ export default function Home() {
         <div className="hero-hours-container">
           <span className="hours-title">OPENING HOURS &middot; MON &mdash; SUN</span>
           {/* ✅ Warna disamakan dengan paragraf */}
-          <span className="hours-time">12 PM - 10 PM</span>
+          <span className="hours-time">1 PM - 7 PM</span>
+          <span className="hours-note">Last Entry 6 PM</span>
         </div>
         
         <div className="hero-buttons">
@@ -170,6 +171,15 @@ export default function Home() {
           color: #2c2c2c;
           opacity: 0.9;
           font-weight: 400;
+        }
+
+        .hours-note {
+          font-size: 0.95rem;
+          letter-spacing: 1px;
+          color: #2c2c2c;
+          opacity: 0.9;
+          font-weight: 500;
+          font-style: italic;
         }
 
         .hero-buttons {
