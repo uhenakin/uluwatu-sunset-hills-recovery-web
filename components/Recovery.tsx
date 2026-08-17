@@ -8,28 +8,28 @@ import Loading from "./Loading";
 
 const facilities = [
   {
-    slug: "sauna",
-    title: "Sauna",
-    desc: "Detoxify and unwind in our premium hot stone saunas. Let the healing steam relieve tension and promote cardiovascular health.",
-    cardImage: "/images/card/sauna.webp"
+    slug: "swimming-pool",
+    title: "25m Lap Pool",
+    desc: "Enjoy a refreshing dip in our crystal-clear 25-meter lap pool, perfectly positioned to capture the ocean breeze.",
+    cardImage: "/images/card/swimpool.webp"
   },
   {
     slug: "ice-bath",
-    title: "Ice Bath",
+    title: "Cold Plunge",
     desc: "Accelerate healing with our cold plunges. Proven to reduce inflammation and minimize muscle soreness.",
     cardImage: "/images/card/icebath.webp"
   },
   {
     slug: "hot-pool",
-    title: "Hot Pool",
-    desc: "Melt away stress in our therapeutic hot pools. The soothing warmth relaxes joints for restorative sleep.",
+    title: "Jacuzzi",
+    desc: "Melt away stress in our therapeutic jacuzzi. The soothing warmth relaxes joints for restorative sleep.",
     cardImage: "/images/card/hotpool.webp"
   },
   {
-    slug: "swimming-pool",
-    title: "Swimming Pool",
-    desc: "Enjoy a refreshing dip in our crystal-clear pool, perfectly positioned to capture the ocean breeze.",
-    cardImage: "/images/card/swimpool.webp"
+    slug: "sauna",
+    title: "Sauna",
+    desc: "Detoxify and unwind in our premium hot stone saunas. Let the healing steam relieve tension and promote cardiovascular health.",
+    cardImage: "/images/card/sauna.webp"
   }
 ];
 
