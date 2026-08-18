@@ -7,10 +7,7 @@ export default function Pricelist() {
     { badge: "VALID 1 DAY", title: "Day Pass", price: "Rp 350.000", desc: "Unlimited access for 1 day" },
     { badge: "VALID 7 DAYS", title: "Weekly Pass", price: "Rp 1.200.000", desc: "Unlimited access for 7 days" },
     { badge: "VALID 30 DAYS", title: "10 Session Pass", price: "Rp 2.000.000", desc: "10 sessions valid for 30 days" },
-    { badge: "VALID 30 DAYS", title: "Monthly Pass", price: "Rp 3.000.000", desc: "Unlimited access for 30 days" },
-    { badge: "VALID 90 DAYS", title: "3 Months Pass", price: "Rp 8.000.000", desc: "Unlimited access for 90 days" },
-    { badge: "VALID 180 DAYS", title: "6 Months Pass", price: "Rp 14.000.000", desc: "Unlimited access for 180 days" },
-    { badge: "VALID 365 DAYS", title: "1 Year Pass", price: "Rp 25.000.000", desc: "Unlimited access for 365 days" }
+    { badge: "VALID 30 DAYS", title: "Monthly Pass", price: "Rp 3.000.000", desc: "Unlimited access for 30 days" }
   ];
 
   const PriceCard = ({ item }: { item: typeof plans[0] }) => (
@@ -119,10 +116,11 @@ export default function Pricelist() {
           className="pricelist-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '30px',
             width: '100%',
-            maxWidth: '1200px',
+            maxWidth: '900px',
+            margin: '0 auto'
           }}
         >
           {plans.map((item, index) => (
@@ -130,7 +128,7 @@ export default function Pricelist() {
               key={index}
               className="pricelist-card-wrap"
               style={{
-                gridColumn: index < 4 ? 'span 3' : 'span 4',
+                gridColumn: 'span 1',
               }}
             >
               <PriceCard item={item} />
@@ -171,10 +169,6 @@ export default function Pricelist() {
             text-align-last: center !important;
             padding: 0 15px;
           }
-        }
-        @media (min-width: 641px) and (max-width: 900px) {
-          .pricelist-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .pricelist-card-wrap { grid-column: span 1 !important; }
         }
       `}</style>
     </Reveal>

@@ -4,9 +4,9 @@ import Reveal from "./Reveal";
 
 export default function About() {
   const stats = [
-    { value: "6°", label: "Ice Bath" },
-    { value: "40°", label: "Hot Pool" },
-    { value: "12m", label: "Swimming Pool" },
+    { value: "10°", label: "Cold Plunge" },
+    { value: "40°", label: "Jacuzzi" },
+    { value: "25m", label: "Lap Pool" },
     { value: "80°", label: "Sauna" },
   ];
 
