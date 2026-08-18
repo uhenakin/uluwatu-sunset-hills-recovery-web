@@ -41,7 +41,7 @@ export default function Home() {
       <section 
         className="hero-section responsive-hero" 
         style={{ 
-          backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 60%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-hero.webp")',
+          backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.70) 60%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-hero.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
@@ -79,7 +79,6 @@ export default function Home() {
           <span className="hours-title">OPENING HOURS &middot; MON &mdash; SUN</span>
           {/* ✅ Warna disamakan dengan paragraf */}
           <span className="hours-time">1 PM - 7 PM</span>
-          <span className="hours-note">Last Entry 6 PM</span>
         </div>
         
         <div className="hero-buttons">
