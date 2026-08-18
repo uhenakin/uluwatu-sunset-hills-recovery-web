@@ -48,7 +48,7 @@ export default function Navbar() {
           
           <div className="logo-container" style={{ 
             position: 'relative', 
-            height: '72px', /* ✅ Logo desktop/tablet dikecilkan sedikit */
+            height: '72px',
             width: 'auto', 
             aspectRatio: '1 / 1',
             cursor: 'pointer', 
@@ -106,26 +106,28 @@ export default function Navbar() {
 
       <style jsx>{`
         .navbar {
-          padding: 14px 5% !important; /* ✅ Padding desktop diperkecil sedikit */
+          padding: 14px 5% !important;
         }
 
         .nav-desktop-menu {
-          gap: 34px !important; /* ✅ Jarak antar menu diperkecil sedikit */
+          gap: 34px !important;
         }
 
         .nav-link-btn {
-          font-size: 0.96rem !important; /* ✅ Ukuran font menu desktop dikecilkan sedikit */
+          font-family: var(--font-cormorant), sans-serif !important; /* ✅ Menggunakan Josefin Sans */
+          font-size: 1.1rem !important; 
           letter-spacing: 1.2px !important;
-          font-weight: 500;
+          font-weight: 600; /* Sedikit ditebalkan agar lebih tegas karena font ini tipis */
         }
 
         .btn-book-alive {
+          font-family: var(--font-cormorant), sans-serif !important; /* ✅ Menggunakan Josefin Sans */
           background-color: #d5a15c;
           color: #ffffff;
           border: 1px solid #d5a15c;
-          padding: 10px 24px; /* ✅ Tombol book desktop diperkecil sedikit */
-          font-size: 0.88rem;
-          font-weight: 600;
+          padding: 10px 24px;
+          font-size: 0.95rem; 
+          font-weight: 700;
           letter-spacing: 1.2px;
           text-transform: uppercase;
           border-radius: 4px;
@@ -139,6 +141,13 @@ export default function Navbar() {
           box-shadow: 0 10px 25px rgba(213, 161, 92, 0.55);
           background-color: #c4904a;
           animation: none;
+        }
+
+        .mobile-link {
+          font-family: var(--font-cormorant), sans-serif !important; /* ✅ Menggunakan Josefin Sans */
+          font-size: 1.3rem !important; 
+          font-weight: 600;
+          letter-spacing: 1px;
         }
 
         @keyframes pulse-gold-nav {
@@ -155,10 +164,10 @@ export default function Navbar() {
 
         @media (max-width: 768px) {
           .navbar {
-            padding: 10px 5% !important; /* ✅ Padding mobile dikecilkan sedikit */
+            padding: 10px 5% !important;
           }
           .logo-container {
-            height: 40px !important; /* ✅ Logo mobile dikecilkan sedikit dari 48px ke 40px */
+            height: 40px !important;
             width: 40px !important;
           }
         }

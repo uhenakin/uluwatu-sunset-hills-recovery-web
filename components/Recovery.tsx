@@ -250,10 +250,10 @@ export default function Recovery() {
       </div>
 
       <style jsx>{`
-        /* ✅ Responsif Padding & Margin Navbar */
+        /* ✅ Standar jarak seragam untuk semua section */
         .responsive-section {
-          padding: 140px 5% 100px 5%;
-          scroll-margin-top: 80px;
+          padding: 110px 5% 90px 5%;
+          scroll-margin-top: 72px; /* Offset pas dengan navbar saat diklik */
         }
 
         .recovery-desc {
@@ -262,10 +262,9 @@ export default function Recovery() {
         }
 
         @media (max-width: 768px) {
-          /* ✅ Di HP jarak diperkecil */
           .responsive-section {
             padding: 80px 5% 60px 5%;
-            scroll-margin-top: 70px;
+            scroll-margin-top: 64px;
           }
 
           .recovery-desktop-grid {

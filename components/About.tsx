@@ -12,12 +12,11 @@ export default function About() {
 
   return (
     <Reveal>
-      <section id="about" className="responsive-section-vh" style={{
+      <section id="about" className="responsive-section" style={{
         background: 'linear-gradient(to bottom, #ffffff 0%, #faf8ef 15%, #faf8ef 85%, #ffffff 100%)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
         textAlign: 'center',
         position: 'relative'
       }}>
@@ -102,10 +101,10 @@ export default function About() {
       </section>
 
       <style jsx>{`
-        .responsive-section-vh {
-          padding: 140px 5% 100px 5%;
-          scroll-margin-top: 80px;
-          min-height: 100vh;
+        /* ✅ Standar jarak seragam untuk semua section */
+        .responsive-section {
+          padding: 110px 5% 90px 5%;
+          scroll-margin-top: 72px; /* Offset pas dengan navbar saat diklik */
         }
 
         .about-title {
@@ -123,11 +122,9 @@ export default function About() {
         }
 
         @media (max-width: 768px) {
-          /* ✅ Di HP jarak atas juga diperkecil agar mendekat ke Hero */
-          .responsive-section-vh {
-            padding: 40px 5% 60px 5%;
-            scroll-margin-top: 70px;
-            min-height: auto;
+          .responsive-section {
+            padding: 80px 5% 60px 5%;
+            scroll-margin-top: 64px;
           }
 
           .about-title {

@@ -11,7 +11,7 @@ export default function Restaurant() {
         className="responsive-section"
         style={{
           position: "relative",
-          backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.75) 20%, rgba(255, 255, 255, 0.75) 80%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-resto.webp")',
+          backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.6) 20%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-resto.webp")',
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
@@ -51,16 +51,13 @@ export default function Restaurant() {
 
           <div style={{ width: "100px", height: "3px", backgroundColor: "var(--accent-gold)", margin: "0 auto 35px auto" }} />
 
-          <div className="schedule-container" style={{ maxWidth: "800px", margin: "0 auto 45px auto" }}>
-            <div className="schedule-item">
-              <h3 className="schedule-title font-luxury">BREAKFAST</h3>
-              <span className="schedule-time">8AM - 11AM</span>
-            </div>
-            
-            <div className="schedule-item">
-              <h3 className="schedule-title font-luxury">LUNCH - DINNER - GRAZING PLATTERS</h3>
-              <span className="schedule-time">12PM - 8PM</span>
-            </div>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", margin: "0 auto 45px auto", padding: "10px 15px" }}>
+            <h3 className="font-luxury" style={{ fontSize: "clamp(1.4rem, 4vw, 2.2rem)", color: "#d5a15c", fontWeight: 700, letterSpacing: "2px", margin: 0, lineHeight: 1.3 }}>
+              LUNCH - DINNER - GRAZING PLATTERS
+            </h3>
+            <span style={{ fontSize: "clamp(1.1rem, 3vw, 1.5rem)", color: "#2c2c2c", fontWeight: 600 }}>
+              12PM - 8PM
+            </span>
           </div>
 
           <div style={{ marginBottom: "20px" }}>
@@ -79,49 +76,15 @@ export default function Restaurant() {
         </div>
 
         <style jsx>{`
-          /* ✅ Responsif Padding & Margin Navbar */
+          /* ✅ Standar jarak seragam untuk semua section */
           .responsive-section {
-            padding: 140px 5% 100px 5%;
-            scroll-margin-top: 80px;
+            padding: 110px 5% 90px 5%;
+            scroll-margin-top: 72px; /* Offset pas dengan navbar saat diklik */
           }
 
           .restaurant-desc {
             text-align: justify !important;
             text-align-last: center !important;
-          }
-
-          .schedule-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-          }
-
-          .schedule-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(213, 161, 92, 0.3);
-          }
-          
-          .schedule-item:last-child {
-            border-bottom: none;
-          }
-
-          .schedule-title {
-            font-size: 0.95rem;
-            color: #d5a15c;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin: 0;
-          }
-
-          .schedule-time {
-            font-size: 0.85rem;
-            color: #2c2c2c;
-            font-weight: 600;
           }
 
           .tax-notice {
@@ -192,10 +155,9 @@ export default function Restaurant() {
           }
 
           @media (max-width: 768px) {
-            /* ✅ Di HP jarak diperkecil */
             .responsive-section {
               padding: 80px 5% 60px 5%;
-              scroll-margin-top: 70px;
+              scroll-margin-top: 64px;
             }
 
             .restaurant-title {
@@ -210,13 +172,6 @@ export default function Restaurant() {
               text-align-last: center !important;
               padding: 0 15px;
             }
-            .schedule-container {
-              gap: 2px !important;
-            }
-            .schedule-item {
-              padding: 6px 0 !important;
-              gap: 2px !important;
-            }
             .btn-menu-gold-box {
               padding: 12px 22px !important;
               font-size: 0.75rem !important;
@@ -226,24 +181,6 @@ export default function Restaurant() {
               font-size: 0.62rem !important;
               white-space: nowrap !important;
               margin-top: 15px !important;
-            }
-          }
-
-          @media (min-width: 600px) {
-            .schedule-item {
-              flex-direction: row;
-              justify-content: space-between;
-              align-items: center;
-              padding: 16px 0;
-              gap: 20px;
-            }
-
-            .schedule-title {
-              font-size: 1.25rem;
-            }
-            
-            .schedule-time {
-              font-size: 1rem;
             }
           }
 
