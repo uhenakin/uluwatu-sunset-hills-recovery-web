@@ -41,7 +41,8 @@ export default function Home() {
       <section 
         className="hero-section responsive-hero" 
         style={{ 
-          backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.70) 60%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-hero.webp")',
+          /* ✅ Opasitas putih dikurangi agar background foto lebih terang dan tembus pandang */
+          backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.45) 60%, rgba(255, 255, 255, 1) 100%), url("/images/bg/bg-hero.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
