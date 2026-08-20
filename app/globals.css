@@ -19,7 +19,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
-  scroll-behavior: smooth;
+  /* 🔥 KOSONGKAN DI SINI (Jangan pakai scroll-behavior: smooth) */
 }
 
 body {
@@ -47,7 +47,6 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   padding: 100px 5% 60px 5%; /* Padding atas ditambah agar tidak tertutup navbar fixed di mobile */
   background-color: var(--bg-ocean);
   
-  /* Overlay gelap (0.4) di atas, lalu fade-out mulus ke warna putih murni (#ffffff) di paling bawah[cite: 17] */
   background-image: 
     linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 60%, #ffffff 100%), 
     url('/images/bg/bg-hero.webp');
@@ -57,7 +56,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
 }
 
 .hero-title {
-  font-size: clamp(2.3rem, 8vw, 3rem); /* Responsif otomatis menyesuaikan layar kecil */
+  font-size: clamp(2.3rem, 8vw, 3rem); 
   margin-bottom: 1.2rem; 
   line-height: 1.15;
   text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -75,14 +74,14 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
 
 .hero-buttons {
   display: flex; 
-  flex-direction: column; /* Tombol ditumpuk atas bawah untuk Mobile[cite: 17] */
+  flex-direction: column; 
   gap: 12px; 
   width: 100%; 
-  max-width: 320px; /* Disesuaikan agar pas di layar HP kecil */
+  max-width: 320px; 
 }
 
 .btn-primary, .btn-secondary {
-  padding: 14px 0; /* Full width di mobile */
+  padding: 14px 0; 
   width: 100%;
   text-decoration: none; 
   letter-spacing: 1.5px;
@@ -126,7 +125,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   .hero-title { font-size: 4.5rem; }
   .hero-desc { font-size: 1.1rem; max-width: 600px; padding: 0; }
   .hero-buttons {
-    flex-direction: row; /* Berjejer kiri-kanan untuk Desktop/Tablet[cite: 17] */
+    flex-direction: row; 
     max-width: 100%; 
     justify-content: center;
   }
@@ -157,7 +156,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   -webkit-backdrop-filter: blur(16px);
   z-index: 1000;
   border-bottom: 1px solid rgba(213, 161, 92, 0.2);
-  padding: 14px 5%; /* Disesuaikan sedikit untuk kenyamanan mobile */
+  padding: 14px 5%; 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -170,7 +169,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
 }
 
 .navbar-logo img {
-  height: 38px; /* Sedikit disesuaikan agar proporsional di perangkat seluler */
+  height: 38px; 
   width: auto;
   object-fit: contain;
 }
@@ -318,7 +317,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   position: fixed;
   top: 0;
   right: 0;
-  width: 82%; /* Sedikit diperlebar agar nyaman disentuh di layar kecil */
+  width: 82%; 
   max-width: 320px;
   height: 100%;
   background: #ffffff;
@@ -330,7 +329,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
   padding: 30px 20px;
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
   border-left: 1px solid rgba(213, 161, 92, 0.2);
-  overflow-y: auto; /* Mencegah terpotong jika layar HP pendek */
+  overflow-y: auto; 
 }
 
 .nav-mobile-menu.open {
@@ -372,7 +371,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
 .mobile-link {
   color: #2c2c2c;
   text-decoration: none;
-  font-size: 1.35rem; /* Disesuaikan agar pas di layar kecil */
+  font-size: 1.35rem; 
   font-family: var(--font-cormorant), serif;
   letter-spacing: 1.5px;
   padding: 12px 8px;

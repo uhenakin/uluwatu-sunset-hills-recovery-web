@@ -8,16 +8,15 @@ const josefinSans = Josefin_Sans({
   subsets: ["latin"], 
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant", // Kita gunakan variabel yang sama agar otomatis merubah heading
+  variable: "--font-cormorant",
 });
 
 const robotoSlab = Roboto_Slab({ 
   subsets: ["latin"], 
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-manrope", // Kita gunakan variabel yang sama agar otomatis merubah body text
+  variable: "--font-manrope",
 });
 
-// ✅ SEO yang sudah ditambah dengan keyword fasilitas dan sunset
 export const metadata: Metadata = {
   title: "Uluwatu Sunset Hills | Premium Recovery",
   description: "Experience luxury holistic recovery in Uluwatu, Bali. Elevate your physical and mental wellbeing at our exclusive sanctuary featuring ice baths, saunas, hot pools, and holistic therapies with stunning sunset views.",
@@ -70,10 +69,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${josefinSans.variable} ${robotoSlab.variable}`} data-scroll-behavior="smooth">
+    <html lang="en" className={`${josefinSans.variable} ${robotoSlab.variable}`}>
       <body suppressHydrationWarning>
-        <Navbar />
+        {/* 🔥 Pindahkan Navbar ke DALAM SmoothScrolling */}
         <SmoothScrolling>
+          <Navbar />
           {children}
         </SmoothScrolling>
       </body>
