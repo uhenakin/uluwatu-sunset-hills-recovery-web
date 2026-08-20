@@ -151,7 +151,7 @@ export default function Contact() {
             OPENING HOURS &middot; MON &mdash; SUN
           </p>
           <p style={{ color: '#2c2c2c', opacity: '0.85', fontSize: '0.75rem', marginTop: '4px', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600 }}>
-            12 PM - 7 PM
+            1 PM - 7 PM
           </p>
         </div>
 
