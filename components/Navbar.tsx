@@ -4,12 +4,17 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation"; 
 import Image from "next/image"; 
+// 🔥 1. Import Lenis
+import { useLenis } from '@studio-freight/react-lenis';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter(); 
   const isHome = pathname === "/";
+  
+  // 🔥 2. Panggil instance Lenis
+  const lenis = useLenis();
 
   useEffect(() => {
     if (isOpen) {
@@ -24,8 +29,13 @@ export default function Navbar() {
   const handleNav = (sectionId: string) => {
     closeMenu();
     if (isHome) {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
+      // 🔥 3. Gunakan Lenis untuk meluncur ke section yang dituju
+      if (lenis) {
+        lenis.scrollTo(`#${sectionId}`, { offset: 0 });
+      } else {
+        const el = document.getElementById(sectionId);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
     } else {
       window.location.href = `/#${sectionId}`;
     }
@@ -34,11 +44,16 @@ export default function Navbar() {
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault(); 
     closeMenu();
-    router.push('/'); 
     
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
+    // 🔥 4. Gunakan Lenis untuk meluncur mulus ke paling atas (Top)
+    if (isHome && lenis) {
+      lenis.scrollTo(0);
+    } else {
+      router.push('/'); 
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    }
   };
 
   return (
@@ -114,14 +129,14 @@ export default function Navbar() {
         }
 
         .nav-link-btn {
-          font-family: var(--font-cormorant), sans-serif !important; /* ✅ Menggunakan Josefin Sans */
+          font-family: var(--font-cormorant), sans-serif !important; 
           font-size: 1.1rem !important; 
           letter-spacing: 1.2px !important;
-          font-weight: 600; /* Sedikit ditebalkan agar lebih tegas karena font ini tipis */
+          font-weight: 600; 
         }
 
         .btn-book-alive {
-          font-family: var(--font-cormorant), sans-serif !important; /* ✅ Menggunakan Josefin Sans */
+          font-family: var(--font-cormorant), sans-serif !important; 
           background-color: #d5a15c;
           color: #ffffff;
           border: 1px solid #d5a15c;
@@ -144,32 +159,21 @@ export default function Navbar() {
         }
 
         .mobile-link {
-          font-family: var(--font-cormorant), sans-serif !important; /* ✅ Menggunakan Josefin Sans */
+          font-family: var(--font-cormorant), sans-serif !important; 
           font-size: 1.3rem !important; 
           font-weight: 600;
           letter-spacing: 1px;
         }
 
         @keyframes pulse-gold-nav {
-          0% {
-            box-shadow: 0 0 0 0 rgba(213, 161, 92, 0.6);
-          }
-          70% {
-            box-shadow: 0 0 0 12px rgba(213, 161, 92, 0);
-          }
-          100% {
-            box-shadow: 0 0 0 0 rgba(213, 161, 92, 0);
-          }
+          0% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0.6); }
+          70% { box-shadow: 0 0 0 12px rgba(213, 161, 92, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(213, 161, 92, 0); }
         }
 
         @media (max-width: 768px) {
-          .navbar {
-            padding: 10px 5% !important;
-          }
-          .logo-container {
-            height: 40px !important;
-            width: 40px !important;
-          }
+          .navbar { padding: 10px 5% !important; }
+          .logo-container { height: 40px !important; width: 40px !important; }
         }
       `}</style>
     </>
